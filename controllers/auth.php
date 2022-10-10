@@ -30,7 +30,7 @@ if (isset($_POST['loginBtn'])){
                 $msg_icon="bi-exclamation-octagon";
             }else{
 
-header("Location:../dashboard/home.php");
+header("Location:".NOFYL_URL."dashboard/home.php");
 
             }
         }
