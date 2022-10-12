@@ -2,7 +2,8 @@
 include '../config/config.php';
 include '../controllers/auth.php';
 include '../controllers/session.php';
-include '../controllers/helper.php'
+include '../controllers/helper.php';
+include '../controllers/frameworkcontroller.php'
 ?>
 <!DOCTYPE html>
 <html lang="en">
