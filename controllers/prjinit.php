@@ -18,11 +18,26 @@ alert('Please enter all fields');
     }else{
         $start_date=date('Y-m-d',strtotime($start_date_int));
         $end_date=date('Y-m-d',strtotime($end_date_int ));
-        $pjinit=mysqli_query($conn,"insert into prj_init set Allocation='$allocation',
+        $pjinit="insert into prj_init set Allocation='$allocation',
                          Title='$title',
                          Fund_Code='$fund_code',
                          Start_Date='$start_date',
                          End_Date='$end_date',
-                         organization='$org'");
+                         organization='$org'";
+        if (mysqli_query($conn,$pjinit)){
+            $prjid = mysqli_insert_id($conn);
+            foreach ($_POST['cluster_name'] as $key => $value) {
+                $cluster = $value;
+                $sub_cluster = $_POST['sub_cluster_name'][$key];
+                $cluster_perc = $_POST['cluster_perc'][$key];
+                $sql = "INSERT INTO clusters(project_id, cluster_name, subcluster_name, percentage) VALUES ('$prjid','$cluster', '$sub_cluster', '$cluster_perc')";
+
+                if (mysqli_query($conn, $sql)){
+                    header("location: coverpage.php?id=" . $prjid);
+                }
+            }
+
+
+        }
     }
 }
