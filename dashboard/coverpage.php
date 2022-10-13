@@ -151,7 +151,7 @@ include '../controllers/coverpagecontroller.php'
         <td><?php echo $project->Fund_Code ?></td>
         <td><?php echo $project->Start_Date ?></td>
         <td><?php echo $project->End_Date ?></td>
-        <td>&nbsp;<?php echo noweeks($project->Start_Date,$project->End_Date) ?></td>
+        <td>;<?php echo noweeks($project->Start_Date,$project->End_Date) ?></td>
     </tr>
     <tr>
         <td>Project Summary</td>

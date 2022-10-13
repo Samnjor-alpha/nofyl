@@ -387,7 +387,7 @@ include '../controllers/frameworkcontroller.php'
     <h2>        NoFYL Project Documentation Portal
     </h2>
     <?php include 'navbar/tabs.php'?>
-    <form method="post" action="<?php echo $_SERVER['PHP_SELF'].$id ?>">
+    <form method="post" action="">
         <div class="row">
             <table class="table table-bordered">
                 <tr>
@@ -420,7 +420,7 @@ include '../controllers/frameworkcontroller.php'
                         <td><?php echo $project->Fund_Code ?? null ?></td>
                         <td><?php echo $project->Start_Date ?? null ?></td>
                         <td><?php echo $project->End_Date ?? null ?></td>
-                        <td>&nbsp;</td>
+                        <td><?php echo noweeks($project->Start_Date,$project->End_Date) ?></td>
                     </tr>
                 </table>
                 <!-- end project info -->
@@ -447,77 +447,96 @@ include '../controllers/frameworkcontroller.php'
         <div class="row">
 
             <div id="container1" class="container1">
-                <div id="tabs" class="tabs-container">
+                <div  class="tabs-container">
+<!--                    <ul class="nav nav-pills">-->
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link active" aria-current="page" href="#">Active</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link" href="#">Link</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link" href="#">Link</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+                    <ul class="nav nav-pills nav-justified">
 
-                    <div class="tabs">
-                        <!-- clusters -->
                         <?php foreach ($clusters as $ki=> $cluster) {
                             $xi = $ki+1;
                             $id = $cluster['cluster_id']; ?>
-                            <a data-clusterID="<?php echo $id ?>" id="tab<?php echo $xi ?>" data-tab="<?php echo $xi ?>" class="tab"><?php echo $cluster['cluster_name'] ?></a>
+                            <li class="nav-item">
+<!--                                <a data-clusterID="--><?php //echo $id ?><!--" id="tab--><?php //echo $xi ?><!--" data-tab="--><?php //echo $xi ?><!--" class="nav-link --><?php // ?><!--">--><?php //echo $cluster['cluster_name'] ?><!--</a>-->
+                                <button data-clusterID="<?php echo $id ?>"  data-tab="<?php echo $xi ?>"  class="nav-link" id="profile-tab<?php echo $xi ?>" data-bs-toggle="tab" data-bs-target="#profile<?php echo $xi ?>" type="button" role="tab" aria-controls="profile" aria-selected="false"><?php echo $cluster['cluster_name'] ?></button>
+                            </li>
+
                         <?php } ?>
+
+
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <?php foreach ($clusters as $ki=> $cluster) {
+                            $xi = $ki+1;
+                            $id = $cluster['cluster_id']; ?>
+                            <div class="tab-pane fade" id="profile<?php echo $xi ?>" role="tabpanel" aria-labelledby="profile-tab<?php echo $xi ?>">
+
+
+                                    <div class="col02-tab-text">
+                                        <table id="employee_table_outcome" align=center>
+                                            <tr id="row_out">
+
+                                        </table>
+
+
+                                    </div>
+
+                                    <div class="col02-tab-button">
+
+
+                                    </div>
+
+                                    <table id="employee_table_outcome" align=center>
+                                        <tr id="row_out">
+
+                                    </table>
+
+
+                                    <table id="employee_table_ind" align=center>
+                                        <tr id="row_ind">
+
+                                    </table>
+
+                                    <table id="employee_table_ver" align=center>
+                                        <tr id="row_act">
+
+                                    </table>
+
+
+                                    <table id="employee_table_act" align=center>
+                                        <tr id="row_act">
+
+                                    </table>
+
+                                    <table id="employee_table" align=center>
+
+                                        <tr id="row1">
+                                        </tr>
+                                    </table>
+
+
+                                    <input type="button" onclick="add_row_outcome();" value="+ Add a New Outcome"
+                                           class="col2-button">
+                                </div>
+
+
+
+                        <?php } ?>
+
+
                     </div>
 
-                    <div class="content">
-
-                        <div id="tabcontent1" data-tab="1" class="tabcontent">
-
-                            <div class="col02-tab-text">
-                                <table id="employee_table_outcome" align=center>
-                                    <tr id="row_out">
-
-                                </table>
-
-
-                            </div>
-
-                            <div class="col02-tab-button">
-
-
-                            </div>
-
-                            <table id="employee_table_outcome" align=center>
-                                <tr id="row_out">
-
-                            </table>
-
-
-                            <table id="employee_table_ind" align=center>
-                                <tr id="row_ind">
-
-                            </table>
-
-                            <table id="employee_table_ver" align=center>
-                                <tr id="row_act">
-
-                            </table>
-
-
-                            <table id="employee_table_act" align=center>
-                                <tr id="row_act">
-
-                            </table>
-
-                            <table id="employee_table" align=center>
-
-                                <tr id="row1">
-                                </tr>
-                            </table>
-
-
-                            <input type="button" onclick="add_row_outcome();" value="+ Add a New Outcome"
-                                   class="col2-button">
-                        </div>
-
-
-                        <div id="tabcontent2" data-tab="2" class="tabcontent">
-                            System Loading...
-                        </div>
-
-
-
-
-                    </div>
 
                     <div class="row">
                         <table class="table table-striped outcomes">

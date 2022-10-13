@@ -11,3 +11,8 @@ $clusters = [];
 $clusters = mysqli_query($conn, "select * from clusters where project_id='$prjid'");
 $resultproject = mysqli_query($conn, "select * from prj_init where ID='$prjid'");
 $project = $resultproject->fetch_object();
+if (isset($_POST['saveFramework'])){
+    echo"<script>
+alert('Framework');
+</script>";
+}
