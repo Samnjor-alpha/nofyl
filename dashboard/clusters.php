@@ -9,7 +9,7 @@ include '../controllers/frameworkcontroller.php'
 <html lang="en">
 <head>
     <title>NoFYl</title>
-<?php include '../css/header.php'?>
+    <?php include '../css/header.php'?>
 </head>
 <style>
     select[multiple], select[size] {
@@ -433,25 +433,162 @@ include '../controllers/frameworkcontroller.php'
 
         </div>
 
-        <div class="row-title">3. Logical Framework</div>
+        <div class="row-title">Clusters</div>
 
         <div class="row" style="padding-left:5%;">
+<div class="offset-3 col-4">
 
-            <label for="title">Overall Project Objective:</label>
+    <select class="form-select form-control" onchange='this.form.submit()' name="clusters" id="clusters">
+        <option>Select cluster to fill</option>
+        <?php foreach ($clusters as $ki=> $cluster) {
+            $xi = $ki+1;
+            $id = $cluster['cluster_id']; ?>
 
-            <textarea id="" name="project_objective" style="width:80%; height:100px;"><?php echo $framework->objective ?? null ?></textarea>
+            <option value="<?php echo $id ?>"><?php echo $cluster['cluster_name'] ?></option>
+
+
+        <?php } ?>
+    </select>
+</div>
 
 
         </div>
 
         <div class="row">
+<?php
 
+if (isset($_POST['clusters'])){?>
             <div id="container1" class="container1">
+                <h3 class="text-center text-primary">Selected:<?php echo  getclustername($_POST['clusters']) ?></h3>
+                                <div class="col02-tab-text">
+                                    <table id="employee_table_outcome" align=center>
+                                        <input name="cid" type="hidden" value="<?php echo $_POST['clusters']?>">
+                                        <tr id="row_out">
+
+                                    </table>
+
+
+                                </div>
+
+                                <div class="col02-tab-button">
+
+
+                                </div>
+
+                                <table id="employee_table_outcome" align=center>
+                                    <tr id="row_out">
+
+                                </table>
+
+
+                                <table id="employee_table_ind" align=center>
+                                    <tr id="row_ind">
+
+                                </table>
+
+                                <table id="employee_table_ver" align=center>
+                                    <tr id="row_act">
+
+                                </table>
+
+
+                                <table id="employee_table_act" align=center>
+                                    <tr id="row_act">
+
+                                </table>
+
+                                <table id="employee_table" align=center>
+
+                                    <tr id="row1">
+                                    </tr>
+                                </table>
+
+
+                                <input type="button" onclick="add_row_outcome();" value="+ Add a New Outcome"
+                                       class="col2-button">
+                            </div>
+
+
+
+
+
+
+<?php }else{?>
+            <h3 class="text-center text-danger">*Select clusters to fill</h3>
+            <?php } ?>
+                    </div>
 
 
 
                     <div class="row">
-                        <input type="submit" name="saveFramework" value="Save Framework"
+                        <table class="table table-striped outcomes">
+                            <caption>Outcomes</caption>
+                            <tr>
+                                <th>#</th>
+                                <th>Project Outcome</th>
+                                <th>Cluster</th>
+                            </tr>
+                            <?php foreach ($projectOutcomes as $k=>$projectOutcome) { ?>
+                                <tr>
+                                    <td><?php echo ++$k ?></td>
+                                    <td><?php echo $projectOutcome['outcome'] ?? null ?></td>
+                                    <td><?php echo getclustername($projectOutcome['cluster_id']) ?></td>
+                                </tr>
+                            <?php } ?>
+                        </table>
+
+                        <table class="table table-striped outputs">
+                            <caption>Outputs</caption>
+                            <tr>
+                                <th>#</th>
+                                <th>Outcome ID</th>
+                                <th>Project Output</th>
+                                <th>Cluster</th>
+                            </tr>
+                            <?php foreach ($projectOutputs as $k=> $projectOutput) { ?>
+                                <tr>
+                                    <td><?php echo ++$k ?></td>
+                                    <td><?php echo $projectOutput['outcome_id'] ?? null ?></td>
+                                    <td><?php echo $projectOutput['output'] ?? null ?></td>
+                                    <td><?php echo getclustername($projectOutput['cluster_id']) ?></td>
+                                </tr>
+                            <?php } ?>
+                        </table>
+
+                        <table class="table table-striped indicators">
+                            <caption>Output Indicators</caption>
+                            <tr>
+                                <th>#</th>
+                                <th>Project Output indicator</th>
+                                <th>Means of verification</th>
+                                <th>Target</th>
+                                <th>Indicator</th>
+                                <th>Activities</th>
+                            </tr>
+                            <?php foreach ($outputIndicators as $k=>$outputIndicator) { ?>
+                                <tr>
+                                    <td><?php echo ++$k ?></td>
+                                    <td><?php echo $outputIndicator['output_id'] ?? null ?></td>
+                                    <td><?php if(!is_null($outputIndicator['mov'])) {
+                                            echo "<p>".json_decode($outputIndicator['mov'])."</p>";
+                                        } ?>
+                                    </td>
+                                    <td><?php echo $outputIndicator['target'] ?? null ?></td>
+                                    <td><?php echo $outputIndicator['indicator'] ?? null ?></td>
+                                    <td><?php if(!is_null($outputIndicator['activities'])) {
+                                            foreach (json_decode($outputIndicator['activities']) as $activity) {
+                                                echo "<p>".$activity."</p>" ?? null;
+                                            }
+                                        } ?>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </table>
+
+                    </div>
+
+                    <div class="row">
+                        <input type="submit" name="saveClusters" value="Save Cluster info"
                                style="width:20%; height:50px; background:#027a14 !important; color:#fff; border:none;">
 
                     </div>
@@ -519,25 +656,7 @@ include '../controllers/frameworkcontroller.php'
 
 
 
-    //
-    // darkModeSwitch.addEventListener('change', () => {
-    //     document.querySelector('body').classList.toggle('darkmode')
-    //     localStorage.setItem('jstabs-darkmode', JSON.stringify(!darkmode))
-    // })
 
-    // // Retrieve stored data
-    // let darkmode = JSON.parse(localStorage.getItem('jstabs-darkmode'))
-    // const opentab = JSON.parse(localStorage.getItem('jstabs-opentab')) || '3'
-    //
-    // // and..... Action!
-    // if (darkmode === null) {
-    //     darkmode = window.matchMedia("(prefers-color-scheme: dark)").matches // match to OS theme
-    // }
-    // if (darkmode) {
-    //     document.querySelector('body').classList.add('darkmode')
-    //     document.querySelector('#dark-mode-switch').checked = 'checked'
-    // }
-    // activateTab(opentab)
 
 
 </script>

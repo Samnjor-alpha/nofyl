@@ -45,3 +45,10 @@ if ($days<7){
 //printf("%d years, %d months, %d days", $years, $months,
 //    $days);
 }
+function getclustername(mixed $clusters)
+{
+    global $conn;
+    $select=mysqli_query($conn,"select cluster_name from clusters where cluster_id='$clusters'");
+    return mysqli_fetch_assoc($select)['cluster_name'];
+
+}
