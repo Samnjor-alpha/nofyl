@@ -509,7 +509,11 @@ if (isset($_POST['clusters'])){?>
                             </div>
 
 
+    <div class="row">
+        <input type="submit" name="saveClusters" value="Save Cluster info"
+               style="width:20%; height:50px; background:#027a14 !important; color:#fff; border:none;">
 
+    </div>
 
 
 
@@ -565,13 +569,20 @@ if (isset($_POST['clusters'])){?>
                                 <th>Indicator</th>
                                 <th>Activities</th>
                             </tr>
-                            <?php foreach ($outputIndicators as $k=>$outputIndicator) { ?>
+                            <?php
+
+                            foreach ($outputIndicators as $k=> $outputIndicator) { ?>
                                 <tr>
                                     <td><?php echo ++$k ?></td>
                                     <td><?php echo $outputIndicator['output_id'] ?? null ?></td>
-                                    <td><?php if(!is_null($outputIndicator['mov'])) {
-                                            echo "<p>".json_decode($outputIndicator['mov'])."</p>";
-                                        } ?>
+                                    <td><?php
+                                        if (!checkmov($outputIndicator['output_id'])) {
+                                            if (!is_null($outputIndicator['mov'])) {
+                                                echo "<p>" . mov(json_decode($outputIndicator['mov']), $outputIndicator['output_id']) . "</p>";
+                                            }
+                                        }else {
+                                        echo "<strong class='text-success'>Verified!</strong>";
+                                        }?>
                                     </td>
                                     <td><?php echo $outputIndicator['target'] ?? null ?></td>
                                     <td><?php echo $outputIndicator['indicator'] ?? null ?></td>
@@ -587,11 +598,7 @@ if (isset($_POST['clusters'])){?>
 
                     </div>
 
-                    <div class="row">
-                        <input type="submit" name="saveClusters" value="Save Cluster info"
-                               style="width:20%; height:50px; background:#027a14 !important; color:#fff; border:none;">
 
-                    </div>
 
 
     </form>

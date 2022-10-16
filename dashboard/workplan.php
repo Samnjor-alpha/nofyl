@@ -2,7 +2,8 @@
 include '../config/config.php';
 include '../controllers/auth.php';
 include '../controllers/session.php';
-include '../controllers/helper.php'
+include '../controllers/helper.php';
+include '../controllers/workplan.php'
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +19,53 @@ include '../controllers/helper.php'
     </h2>
     <?php include 'navbar/tabs.php'?>
 </div>
+<div class="container mt-3">
+<table id="example" class="table table-striped table-bordered" style="width:100%">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Fund Code</th>
+        <th>Project Title</th>
+        <th>Organisation</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php
+    $cnt=1;
+    while($row=mysqli_fetch_assoc($projects)){?>
+    <tr>
+        <td><?php echo $cnt?></td>
+        <td><?php echo $row['Fund_Code'] ?></td>
+        <td><?php echo $row['Title'] ?></td>
+        <td><?php echo $row['organization'] ?></td>
+        <td><?php echo $row['Start_Date'] ?></td>
+        <td><?php echo $row['End_Date'] ?></td>
+        <td><a href="viewproject.php?id<?php echo $row['ID'] ?>">View</a></td>
+    </tr>
+<?php                 $cnt = $cnt + 1;} ?>
+    </tbody>
+    <tfoot>
+    <tr>
+        <th>#</th>
+        <th>Fund Code</th>
+        <th>Project Title</th>
+        <th>Organisation</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Action</th>
 
+    </tr>
+    </tfoot>
+</table>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>
 </body>
 </html>
 
