@@ -26,10 +26,10 @@ function loginauth($email,$password): bool
     }
 
 }
-function checkemailexist($email): bool
+function checkemailexist($email)
 {
     global $conn;
-    $checkmail=mysqli_query($conn,"SELECT * from pm_users where email='$email'");
+    $checkmail=mysqli_query($conn,"SELECT email from pm_users where email='$email'");
     if (mysqli_num_rows($checkmail)>0){
 
         return true;

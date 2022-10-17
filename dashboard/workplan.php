@@ -10,6 +10,13 @@ include '../controllers/workplan.php'
 <head>
     <title>NoFYl</title>
 <?php include '../css/header.php'?>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
 </head>
 <body>
 
@@ -43,7 +50,7 @@ include '../controllers/workplan.php'
         <td><?php echo $row['organization'] ?></td>
         <td><?php echo $row['Start_Date'] ?></td>
         <td><?php echo $row['End_Date'] ?></td>
-        <td><a href="viewproject.php?id<?php echo $row['ID'] ?>">View</a></td>
+        <td><a href="viewproject.php?id=<?php echo $row['ID'] ?>">View</a></td>
     </tr>
 <?php                 $cnt = $cnt + 1;} ?>
     </tbody>
