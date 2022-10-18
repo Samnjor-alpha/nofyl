@@ -1,4 +1,4 @@
-<link rel="icon" href="https://www.nofyl.org/wp-content/uploads/2020/04/Nofyl-icon.png" sizes="32x32"/>
+<link rel="icon" href="https://www.nofyl.org/wp-content/uploads/Nofyl_logo.png" sizes="32x32"/>
 <style>
 
     .navbar-fixed-bottom, .navbar-fixed-top, .navbar-static-top {
@@ -35,7 +35,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a href="index.php" class="navbar-brand"><img
-                        src="//www.nofyl.org/wp-content/uploads/2020/04/Nofyl_logo-1.png"
+                        src="https://www.nofyl.org/wp-content/uploads/Nofyl_logo.png"
                         alt="Northern Frontier Youth League" class="main-logo"></a>
         </div>
         <div class="navbar-collapse collapse">
