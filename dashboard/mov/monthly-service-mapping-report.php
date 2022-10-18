@@ -1,6 +1,8 @@
 <?php
 include '../../config/config.php';
-include 'inc/header.php' ?>
+include '../../controllers/uploadmedia.php';
+    include 'inc/header.php';?>
+<title>Monthly service</title>
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <script src="js/jquery.dataTables.min.js"></script>
     <script src="js/dataTables.bootstrap.min.js"></script>
@@ -377,7 +379,7 @@ include 'inc/header.php' ?>
 <?php include('inc/container.php'); ?>
     <div class="container">
 
-        <form>
+        <form method="post" action="" enctype="multipart/form-data">
 
 
             <div class="row-title">Monthly Service Mapping Report</div>
@@ -386,7 +388,10 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Upload Report (PDF):</label></div>
 
-                <div class="col02-tab-text"><input type="file"/>
+                <div class="col02-tab-text"><input type="file"  name="files[]"
+                           accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,
+text/plain, application/pdf, image/*"
+                           multiple >
                     <br> <?php $date = date('d-m-y h:i:s');
                     echo "<strong>Date:</strong>" . " " . $date; ?> </div>
 
@@ -396,7 +401,7 @@ include 'inc/header.php' ?>
 
             <div class="row">
 
-                <input type="submit" value="Upload Report"
+                <input type="submit" name="upload" value="Upload Report"
                        style="width:20%; height:50px; background:#027a14 !important; color:#fff; border:none;">
 
             </div>

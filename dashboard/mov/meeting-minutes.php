@@ -1,5 +1,6 @@
 <?php
 include '../../config/config.php';
+include '../../controllers/addmeetings.php';
 include 'inc/header.php' ?>
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <script src="js/jquery.dataTables.min.js"></script>
@@ -377,7 +378,7 @@ include 'inc/header.php' ?>
 <?php include('inc/container.php'); ?>
     <div class="container">
 
-        <form>
+        <form action="" method="post">
 
 
             <div class="row-title">Meeting Minutes</div>
@@ -386,7 +387,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Meeting Title:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:30px;"></textarea>
+                <div class="col02-tab-text"><textarea id="" name="mTitle" style="width:80%; height:30px;"></textarea>
                     <br> <?php $date = date('d-m-y h:i:s');
                     echo "<strong>Date:</strong>" . " " . $date; ?> </div>
 
@@ -398,7 +399,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Co-Chaired by:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:40px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="chairedBy" style="width:80%; height:40px;"></textarea></div>
 
 
             </div>
@@ -408,31 +409,30 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Partners Present:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="members" style="width:80%; height:100px;"></textarea></div>
 
 
             </div>
 
 
-            <div class="row" style="padding-left:5%;">
+            <div class="row">
 
                 <div class="col02"><label for="title">Agenda:</label></div>
 
                 <div class="col02-tab-text">
-                    <table id="employee_table_outcome" align=center>
+                    <table id="employee_table_outcome">
                         <tr id="row_out">
 
                     </table>
 
                     <input type="button" onclick="add_row_outcome();" value="+ Add Agenda" class="col2-button">
 
-                    <table id="employee_table_outcome" align=center>
+                    <table id="employee_table_outcome">
                         <tr id="row_out">
 
                     </table>
 
-                    <table id="employee_table" align=center>
-
+                    <table id="employee_table">
                         <tr id="row1">
                         </tr>
                     </table>
@@ -448,14 +448,14 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Next Meeting:</label></div>
 
-                <div class="col02-tab-text"><input type="date"/></div>
+                <div class="col02-tab-text"><input name="nDate" type="date"/></div>
 
             </div>
 
 
             <div class="row">
 
-                <input type="submit" value="Save Minutes"
+                <input type="submit" name="SaveMinutes" value="Save Minutes"
                        style="width:20%; height:50px; background:#027a14 !important; color:#fff; border:none;">
 
             </div>
@@ -470,7 +470,7 @@ include 'inc/header.php' ?>
                 add
                 $rowno = $("#employee_table tr").length;
                 $rowno = $rowno + 1;
-                $("#employee_table tr:last").after("<tr style='border-top: 1px solid #ccc; margin-top:0px; padding-top:0px;float: left;' id='row" + $rowno + "'><td><h3>Output X</h3><textarea  name='name[]' rows='4' cols='100'> </textarea> </td><td><input type='button' value='X' class='col2-buttonX' onclick=delete_row('row" + $rowno + "')><td><input type='button' value='+ Add Indicator' class='col2-button' onclick='add_indicator();'></td></tr>");
+                $("#employee_table tr:last").after("<tr style='border-top: 1px solid #ccc; margin-top:0px; padding-top:0px;float: left;' id='row" + $rowno + "'><td><h3>Output X</h3><textarea  name='name[]' rows='4' cols='10'> </textarea> </td><td><input type='button' value='X' class='col2-buttonX' onclick=delete_row('row" + $rowno + "')><td><input type='button' value='+ Add Indicator' class='col2-button' onclick='add_indicator();'></td></tr>");
             }
 
             function delete_row(rowno) {
@@ -514,7 +514,7 @@ include 'inc/header.php' ?>
             function add_row_outcome() {
                 $rowout = $("#employee_table_outcome tr").length;
                 $rowout = $rowout + 1;
-                $("#employee_table tr:last").after("<tr style='border-top: 1px solid #ccc; margin-top:0px; padding-top:0px;float: left;' id='row_out" + $rowout + "'><td><h3>Agenda Title:</h3><textarea  name='name[]' rows='2' cols='30'> </textarea> </td><td><h3>Details:</h3><textarea  name='name[]' rows='7' cols='100'> </textarea> </td><td><input type='button' value='X' class='col2-buttonX' onclick=delete_row_out('row_out" + $rowout + "')></tr>");
+                $("#employee_table tr:last").after("<tr style='border-top: 1px solid #ccc; margin-top:0px; padding-top:0px;' id='row_out" + $rowout + "'><td><h3>Agenda Title:</h3><textarea  name='agenda[]' rows='2' cols='30'> </textarea> </td><br><td><h3>Details:</h3><textarea  name='details[]' rows='7' cols='20'> </textarea> </td><td><input type='button' value='X' class='col2-buttonX' onclick=delete_row_out('row_out" + $rowout + "')></tr>");
             }
 
             function delete_row_out(rowno) {

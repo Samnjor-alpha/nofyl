@@ -377,7 +377,7 @@ include 'inc/header.php' ?>
 <?php include('inc/container.php'); ?>
     <div class="container">
 
-        <form>
+        <form action="" method="post">
 
 
             <div class="row-title">QUARTERLY UPDATE<br>

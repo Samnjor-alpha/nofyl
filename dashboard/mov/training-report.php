@@ -377,7 +377,7 @@ include 'inc/header.php' ?>
 <?php include('inc/container.php'); ?>
     <div class="container">
 
-        <form>
+        <form action="" method="post">
 
 
             <div class="row-title">Training Report</div>
@@ -575,7 +575,10 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Upload Photos:</label></div>
 
-                <div class="col02-tab-text"><input type="file"/></div>
+                <div class="col02-tab-text"><input type="file"  name="files[]"
+                           accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,
+text/plain, application/pdf, image/*"
+                           multiple ></div>
 
 
             </div>
@@ -584,7 +587,10 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Upload Participant List:</label></div>
 
-                <div class="col02-tab-text"><input type="file"/></div>
+                <div class="col02-tab-text"><input type="file"  name="files[]"
+                           accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,
+text/plain, application/pdf, image/*"
+                           multiple ></div>
 
 
             </div>
