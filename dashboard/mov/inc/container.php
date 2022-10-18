@@ -35,7 +35,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a href="index.php" class="navbar-brand"><img
-                        src="https://www.nofyl.org/wp-content/uploads/Nofyl_logo.png"
+                        src="//www.nofyl.org/wp-content/uploads/2020/04/Nofyl_logo-1.png"
                         alt="Northern Frontier Youth League" class="main-logo"></a>
         </div>
         <div class="navbar-collapse collapse">
