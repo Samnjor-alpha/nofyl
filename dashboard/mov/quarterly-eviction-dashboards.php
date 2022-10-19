@@ -1,6 +1,8 @@
 <?php
 include '../../config/config.php';
-include 'inc/header.php' ?>
+include '../../controllers/uploadmedia.php';
+include 'inc/header.php';?>
+    <title>Monthly service</title>
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <script src="js/jquery.dataTables.min.js"></script>
     <script src="js/dataTables.bootstrap.min.js"></script>
@@ -377,7 +379,7 @@ include 'inc/header.php' ?>
 <?php include('inc/container.php'); ?>
     <div class="container">
 
-        <form action="" method="post">
+        <form method="post" action="" enctype="multipart/form-data">
 
 
             <div class="row-title">Quarterly Eviction Dashboards</div>
@@ -399,7 +401,7 @@ text/plain, application/pdf, image/*"
 
             <div class="row">
 
-                <input type="submit" value="Upload Report"
+                <input type="submit"  name="upload" value="Upload Report"
                        style="width:20%; height:50px; background:#027a14 !important; color:#fff; border:none;">
 
             </div>

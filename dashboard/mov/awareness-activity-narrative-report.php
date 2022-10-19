@@ -388,7 +388,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Report Title:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:30px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="title" style="width:80%; height:30px;"></textarea></div>
 
 
             </div>
@@ -402,8 +402,8 @@ include 'inc/header.php' ?>
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>From <br> <input type="date"></th>
-                            <th>To<br> <input type="date"></th>
+                            <th>From <br> <input name="from" type="date"></th>
+                            <th>To<br> <input type="date" name="to"></th>
 
                         </tr>
                         </thead>
@@ -418,7 +418,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Outcome:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="outcome" style="width:80%; height:100px;"></textarea></div>
 
 
             </div>
@@ -427,7 +427,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Output:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:70px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="output" style="width:80%; height:70px;"></textarea></div>
 
 
             </div>
@@ -441,9 +441,9 @@ include 'inc/header.php' ?>
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>Indicator Target <br> <input type="number"></th>
-                            <th>Cumulative Reached<br> <input type="number"></th>
-                            <th>Target Reached<br> <input type="number"></th>
+                            <th>Indicator Target <br> <input name="ind_target" type="number"></th>
+                            <th>Cumulative Reached<br> <input name="cu_target" type="number"></th>
+                            <th>Target Reached<br> <input name="target" type="number"></th>
 
                         </tr>
                         </thead>
@@ -463,11 +463,11 @@ include 'inc/header.php' ?>
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>District <br> <input type="text"></th>
-                            <th>Men<br> <input type="number"></th>
-                            <th>Women<br> <input type="number"></th>
-                            <th>Boys<br> <input type="number"></th>
-                            <th>Girls <br> <input type="number"></th>
+                            <th>District <br> <input  name="district" type="text"></th>
+                            <th>Men<br> <input type="number" name="men"></th>
+                            <th>Women<br> <input type="number" name="women"></th>
+                            <th>Boys<br> <input type="number" name="boys"></th>
+                            <th>Girls <br> <input type="number" name="girls"></th>
                             <th>Total <br></th>
 
                         </tr>
@@ -484,7 +484,7 @@ include 'inc/header.php' ?>
                 <div class="col02"><label for="title">Aim of
                         Awareness:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="awereness" style="width:80%; height:100px;"></textarea></div>
 
 
             </div>
@@ -494,7 +494,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Why the Need for Awareness:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="awareness" style="width:80%; height:100px;"></textarea></div>
 
 
             </div>
@@ -503,7 +503,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Achievements:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="achievements" style="width:80%; height:100px;"></textarea></div>
 
 
             </div>
@@ -513,7 +513,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Awareness Methodologies:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="methodologies" style="width:80%; height:100px;"></textarea></div>
 
 
             </div>
@@ -522,22 +522,12 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Awareness Outcomes:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="aware_outcome" style="width:80%; height:100px;"></textarea></div>
 
 
             </div>
 
-            <div class="row" style="padding-left:5%;">
 
-                <div class="col02"><label for="title">Upload Photos:</label></div>
-
-                <div class="col02-tab-text"><input type="file"  name="files[]"
-                           accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,
-text/plain, application/pdf, image/*"
-                           multiple ></div>
-
-
-            </div>
 
 
     </div>
@@ -546,6 +536,7 @@ text/plain, application/pdf, image/*"
     <div class="row">
 
         <input type="submit" value="Save Report"
+               name="saveReport"
                style="width:20%; height:50px; background:#027a14 !important; color:#fff; border:none;">
 
     </div>
@@ -663,5 +654,5 @@ text/plain, application/pdf, image/*"
 
     </script>
 
-    </div>
+
 <?php include('inc/footer.php'); ?>

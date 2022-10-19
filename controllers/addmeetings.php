@@ -23,7 +23,7 @@ $agendaf=implode('',$_POST['agenda']);
 $detailsf=implode('',$_POST['details']);
 
                             if ($conn->query("insert into agenda set minutes_id='$minuteid',agenda='$agendaf',details='$detailsf'")) {
-
+                                $update=mysqli_query($conn, "UPDATE output_indicators set upload_status='1' where output_id='".$_GET['id']."'");
                                 echo "<script>
 alert('Minutes recorded successfully');
             window.location.href='meeting-minutes.php?id='".$_GET["id"]."';

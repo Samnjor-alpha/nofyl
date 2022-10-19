@@ -45,14 +45,14 @@ if ($days<7){
 //printf("%d years, %d months, %d days", $years, $months,
 //    $days);
 }
-function getclustername(mixed $clusters)
+function getclustername( $clusters)
 {
     global $conn;
     $select=mysqli_query($conn,"select cluster_name from clusters where cluster_id='$clusters'");
     return mysqli_fetch_assoc($select)['cluster_name'];
 
 }
-function checkmov(mixed $output_id)
+function checkmov( $output_id)
 {
     global $conn;
     $check=mysqli_query($conn, "SELECT upload_status FROM output_indicators where output_id='$output_id'");
@@ -65,6 +65,10 @@ function checkmov(mixed $output_id)
     }
 
 }
+function getprojectid($indicatorid){
+    global $conn;
+    $getid=mysqli_query($conn, "select project_id from output_indicators where output_id='$indicatorid'");
+    return mysqli_fetch_assoc($getid)['project_id'];}
 function mov($mov,$indicatorid): string
 {
 

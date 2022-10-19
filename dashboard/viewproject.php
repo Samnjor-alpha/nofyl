@@ -197,15 +197,15 @@ include '../controllers/viewproject.php'
                 </tbody>
             </table>
         </div>
-        <div class="mb-3">
+        <div class="mb-1">
             <h3>Project summary</h3>
-            <h6><?php echo $cover->project_summary ?></h6>
+            <p><?php echo $cover->project_summary ?></p>
         </div>
-        <div class="mb-3">
+        <div class="mb-1">
             <h3>Project Objective</h3>
-            <h6><?php  echo $framework->objective ?></h6>
+            <p><?php  echo $framework->objective ?></p>
         </div>
-        <div class="mb-3">
+        <div class="mb-1">
             <h3>Clusters</h3>
             <table class="table table-bordered">
                 <tr>
@@ -224,17 +224,17 @@ include '../controllers/viewproject.php'
                 <?php } ?>
             </table>
         </div>
-        <div class="mb-3">
+        <div class="mb-1">
             <h3>Country Context</h3>
             <div class="row">
                 <div class="col-md-4">
-                    <h6 class=""><strong>Needs Assessment:</strong></h6><article><?php echo $cover->needs_assessment ?></article>
+                    <p class=""><strong>Needs Assessment:</strong></p><small><?php echo $cover->needs_assessment ?></small>
                 </div>
                 <div class="col-md-4">
-                    <h6 class=""><strong>Grant Request Justification:</strong></h6><article><?php echo $cover->justification ?></article>
+                    <p class=""><strong>Grant Request Justification:</strong></p><small><?php echo $cover->justification ?></small>
                 </div>
                 <div class="col-md-4">
-                    <h6 class=""><strong>Allocation Strategy:</strong></h6><article><?php echo $cover->allocation_strategy ?></article>
+                    <p class=""><strong>Allocation Strategy:</strong></p><small><?php echo $cover->allocation_strategy ?></small>
                 </div>
             </div>
         </div>

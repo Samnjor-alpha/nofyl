@@ -1,6 +1,9 @@
 <?php
 include '../../config/config.php';
+include '../../controllers/uploadmedia.php';
+
 include 'inc/header.php' ?>
+    <title>Nofyl - Monitoring and Evaluation Portal</title>
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <script src="js/jquery.dataTables.min.js"></script>
     <script src="js/dataTables.bootstrap.min.js"></script>
@@ -377,7 +380,7 @@ include 'inc/header.php' ?>
 <?php include('inc/container.php'); ?>
     <div class="container">
 
-        <form action="" method="post">
+        <form method="post" action="" enctype="multipart/form-data">
 
 
             <div class="row-title">Beneficiary List</div>
@@ -399,7 +402,7 @@ text/plain, application/pdf, image/*"
 
             <div class="row">
 
-                <input type="submit" value="Upload List"
+                <input type="submit" name="upload" value="Upload List"
                        style="width:20%; height:50px; background:#027a14 !important; color:#fff; border:none;">
 
             </div>

@@ -1,6 +1,8 @@
 <?php
 include '../../config/config.php';
+include '../../controllers/activitymonitoring.php';
 include 'inc/header.php' ?>
+<title>Activity Monitoring</title>
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <script src="js/jquery.dataTables.min.js"></script>
     <script src="js/dataTables.bootstrap.min.js"></script>
@@ -393,8 +395,8 @@ include 'inc/header.php' ?>
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>From <br> <input type="date"></th>
-                            <th>To<br> <input type="date"></th>
+                            <th>From <br> <input name="from" type="date"></th>
+                            <th>To<br> <input name="to" type="date"></th>
 
                         </tr>
                         </thead>
@@ -410,7 +412,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Programme:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:30px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="program" style="width:80%; height:30px;"></textarea></div>
 
 
             </div>
@@ -419,7 +421,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Filled By:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:30px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="filledby" style="width:80%; height:30px;"></textarea></div>
 
 
             </div>
@@ -429,7 +431,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Submitted:</label></div>
 
-                <div class="col02-tab-text"><input type="date"></div>
+                <div class="col02-tab-text"><input name="subDate" type="date"></div>
 
 
             </div>
@@ -439,7 +441,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Summary of the Quarter:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:200px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="summary" style="width:80%; height:200px;"></textarea></div>
 
 
             </div>
@@ -454,11 +456,11 @@ include 'inc/header.php' ?>
                         <thead>
 
                         <tr>
-                            <th>Activity <br> <textarea id="" name="" style="width:80%; height:50px;"></textarea></th>
-                            <th>Deliverables in Reporting Period<br> <textarea id="" name=""
+                            <th>Activity <br> <textarea id="" name="activity" style="width:80%; height:50px;"></textarea></th>
+                            <th>Deliverables in Reporting Period<br> <textarea id="" name="period"
                                                                                style="width:80%; height:50px;"></textarea>
                             </th>
-                            <th>Status Update<br> <textarea id="" name="" style="width:80%; height:50px;"></textarea>
+                            <th>Status Update<br> <textarea id="update" name="update" style="width:80%; height:50px;"></textarea>
                             </th>
                         </tr>
                         </thead>
@@ -478,14 +480,14 @@ include 'inc/header.php' ?>
                         <thead>
 
                         <tr>
-                            <th>Day/Month/Year <br> <textarea id="" name="" style="width:80%; height:50px;"></textarea>
+                            <th>Day/Month/Year <br> <input id="" name="dDate">
                             </th>
-                            <th>Training Topic<br> <textarea id="" name="" style="width:80%; height:50px;"></textarea>
+                            <th>Training Topic<br> <textarea id="" name="topic" style="width:80%; height:50px;"></textarea>
                             </th>
-                            <th>Training Participants<br> <textarea id="" name=""
+                            <th>Training Participants<br> <textarea id="" name="people"
                                                                     style="width:80%; height:50px;"></textarea></th>
-                            <th>No of Days<br> <textarea id="" name="" style="width:80%; height:50px;"></textarea></th>
-                            <th>No of Participants<br> <textarea id="" name=""
+                            <th>No of Days<br> <textarea id="" name="days" style="width:80%; height:50px;"></textarea></th>
+                            <th>No of Participants<br> <textarea id="nopeople" name="nopeople"
                                                                  style="width:80%; height:50px;"></textarea></th>
                         </tr>
                         </thead>
@@ -499,7 +501,7 @@ include 'inc/header.php' ?>
 
             <div class="row">
 
-                <input type="submit" value="Save Update"
+                <input type="submit" name="saveReport" value="Save Update"
                        style="width:20%; height:50px; background:#027a14 !important; color:#fff; border:none;">
 
             </div>
