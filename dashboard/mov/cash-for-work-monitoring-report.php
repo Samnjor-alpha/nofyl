@@ -1,7 +1,9 @@
 <?php
 include '../../config/config.php';
+include  '../../controllers/cashforwork.php';
 include 'inc/header.php' ?>
-    <link href="css/style.css" rel="stylesheet" type="text/css">
+<title>Nofyl - Monitoring and Evaluation Portal</title>
+    
     <script src="js/jquery.dataTables.min.js"></script>
     <script src="js/dataTables.bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/dataTables.bootstrap.min.css"/>
@@ -377,7 +379,7 @@ include 'inc/header.php' ?>
 <?php include('inc/container.php'); ?>
     <div class="container">
 
-        <form action="" method="post">
+        <form method="post" action="" enctype="multipart/form-data">
 
 
             <div class="row-title">Cash for Work Monitoring Report</div>
@@ -386,7 +388,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Reporting Period:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:30px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="title" style="width:80%; height:30px;"></textarea></div>
 
 
             </div>
@@ -396,7 +398,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Project Code:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:30px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="pcode" style="width:80%; height:30px;"></textarea></div>
 
             </div>
 
@@ -404,7 +406,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Activity:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:50px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="activity" style="width:80%; height:50px;"></textarea></div>
 
 
             </div>
@@ -413,7 +415,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Prepared by:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:30px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="prepared" style="width:80%; height:30px;"></textarea></div>
 
 
             </div>
@@ -423,7 +425,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Introduction :</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:30px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="intro" style="width:80%; height:30px;"></textarea></div>
 
 
             </div>
@@ -432,7 +434,11 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Upload Beneficiary Sheet :</label></div>
 
-                <div class="col02-tab-text"><input type="file"></div>
+                <div class="col02-tab-text">
+                    <input type="file"  name="files"
+                           accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,
+text/plain, application/pdf, image/*">
+                </div>
 
 
             </div>
@@ -443,7 +449,7 @@ include 'inc/header.php' ?>
                 <div class="col02"><label for="title">Beneficiary Selection Criteria
                         :</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:300px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="selection" style="width:80%; height:300px;"></textarea></div>
 
 
             </div>
@@ -451,7 +457,7 @@ include 'inc/header.php' ?>
 
             <div class="row">
 
-                <input type="submit" value="Save Report"
+                <input type="submit" name="saveReport" value="Save Report"
                        style="width:20%; height:50px; background:#027a14 !important; color:#fff; border:none;">
 
             </div>

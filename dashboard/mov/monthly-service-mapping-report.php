@@ -3,7 +3,7 @@ include '../../config/config.php';
 include '../../controllers/uploadmedia.php';
 include 'inc/header.php';?>
 <title>Monthly service</title>
-    <link href="css/style.css" rel="stylesheet" type="text/css">
+    
     <script src="js/jquery.dataTables.min.js"></script>
     <script src="js/dataTables.bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/dataTables.bootstrap.min.css"/>
