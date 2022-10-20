@@ -1,7 +1,8 @@
 <?php
 include '../../config/config.php';
+include '../../controllers/posteviction.php';
 include 'inc/header.php' ?>
-    
+<title>Nofyl - Monitoring and Evaluation Portal</title>
     <script src="js/jquery.dataTables.min.js"></script>
     <script src="js/dataTables.bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/dataTables.bootstrap.min.css"/>
@@ -377,7 +378,7 @@ include 'inc/header.php' ?>
 <?php include('inc/container.php'); ?>
     <div class="container">
 
-        <form action="" method="post">
+        <form method="post" action="" enctype="multipart/form-data">
 
 
             <div class="row-title">Monitoring and Reporting Tool</div>
@@ -390,8 +391,9 @@ include 'inc/header.php' ?>
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>Activity Code: <br> <input type="text" style="width:100%;"></th>
-                            <th>Activity Name:<br> <input type="text" style="width:100%;"></th>
+                            <th>Activity Code: <br> <input
+                                         name="act_code" type="text" style="width:100%;"></th>
+                            <th>Activity Name:<br> <input name="activity" type="text" style="width:100%;"></th>
 
                         </tr>
                         </thead>
@@ -406,7 +408,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Activity Description:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="act_desc" style="width:80%; height:100px;"></textarea></div>
 
 
             </div>
@@ -415,7 +417,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Activity Indicator:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:70px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="act_ind" style="width:80%; height:70px;"></textarea></div>
 
 
             </div>
@@ -429,9 +431,9 @@ include 'inc/header.php' ?>
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>Indicator Target <br> <input type="number"></th>
-                            <th>Cumulative Reached<br> <input type="number"></th>
-                            <th>Target Reached<br> <input type="number"></th>
+                            <th>Indicator Target <br> <input name="ind_target" type="number"></th>
+                            <th>Cumulative Reached<br> <input name="cu_target" type="number"></th>
+                            <th>Target Reached<br> <input name="target" type="number"></th>
 
                         </tr>
                         </thead>
@@ -451,12 +453,12 @@ include 'inc/header.php' ?>
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>District <br> <input type="text"></th>
-                            <th>Men<br> <input type="number"></th>
-                            <th>Women<br> <input type="number"></th>
-                            <th>Boys<br> <input type="number"></th>
-                            <th>Girls <br> <input type="number"></th>
-                            <th>Total <br></th>
+                            <th>District <br> <input name="district" type="text"></th>
+                            <th>Men<br> <input name="men" type="number"></th>
+                            <th>Women<br> <input name="women" type="number"></th>
+                            <th>Boys<br> <input type="number" name="boys"></th>
+                            <th>Girls <br> <input type="number" name="girls"></th>
+
 
                         </tr>
                         </thead>
@@ -474,10 +476,10 @@ include 'inc/header.php' ?>
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>Activity<br> <input type="text"></th>
-                            <th>Target planned <br> <input type="number"></th>
-                            <th>Target Achieved<br> <input type="number"></th>
-                            <th>% Achievement<br> <input type="number"></th>
+                            <th>Activity<br> <input name="act" type="text"></th>
+                            <th>Target planned <br> <input name="planned" type="number"></th>
+                            <th>Target Achieved<br> <input type="number" name="achieved"></th>
+                            <th>% Achievement<br> <input type="number" name="achievement"></th>
 
                         </tr>
                         </thead>
@@ -496,8 +498,8 @@ include 'inc/header.php' ?>
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>From<br> <input type="date"></th>
-                            <th>To <br> <input type="date"></th>
+                            <th>From<br> <input type="date" name="fromD"></th>
+                            <th>To <br> <input type="date" name="toD"></th>
 
                         </tr>
                         </thead>
@@ -516,8 +518,8 @@ include 'inc/header.php' ?>
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>Name<br> <input type="text" style="width:100%;"></th>
-                            <th>Title <br> <input type="text" style="width:100%;"></th>
+                            <th>Name<br> <input type="text" name="name" style="width:100%;"></th>
+                            <th>Title <br> <input type="text" name="title" style="width:100%;"></th>
 
                         </tr>
                         </thead>
@@ -532,7 +534,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Summary:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="summary" style="width:80%; height:100px;"></textarea></div>
 
 
             </div>
@@ -541,7 +543,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Human Interest Stories:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:300px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="stories" style="width:80%; height:300px;"></textarea></div>
 
 
             </div>
@@ -551,27 +553,27 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Upload Photos:</label></div>
 
-                <div class="col02-tab-text"><input type="file"  name="files[]"
+                <div class="col02-tab-text"><input type="file"  name="files"
                            accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,
 text/plain, application/pdf, image/*"
-                           multiple ></div>
+                            ></div>
 
 
             </div>
 
 
-    </div>
+
 
 
     <div class="row">
 
-        <input type="submit" value="Save Report"
+        <input type="submit" name="saveReport" value="Save Report"
                style="width:20%; height:50px; background:#027a14 !important; color:#fff; border:none;">
 
     </div>
 
     </form>
-
+    </div>
 
     <script>
 
