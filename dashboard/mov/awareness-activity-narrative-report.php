@@ -1,7 +1,6 @@
 <?php
 include '../../config/config.php';
-include 'inc/header.php' ?><?php
-include '../../config/config.php';
+include '../../controllers/awareness.php';
 include 'inc/header.php' ?>
     
     <script src="js/jquery.dataTables.min.js"></script>
@@ -468,7 +467,7 @@ include 'inc/header.php' ?>
                             <th>Women<br> <input type="number" name="women"></th>
                             <th>Boys<br> <input type="number" name="boys"></th>
                             <th>Girls <br> <input type="number" name="girls"></th>
-                            <th>Total <br></th>
+
 
                         </tr>
                         </thead>
@@ -484,7 +483,7 @@ include 'inc/header.php' ?>
                 <div class="col02"><label for="title">Aim of
                         Awareness:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="awereness" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="awareness" style="width:80%; height:100px;"></textarea></div>
 
 
             </div>
@@ -494,7 +493,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Why the Need for Awareness:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="awareness" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="n_awareness" style="width:80%; height:100px;"></textarea></div>
 
 
             </div>
@@ -530,7 +529,7 @@ include 'inc/header.php' ?>
 
 
 
-    </div>
+
 
 
     <div class="row">
@@ -542,7 +541,7 @@ include 'inc/header.php' ?>
     </div>
 
     </form>
-
+    </div>
 
     <script>
 
