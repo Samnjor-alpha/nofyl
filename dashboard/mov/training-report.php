@@ -1,7 +1,8 @@
 <?php
 include '../../config/config.php';
+include '../../controllers/trainreport.php';
 include 'inc/header.php' ?>
-    
+    <title>Training Report</title>
     <script src="js/jquery.dataTables.min.js"></script>
     <script src="js/dataTables.bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/dataTables.bootstrap.min.css"/>
@@ -377,7 +378,7 @@ include 'inc/header.php' ?>
 <?php include('inc/container.php'); ?>
     <div class="container">
 
-        <form action="" method="post">
+        <form method="post" action="" enctype="multipart/form-data">
 
 
             <div class="row-title">Training Report</div>
@@ -386,7 +387,8 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Report Title:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:30px;"></textarea>
+                <div class="col02-tab-text">
+                    <textarea id="" name="rtitle" style="width:80%; height:30px;"></textarea>
                     <br> <?php $date = date('d-m-y h:i:s');
                     echo "<strong>Date:</strong>" . " " . $date; ?> </div>
 
@@ -407,7 +409,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Donor:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:30px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="donor" style="width:80%; height:30px;"></textarea></div>
 
 
             </div>
@@ -417,7 +419,7 @@ include 'inc/header.php' ?>
                 <div class="col02"><label for="title">Training Facilitator (s): (If multiple, use a comma after every
                         name)</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:50px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="facilitator" style="width:80%; height:50px;"></textarea></div>
 
 
             </div>
@@ -427,7 +429,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Dates of Training:</label></div>
 
-                <div class="col02-tab-text">From: <input type="date"/> <br><br>To: <input type="date"/></div>
+                <div class="col02-tab-text">From: <input name="fromD" type="date"/> <br><br>To: <input name="toD" type="date"/></div>
 
 
             </div>
@@ -437,7 +439,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Location of Training:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:50px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="loc_train" style="width:80%; height:50px;"></textarea></div>
 
 
             </div>
@@ -448,7 +450,7 @@ include 'inc/header.php' ?>
                 <div class="col02"><label for="title">Target Group (s): (If multiple, use a comma after every
                         name)</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:50px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="target_group" style="width:80%; height:50px;"></textarea></div>
 
 
             </div>
@@ -458,7 +460,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Delivery Method:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="delivery" style="width:80%; height:100px;"></textarea></div>
 
 
             </div>
@@ -467,7 +469,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Number of Participants:</label></div>
 
-                <div class="col02-tab-text">Male: <input type="number"/> <br><br>Female: <input type="number"/></div>
+                <div class="col02-tab-text">Male: <input name="noM" type="number"/> <br><br>Female: <input name="noF" type="number"/></div>
 
 
             </div>
@@ -477,7 +479,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Objectives:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="objective" style="width:80%; height:100px;"></textarea></div>
 
 
             </div>
@@ -486,7 +488,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Executive Summary:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="summary" style="width:80%; height:100px;"></textarea></div>
 
 
             </div>
@@ -496,7 +498,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Introduction:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="intro" style="width:80%; height:100px;"></textarea></div>
 
 
             </div>
@@ -506,7 +508,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Training Ground Norms:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="norms" style="width:80%; height:100px;"></textarea></div>
 
 
             </div>
@@ -515,26 +517,19 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Expectations from Participants:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="expectations" style="width:80%; height:100px;"></textarea></div>
 
 
             </div>
 
-            <div class="row" style="padding-left:5%;">
 
-                <div class="col02"><label for="title">Training Ground Norms:</label></div>
-
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:100px;"></textarea></div>
-
-
-            </div>
 
 
             <div class="row" style="padding-left:5%;">
 
                 <div class="col02"><label for="title">Training Proceedings:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:300px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="proceedings" style="width:80%; height:300px;"></textarea></div>
 
 
             </div>
@@ -544,7 +539,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Training Impact:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="impact" style="width:80%; height:100px;"></textarea></div>
 
 
             </div>
@@ -554,7 +549,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Conclusion:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="conclusion" style="width:80%; height:100px;"></textarea></div>
 
 
             </div>
@@ -564,7 +559,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Recommendations:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="recommend" style="width:80%; height:100px;"></textarea></div>
 
 
             </div>
@@ -575,10 +570,10 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Upload Photos:</label></div>
 
-                <div class="col02-tab-text"><input type="file"  name="files[]"
+                <div class="col02-tab-text"><input type="file"  name="files_p"
                            accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,
 text/plain, application/pdf, image/*"
-                           multiple ></div>
+                            ></div>
 
 
             </div>
@@ -587,10 +582,10 @@ text/plain, application/pdf, image/*"
 
                 <div class="col02"><label for="title">Upload Participant List:</label></div>
 
-                <div class="col02-tab-text"><input type="file"  name="files[]"
+                <div class="col02-tab-text"><input type="file"  name="files_l"
                            accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,
 text/plain, application/pdf, image/*"
-                           multiple ></div>
+                            ></div>
 
 
             </div>
@@ -598,7 +593,7 @@ text/plain, application/pdf, image/*"
 
             <div class="row">
 
-                <input type="submit" value="Save Report"
+                <input type="submit" name="saveReport" value="Save Report"
                        style="width:20%; height:50px; background:#027a14 !important; color:#fff; border:none;">
 
             </div>

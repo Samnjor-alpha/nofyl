@@ -1,4 +1,20 @@
 <?php
+if (isset($_GET['id'])){
+    $prjid = $_GET['id'];
+    $project = [];
+    $cover = [];
+    $clusters = [];
+    $framework = [];
+    $projectOutcomes = [];
+    $projectOutputs = [];
+    $outputIndicators = [];
+    $clusterssql = "select * from clusters where project_id=$prjid";
+    if ($results = $conn->query($clusterssql)) {
+        $clusters = $results->fetch_all(MYSQLI_BOTH);
+    }
+    $resultproject = mysqli_query($conn, "select * from prj_init where ID='$prjid'");
+    $project = $resultproject->fetch_object();
+}
 if (isset($_POST['prj_init'])){
 
     $allocation = filter_var(stripslashes($_POST['allocation']), FILTER_SANITIZE_STRING);
@@ -15,7 +31,13 @@ if (isset($_POST['prj_init'])){
         echo "<script>
 alert('Please enter all fields');
 </script>";
-    }else{
+    }elseif (array_sum($clusteperc)>100 || array_sum($clusteperc)<100)
+    {
+        echo "<script>
+alert('Cluster % should add to 100%');
+</script>";
+    }
+    else{
         $start_date=date('Y-m-d',strtotime($start_date_int));
         $end_date=date('Y-m-d',strtotime($end_date_int ));
         $pjinit="insert into prj_init set Allocation='$allocation',

@@ -24,9 +24,14 @@ include '../controllers/workplan.php'
 <div class="container mt-3">
     <h2>        NoFYL Project Documentation Portal
     </h2>
-    <?php include 'navbar/tabs.php'?>
+    
 </div>
 <div class="container mt-3">
+    <div class="mb-2 mt-2">
+        <a class="btn btn-primary" href="home.php">New  Project</a>
+    </div>
+    <div class="card mt-3">
+        <div class="card-body">
 <table id="example" class="table table-striped table-bordered" style="width:100%">
     <thead>
     <tr>
@@ -50,7 +55,7 @@ include '../controllers/workplan.php'
         <td><?php echo $row['organization'] ?></td>
         <td><?php echo $row['Start_Date'] ?></td>
         <td><?php echo $row['End_Date'] ?></td>
-        <td><a href="viewproject.php?id=<?php echo $row['ID'] ?>">View</a></td>
+        <td><a href="viewproject.php?id=<?php echo $row['ID'] ?>">View</a> | <a href="?destroy=<?php echo $row['ID'] ?>">Delete</a></td>
     </tr>
 <?php                 $cnt = $cnt + 1;} ?>
     </tbody>
@@ -67,6 +72,8 @@ include '../controllers/workplan.php'
     </tr>
     </tfoot>
 </table>
+</div>
+    </div>
 </div>
 <script>
     $(document).ready(function () {

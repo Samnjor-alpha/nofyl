@@ -228,9 +228,9 @@ include '../controllers/prjinit.php'
 
             </div>
 
-
+            <?php if (is_null($prjid)) { ?>
                 <button name="prj_init" style="width:20%; height:50px; margin-top:20px; background:#075f96; color:#fff; border:none;">Create Project</button>
-
+<?php }?>
 
         </form>
 

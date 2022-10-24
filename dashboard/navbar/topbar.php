@@ -5,10 +5,9 @@
         </a>
     </div>
     <ul class="navbar-nav">
-        <li class="nav-item" style="display: inline;">
 
-
-            Welcome, <?php echo $_SESSION['names'] ?>
+        <li class="nav-item" style="margin-left:-300px;display: inline; ">
+            <a class="nav-link">Welcome, <?php echo $_SESSION['names'] ?></a>
 
         </li>
         <li class="nav-item">
