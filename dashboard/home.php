@@ -215,6 +215,7 @@ include '../controllers/prjinit.php'
                     </div>
                 </div>
             <?php } ?>
+            <?php if (is_null($prjid)){ ?>
             <div class="row">
                 <table id="employee_table" align=left>
 
@@ -227,10 +228,12 @@ include '../controllers/prjinit.php'
                     <input type="button" onclick="add_row();" value="+ Add Another Primary Cluster" class="col-3 col2-button">
 
             </div>
-
+            <?php }?>
             <?php if (is_null($prjid)) { ?>
                 <button name="prj_init" style="width:20%; height:50px; margin-top:20px; background:#075f96; color:#fff; border:none;">Create Project</button>
-<?php }?>
+<?php }else{?>
+            <button class="btn btn-warning" name="prj_update" style="width:20%; height:50px; margin-top:20px;  color:#fff; border:none;">Update Project</button>
+            <?php } ?>
 
         </form>
 

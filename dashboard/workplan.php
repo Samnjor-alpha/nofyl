@@ -55,7 +55,7 @@ include '../controllers/workplan.php'
         <td><?php echo $row['organization'] ?></td>
         <td><?php echo $row['Start_Date'] ?></td>
         <td><?php echo $row['End_Date'] ?></td>
-        <td><a href="viewproject.php?id=<?php echo $row['ID'] ?>">View</a> | <a href="?destroy=<?php echo $row['ID'] ?>">Delete</a></td>
+        <td><a href="viewproject.php?id=<?php echo $row['ID'] ?>">View</a> |<a href="home.php?id=<?php echo $row['ID'] ?>">Edit</a>| <a href="?edit=<?php echo $row['ID'] ?>">Delete</a></td>
     </tr>
 <?php                 $cnt = $cnt + 1;} ?>
     </tbody>

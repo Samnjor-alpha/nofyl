@@ -50,17 +50,32 @@ if ($result = $conn->query($sql)) {
 
 }
 if (isset($_POST['saveFramework'])){
-    $project= filter_var(stripslashes($_POST['project_objective']), FILTER_SANITIZE_STRING);
+    if (empty($framework)){
+        $project= filter_var(stripslashes($_POST['project_objective']), FILTER_SANITIZE_STRING);
         if (empty($project)){
-        echo "<script>
+            echo "<script>
 alert('all fields are required');
 </script>";
-    }else{
-$insertframework="insert into frameworks set project_id='$prjid',objective='$project'";
-if (mysqli_query($conn,$insertframework)){
+        }else{
+            $insertframework="insert into frameworks set project_id='$prjid',objective='$project'";
+            if (mysqli_query($conn,$insertframework)){
 
-    header("location: clusters.php?id=" . $prjid);
-}
+                header("location: clusters.php?id=" . $prjid);
+            }
+        }
+    }else{
+        $project= filter_var(stripslashes($_POST['project_objective']), FILTER_SANITIZE_STRING);
+        if (empty($project)){
+            echo "<script>
+alert('all fields are required');
+</script>";
+        }else{
+            $insertframework="update frameworks set objective='$project' where project_id='$prjid'";
+            if (mysqli_query($conn,$insertframework)){
+
+                header("location: clusters.php?id=" . $prjid);
+            }
+        }
     }
 }
 if (isset($_POST['saveClusters'])){

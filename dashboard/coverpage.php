@@ -156,9 +156,8 @@ include '../controllers/coverpagecontroller.php'
     <tr>
         <td>Project Summary</td>
         <td colspan="4">
-            <textarea name="summary" style="width: 100%; height: auto">
-                <?php echo $cover->project_summary ?? null ?>
-            </textarea>
+            <textarea name="summary"
+                      style="width: 100%; height: auto"><?php echo $cover->project_summary ?? null ?></textarea>
         </td>
     </tr>
 </table>
@@ -167,36 +166,27 @@ include '../controllers/coverpagecontroller.php'
 
     <div class="row" style="padding-left:5%;">
         <label for="title">Specific Needs Assessment:</label>
-        <textarea id="" name="needs_assessment" style="width:80%; height:100px;">
-            <?php echo $cover->needs_assessment ?? null ?>
-        </textarea>
+        <textarea  name="needs_assessment"
+                   style="width:80%; height:100px;"><?php echo $cover->needs_assessment ?? null ?></textarea>
     </div>
 
     <div class="row" style="padding-left:5%;">
         <label for="title">Grant Request Justification:</label>
-        <textarea id="" name="justification" style="width:80%; height:100px;">
-            <?php echo $cover->justification ?? null ?>
-        </textarea>
+        <textarea  name="justification"
+                   style="width:80%; height:100px;"><?php echo $cover->justification ?? null ?></textarea>
     </div>
 
     <div class="row" style="padding-left:5%;">
         <label for="title">Link to Allocation Strategy:</label>
-        <textarea id="" name="allocation_strategy" style="width:80%; height:100px;">
-            <?php echo $cover->allocation_strategy ?? null ?>
-        </textarea>
+        <textarea  name="allocation_strategy"
+                   style="width:80%; height:100px;"><?php echo $cover->allocation_strategy ?? null ?></textarea>
     </div>
 
     <div class="row">
         <input type="submit" name="saveCover" value="Save Cover Page" style="width:20%; height:50px; background:#027a14 !important; color:#fff; border:none;">
     </div>
     </form>
-    <div class="row" style="padding-left:5%;">
-        <label for="title">Comments for Cover Page:</label>
-        <form method="post" action="">
-            <textarea id="" name="comments" style="width:80%; height:100px;"><?php echo $cover->comments ?? null ?></textarea>
-            <input type="submit" name="saveComment" value="Save Comment" style="width:10%; height:22px; background:#000; color:#fff; border:none; float:right;position: relative;right: 5%;">
-        </form>
-    </div>
+
 </div>
 
 
