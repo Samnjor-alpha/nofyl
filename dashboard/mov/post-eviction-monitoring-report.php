@@ -1,5 +1,6 @@
 <?php
 include '../../config/config.php';
+include '../../controllers/helper.php';
 include '../../controllers/posteviction.php';
 include 'inc/header.php' ?>
 <title>Nofyl - Monitoring and Evaluation Portal</title>

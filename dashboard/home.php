@@ -190,6 +190,7 @@ include '../controllers/prjinit.php'
                     <div class="row">
                         <div class="col2"><label>Primary Cluster:</label></div>
                         <div class="col2">
+                            <input type="hidden" name="clusterid[]" value="<?php echo $clusters[$k]['cluster_id'] ?? null ?>" />
                             <input id="" name="cluster_name[]" placeholder="Cluster Name" value="<?php echo $clusters[$k]['cluster_name'] ?? null ?>" />
                             <br><br>
 

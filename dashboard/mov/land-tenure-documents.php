@@ -1,5 +1,6 @@
 <?php
 include '../../config/config.php';
+include '../../controllers/helper.php';
 include '../../controllers/uploadmedia.php';
 
 include 'inc/header.php' ?>

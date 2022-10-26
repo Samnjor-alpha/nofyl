@@ -26,7 +26,7 @@ $detailsf=implode('',$_POST['details']);
                                 $update=mysqli_query($conn, "UPDATE output_indicators set upload_status='1' where output_id='".$_GET['id']."'");
                                 echo "<script>
 alert('Minutes recorded successfully');
-            window.location.href='meeting-minutes.php?id='".$_GET["id"]."';
+            window.location.href = '../clusters.php?id=".getprojectid($_GET['id'])."';
 </script>";
                                 
                         }

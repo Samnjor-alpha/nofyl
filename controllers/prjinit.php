@@ -99,9 +99,10 @@ alert('Cluster % should add to 100%');
 
             foreach ($_POST['cluster_name'] as $key => $value) {
                 $cluster = $value;
+                $clusterid = $_POST['clusterid'][$key];
                 $sub_cluster = $_POST['sub_cluster_name'][$key];
                 $cluster_perc = $_POST['cluster_perc'][$key];
-                $sql = "update  clusters set cluster_name='$cluster', subcluster_name='$sub_cluster', percentage='$cluster_perc' where project_id='$prjid'";
+                $sql = "update  clusters set cluster_name='$cluster', subcluster_name='$sub_cluster', percentage='$cluster_perc' where project_id='$prjid' and cluster_id='$clusterid'";
                 if (mysqli_query($conn, $sql)){
                     header("location: coverpage.php?id=" . $prjid);
                 }

@@ -43,6 +43,7 @@ if (mysqli_query($conn,$add)){
     $update = mysqli_query($conn, "UPDATE output_indicators set upload_status='1' where output_id='" . $_GET['id'] . "'");
     echo "<script>
             alert('Report submitted succcessfully');
+            window.location.href = '../clusters.php?id=".getprojectid($_GET['id'])."';
 </script>";
 
 }
