@@ -3,7 +3,7 @@ include '../../config/config.php';
 include '../../controllers/helper.php';
 include '../../controllers/awareness.php';
 include 'inc/header.php' ?>
-    
+    <title>Awareness Activity Report</title>
     <script src="js/jquery.dataTables.min.js"></script>
     <script src="js/dataTables.bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/dataTables.bootstrap.min.css"/>
@@ -388,7 +388,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Report Title:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="title" style="width:80%; height:30px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="title" style="width:80%; height:30px;"><?php echo $row['title'] ?? null ?></textarea></div>
 
 
             </div>
@@ -402,8 +402,8 @@ include 'inc/header.php' ?>
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>From <br> <input name="from" type="date"></th>
-                            <th>To<br> <input type="date" name="to"></th>
+                            <th>From <br> <input value="<?php echo $row['fromD'] ?? null ?>" name="from" type="date"></th>
+                            <th>To<br> <input type="date" value="<?php echo $row['toD'] ?? null ?>" name="to"></th>
 
                         </tr>
                         </thead>
@@ -418,7 +418,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Outcome:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="outcome" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="outcome" style="width:80%; height:100px;"><?php echo $row['outcome'] ?? null ?></textarea></div>
 
 
             </div>
@@ -427,7 +427,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Output:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="output" style="width:80%; height:70px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="output" style="width:80%; height:70px;"><?php echo $row['output'] ?? null ?></textarea></div>
 
 
             </div>
@@ -441,9 +441,9 @@ include 'inc/header.php' ?>
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>Indicator Target <br> <input name="ind_target" type="number"></th>
-                            <th>Cumulative Reached<br> <input name="cu_target" type="number"></th>
-                            <th>Target Reached<br> <input name="target" type="number"></th>
+                            <th>Indicator Target <br> <input value="<?php echo $row['ind_target'] ?? null ?>" name="ind_target" type="number"></th>
+                            <th>Cumulative Reached<br> <input value="<?php echo $row['cu_reached'] ?? null ?>" name="cu_target" type="number"></th>
+                            <th>Target Reached<br> <input value="<?php echo $row['target'] ?? null ?>" name="target" type="number"></th>
 
                         </tr>
                         </thead>
@@ -463,11 +463,11 @@ include 'inc/header.php' ?>
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>District <br> <input  name="district" type="text"></th>
-                            <th>Men<br> <input type="number" name="men"></th>
-                            <th>Women<br> <input type="number" name="women"></th>
-                            <th>Boys<br> <input type="number" name="boys"></th>
-                            <th>Girls <br> <input type="number" name="girls"></th>
+                            <th>District <br> <input value="<?php echo $row['district'] ?? null ?>"  name="district" type="text"></th>
+                            <th>Men<br> <input type="number" value="<?php echo $row['men'] ?? null ?>" name="men"></th>
+                            <th>Women<br> <input type="number" value="<?php echo $row['women'] ?? null ?>" name="women"></th>
+                            <th>Boys<br> <input type="number" value="<?php echo $row['boys'] ?? null ?>" name="boys"></th>
+                            <th>Girls <br> <input type="number" value="<?php echo $row['girls'] ?? null ?>" name="girls"></th>
 
 
                         </tr>
@@ -484,7 +484,7 @@ include 'inc/header.php' ?>
                 <div class="col02"><label for="title">Aim of
                         Awareness:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="awareness" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="awareness" style="width:80%; height:100px;"><?php echo $row['aim_aware'] ?? null ?></textarea></div>
 
 
             </div>
@@ -494,7 +494,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Why the Need for Awareness:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="n_awareness" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="n_awareness" style="width:80%; height:100px;"><?php echo $row['need_aware'] ?? null ?></textarea></div>
 
 
             </div>
@@ -503,7 +503,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Achievements:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="achievements" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="achievements" style="width:80%; height:100px;"><?php echo $row['achievements'] ?? null ?></textarea></div>
 
 
             </div>
@@ -513,7 +513,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Awareness Methodologies:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="methodologies" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="methodologies" style="width:80%; height:100px;"><?php echo $row['methodologies'] ?? null ?></textarea></div>
 
 
             </div>
@@ -522,7 +522,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Awareness Outcomes:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="aware_outcome" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="aware_outcome" style="width:80%; height:100px;"><?php echo $row['outcomes'] ?? null ?></textarea></div>
 
 
             </div>

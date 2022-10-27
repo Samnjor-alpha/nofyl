@@ -380,11 +380,12 @@ include 'inc/header.php' ?>
 <body>
 <?php include('inc/container.php'); ?>
     <div class="container">
-
+        <div class="row-title">Project Photos</div>
+        <?php if (!checkmov($_GET['id'])){ ?>
         <form method="post" action="" enctype="multipart/form-data">
 
 
-            <div class="row-title">Project Photos</div>
+
 
             <div class="row" style="padding-left:5%;">
 
@@ -410,117 +411,127 @@ text/plain, application/pdf, image/*"
             </div>
 
         </form>
+<?php } ?>
+<?php while ($row = mysqli_fetch_assoc($media)){?>
+    <div class="row" style="padding-left:5%;">
+
+        <div class="col02"><label for="title">Media:</label></div>
+            <?php echo   previewdoc(NOFYL_URL."dashboard/uploads/",$row['file_name']) ?>
+        </div>
 
 
-        <script>
+        <?php  }?>
 
-
-            function add_row() {
-                add
-                $rowno = $("#employee_table tr").length;
-                $rowno = $rowno + 1;
-                $("#employee_table tr:last").after("<tr style='border-top: 1px solid #ccc; margin-top:0px; padding-top:0px;float: left;' id='row" + $rowno + "'><td><h3>Output X</h3><textarea  name='name[]' rows='4' cols='100'> </textarea> </td><td><input type='button' value='X' class='col2-buttonX' onclick=delete_row('row" + $rowno + "')><td><input type='button' value='+ Add Indicator' class='col2-button' onclick='add_indicator();'></td></tr>");
-            }
-
-            function delete_row(rowno) {
-                $('#' + rowno).remove();
-            }
-
-
-            function add_indicator() {
-                $rowno_ind = $("#employee_table_ind tr").length;
-                $rowno_ind = $rowno_ind + 1;
-                $("#employee_table tr:last").after("<tr style='border-top: 1px solid #ccc; margin-top:5px; padding-top:0px;float: left; color:#000;' id='row_ind" + $rowno_ind + "'><h3>Output X</h3><td style='font-weight:bold;'>Code<br><br>X</td><td style='font-weight:bold;'>Cluster<br><br>X</td><td style='font-weight:bold;'>Indicator<br><br><textarea  name='name[]' rows='5' cols='40'> </textarea></td><td style='font-weight:bold;'>Means of Verification<br><select name='mov' id='mov'><option value='mov0'>Select</option><option value='mov1'>Coordination Meeting Minutes</option><option value='mov2'>Photos</option><option value='mov3'>Participant List</option><option value='mov4'>Monthly Service Mapping Report</option><option value='mov5'>Monthly Service Monitoring Report</option><option value='mov6'>Training Report</option><option value='mov7'>Awareness Activity Narrative Report</option><option value='mov8'>Safety Audit Training Report</option><option value='mov9'>Safety Audit Report</option><option value='mov10'>Cash For Work Monitoring Report</option><option value='mov11'>Cash For work Narrative Report</option><option value='mov12'>Money Transfer Statement</option><option value='mov13'>Activity Monitoring Report</option><option value='mov14'>CFM Intake Forms</option><option value='mov15'>Narrative Report </option><option value='mov16'>Decongestion Coordination Meeting Minutes</option><option value='mov17'>Human Interest Stories</option><option value='mov18'>Activity Monitoring Report</option><option value='mov19'>Land Tenure Documents</option><option value='mov20'>Beneficiary List</option><option value='mov21'>Post Eviction Monitoring Report</option><option value='mov22'>Money Transfer Statement</option><option value='mov23'>Assessment Report</option><option value='mov24'>Quarterly Assessment Report</option><option value='mov25'>Quarterly Eviction Dashboards</option></select></td><td style='font-weight:bold;'>Total End-Cycle Target<br><br><input type='text'></td><td><input type='button' value='X' class='col2-buttonX' onclick=delete_row_ind('row_ind" + $rowno_ind + "')></td><td><input type='button' value='+ Add Activity' class='col2-button' onclick='add_activity();'></td></tr>");
-            }
-
-            function delete_row_ind(rowno) {
-                $('#' + $rowno).remove();
-            }
-
-
-            function add_activity() {
-                $row_act = $("#employee_table_act tr").length;
-                $row_act = $row_act + 1;
-                $("#employee_table tr:last").after("<tr style='border-top: 1px solid #ccc; margin-top:0px; padding-top:0px;float: left;' id='row_act" + $row_act + "'><td><label>Activity X</label></td><td><textarea  name='name[]' rows='3' cols='150'> </textarea></td></tr>");
-            }
-
-            function delete_row_act(row_act) {
-                $('#' + $row_act).remove();
-            }
-
-
-            function add_ver() {
-                $row_ver = $("#employee_table_ver tr").length;
-                $row_ver = $row_ver + 1;
-                $("#employee_table tr:last").after("<tr style='border-top: 1px solid #ccc; margin-top:0px; padding-top:0px;float: left;' id='row" + $row_ver + "'><td><label>Text:</label></td><td><textarea  name='name[]' rows='7' cols='100'> </textarea></td><td><label>Upload Files:</label></td><td><input type='file' id='myFile' name='filename'></td><td><input type='button' value='X' class='col2-buttonX' onclick=delete_row_ver('row" + $row_ver + "')></td></tr>");
-            }
-
-            function delete_row_ver(row_ver) {
-                $('#' + $row_ver).remove();
-            }
-
-
-            function add_row_outcome() {
-                $rowout = $("#employee_table_outcome tr").length;
-                $rowout = $rowout + 1;
-                $("#employee_table tr:last").after("<tr style='border-top: 1px solid #ccc; margin-top:0px; padding-top:0px;float: left;' id='row_out" + $rowout + "'><td><h3>Agenda Title:</h3><textarea  name='name[]' rows='2' cols='30'> </textarea> </td><td><h3>Details:</h3><textarea  name='name[]' rows='7' cols='100'> </textarea> </td><td><input type='button' value='X' class='col2-buttonX' onclick=delete_row_out('row_out" + $rowout + "')></tr>");
-            }
-
-            function delete_row_out(rowno) {
-                $('#' + rowno).remove();
-            }
-
-
-            // DOM Elements
-            const tabs = document.querySelectorAll('.tab')
-            const tabContents = document.querySelectorAll('.tabcontent')
-            const darkModeSwitch = document.querySelector('#dark-mode-switch')
-
-            // Functions
-            const activateTab = tabnum => {
-
-                tabs.forEach(tab => {
-                    tab.classList.remove('active')
-                })
-
-                tabContents.forEach(tabContent => {
-                    tabContent.classList.remove('active')
-                })
-
-                document.querySelector('#tab' + tabnum).classList.add('active')
-                document.querySelector('#tabcontent' + tabnum).classList.add('active')
-                localStorage.setItem('jstabs-opentab', JSON.stringify(tabnum))
-
-            }
-
-            // Event Listeners
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    activateTab(tab.dataset.tab)
-                })
-            })
-
-            darkModeSwitch.addEventListener('change', () => {
-                document.querySelector('body').classList.toggle('darkmode')
-                localStorage.setItem('jstabs-darkmode', JSON.stringify(!darkmode))
-            })
-
-            // Retrieve stored data
-            let darkmode = JSON.parse(localStorage.getItem('jstabs-darkmode'))
-            const opentab = JSON.parse(localStorage.getItem('jstabs-opentab')) || '3'
-
-            // and..... Action!
-            if (darkmode === null) {
-                darkmode = window.matchMedia("(prefers-color-scheme: dark)").matches // match to OS theme
-            }
-            if (darkmode) {
-                document.querySelector('body').classList.add('darkmode')
-                document.querySelector('#dark-mode-switch').checked = 'checked'
-            }
-            activateTab(opentab)
-
-
-        </script>
 
     </div>
+
 <?php include('inc/footer.php'); ?>
+<script>
+
+
+    function add_row() {
+        add
+        $rowno = $("#employee_table tr").length;
+        $rowno = $rowno + 1;
+        $("#employee_table tr:last").after("<tr style='border-top: 1px solid #ccc; margin-top:0px; padding-top:0px;float: left;' id='row" + $rowno + "'><td><h3>Output X</h3><textarea  name='name[]' rows='4' cols='100'> </textarea> </td><td><input type='button' value='X' class='col2-buttonX' onclick=delete_row('row" + $rowno + "')><td><input type='button' value='+ Add Indicator' class='col2-button' onclick='add_indicator();'></td></tr>");
+    }
+
+    function delete_row(rowno) {
+        $('#' + rowno).remove();
+    }
+
+
+    function add_indicator() {
+        $rowno_ind = $("#employee_table_ind tr").length;
+        $rowno_ind = $rowno_ind + 1;
+        $("#employee_table tr:last").after("<tr style='border-top: 1px solid #ccc; margin-top:5px; padding-top:0px;float: left; color:#000;' id='row_ind" + $rowno_ind + "'><h3>Output X</h3><td style='font-weight:bold;'>Code<br><br>X</td><td style='font-weight:bold;'>Cluster<br><br>X</td><td style='font-weight:bold;'>Indicator<br><br><textarea  name='name[]' rows='5' cols='40'> </textarea></td><td style='font-weight:bold;'>Means of Verification<br><select name='mov' id='mov'><option value='mov0'>Select</option><option value='mov1'>Coordination Meeting Minutes</option><option value='mov2'>Photos</option><option value='mov3'>Participant List</option><option value='mov4'>Monthly Service Mapping Report</option><option value='mov5'>Monthly Service Monitoring Report</option><option value='mov6'>Training Report</option><option value='mov7'>Awareness Activity Narrative Report</option><option value='mov8'>Safety Audit Training Report</option><option value='mov9'>Safety Audit Report</option><option value='mov10'>Cash For Work Monitoring Report</option><option value='mov11'>Cash For work Narrative Report</option><option value='mov12'>Money Transfer Statement</option><option value='mov13'>Activity Monitoring Report</option><option value='mov14'>CFM Intake Forms</option><option value='mov15'>Narrative Report </option><option value='mov16'>Decongestion Coordination Meeting Minutes</option><option value='mov17'>Human Interest Stories</option><option value='mov18'>Activity Monitoring Report</option><option value='mov19'>Land Tenure Documents</option><option value='mov20'>Beneficiary List</option><option value='mov21'>Post Eviction Monitoring Report</option><option value='mov22'>Money Transfer Statement</option><option value='mov23'>Assessment Report</option><option value='mov24'>Quarterly Assessment Report</option><option value='mov25'>Quarterly Eviction Dashboards</option></select></td><td style='font-weight:bold;'>Total End-Cycle Target<br><br><input type='text'></td><td><input type='button' value='X' class='col2-buttonX' onclick=delete_row_ind('row_ind" + $rowno_ind + "')></td><td><input type='button' value='+ Add Activity' class='col2-button' onclick='add_activity();'></td></tr>");
+    }
+
+    function delete_row_ind(rowno) {
+        $('#' + $rowno).remove();
+    }
+
+
+    function add_activity() {
+        $row_act = $("#employee_table_act tr").length;
+        $row_act = $row_act + 1;
+        $("#employee_table tr:last").after("<tr style='border-top: 1px solid #ccc; margin-top:0px; padding-top:0px;float: left;' id='row_act" + $row_act + "'><td><label>Activity X</label></td><td><textarea  name='name[]' rows='3' cols='150'> </textarea></td></tr>");
+    }
+
+    function delete_row_act(row_act) {
+        $('#' + $row_act).remove();
+    }
+
+
+    function add_ver() {
+        $row_ver = $("#employee_table_ver tr").length;
+        $row_ver = $row_ver + 1;
+        $("#employee_table tr:last").after("<tr style='border-top: 1px solid #ccc; margin-top:0px; padding-top:0px;float: left;' id='row" + $row_ver + "'><td><label>Text:</label></td><td><textarea  name='name[]' rows='7' cols='100'> </textarea></td><td><label>Upload Files:</label></td><td><input type='file' id='myFile' name='filename'></td><td><input type='button' value='X' class='col2-buttonX' onclick=delete_row_ver('row" + $row_ver + "')></td></tr>");
+    }
+
+    function delete_row_ver(row_ver) {
+        $('#' + $row_ver).remove();
+    }
+
+
+    function add_row_outcome() {
+        $rowout = $("#employee_table_outcome tr").length;
+        $rowout = $rowout + 1;
+        $("#employee_table tr:last").after("<tr style='border-top: 1px solid #ccc; margin-top:0px; padding-top:0px;float: left;' id='row_out" + $rowout + "'><td><h3>Agenda Title:</h3><textarea  name='name[]' rows='2' cols='30'> </textarea> </td><td><h3>Details:</h3><textarea  name='name[]' rows='7' cols='100'> </textarea> </td><td><input type='button' value='X' class='col2-buttonX' onclick=delete_row_out('row_out" + $rowout + "')></tr>");
+    }
+
+    function delete_row_out(rowno) {
+        $('#' + rowno).remove();
+    }
+
+
+    // DOM Elements
+    const tabs = document.querySelectorAll('.tab')
+    const tabContents = document.querySelectorAll('.tabcontent')
+    const darkModeSwitch = document.querySelector('#dark-mode-switch')
+
+    // Functions
+    const activateTab = tabnum => {
+
+        tabs.forEach(tab => {
+            tab.classList.remove('active')
+        })
+
+        tabContents.forEach(tabContent => {
+            tabContent.classList.remove('active')
+        })
+
+        document.querySelector('#tab' + tabnum).classList.add('active')
+        document.querySelector('#tabcontent' + tabnum).classList.add('active')
+        localStorage.setItem('jstabs-opentab', JSON.stringify(tabnum))
+
+    }
+
+    // Event Listeners
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            activateTab(tab.dataset.tab)
+        })
+    })
+
+    darkModeSwitch.addEventListener('change', () => {
+        document.querySelector('body').classList.toggle('darkmode')
+        localStorage.setItem('jstabs-darkmode', JSON.stringify(!darkmode))
+    })
+
+    // Retrieve stored data
+    let darkmode = JSON.parse(localStorage.getItem('jstabs-darkmode'))
+    const opentab = JSON.parse(localStorage.getItem('jstabs-opentab')) || '3'
+
+    // and..... Action!
+    if (darkmode === null) {
+        darkmode = window.matchMedia("(prefers-color-scheme: dark)").matches // match to OS theme
+    }
+    if (darkmode) {
+        document.querySelector('body').classList.add('darkmode')
+        document.querySelector('#dark-mode-switch').checked = 'checked'
+    }
+    activateTab(opentab)
+
+
+</script>

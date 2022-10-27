@@ -389,7 +389,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Reporting Period:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="title" style="width:80%; height:30px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="title" style="width:80%; height:30px;"><?php echo $row['report_period'] ?? null ?></textarea></div>
 
 
             </div>
@@ -399,7 +399,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Project Code:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="pcode" style="width:80%; height:30px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="pcode" style="width:80%; height:30px;"><?php echo $row['prj_code'] ?? null ?></textarea></div>
 
             </div>
 
@@ -407,7 +407,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Activity:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="activity" style="width:80%; height:50px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="activity" style="width:80%; height:50px;"><?php echo $row['activity'] ?? null ?></textarea></div>
 
 
             </div>
@@ -416,7 +416,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Prepared by:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="prepared" style="width:80%; height:30px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="prepared" style="width:80%; height:30px;"><?php echo $row['prepared_by'] ?? null ?></textarea></div>
 
 
             </div>
@@ -426,7 +426,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Introduction :</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="intro" style="width:80%; height:30px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="intro" style="width:80%; height:30px;"><?php echo $row['intro'] ?? null ?></textarea></div>
 
 
             </div>
@@ -440,7 +440,10 @@ include 'inc/header.php' ?>
                            accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,
 text/plain, application/pdf, image/*">
                 </div>
-
+<?php if (!is_null($row['sheet'])){
+    echo previewdoc(NOFYL_URL . "dashboard/uploads/", $row['sheet']) ;
+ }else{?>
+                <?php } ?>
 
             </div>
 
@@ -450,7 +453,7 @@ text/plain, application/pdf, image/*">
                 <div class="col02"><label for="title">Beneficiary Selection Criteria
                         :</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="selection" style="width:80%; height:300px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="selection" style="width:80%; height:300px;"><?php echo $row['criteria'] ?? null ?></textarea></div>
 
 
             </div>

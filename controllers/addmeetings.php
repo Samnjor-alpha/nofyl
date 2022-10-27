@@ -1,5 +1,7 @@
 <?php
 if (isset($_GET['id'])&&!empty($_GET['id'])) {
+    $minutes=mysqli_query($conn,"select * from minutes inner join agenda a on minutes.id = a.minutes_id where indicator_id='" . $_GET['id'] . "'");
+    $row= mysqli_fetch_assoc($minutes);
     if (isset($_POST['SaveMinutes'])){
         $title=$_POST['mTitle'];
         $members =$_POST['members'];

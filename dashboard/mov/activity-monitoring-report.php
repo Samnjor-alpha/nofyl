@@ -396,8 +396,8 @@ include 'inc/header.php' ?>
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>From <br> <input name="from" type="date"></th>
-                            <th>To<br> <input name="to" type="date"></th>
+                            <th>From <br> <input name="from" value="<?php echo $row['fromD'] ?? null;  ?>" type="date"></th>
+                            <th>To<br> <input name="to" value="<?php echo $row['toD'] ?? null;  ?>" type="date"></th>
 
                         </tr>
                         </thead>
@@ -413,7 +413,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Programme:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="program" style="width:80%; height:30px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="program" style="width:80%; height:30px;"><?php echo $row['programme'] ?? null;  ?></textarea></div>
 
 
             </div>
@@ -422,7 +422,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Filled By:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="filledby" style="width:80%; height:30px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="filledby" style="width:80%; height:30px;"><?php echo $row['filledby'] ?? null;  ?></textarea></div>
 
 
             </div>
@@ -432,7 +432,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Submitted:</label></div>
 
-                <div class="col02-tab-text"><input name="subDate" type="date"></div>
+                <div class="col02-tab-text"><input value="<?php echo $row['date_submitted'] ?? null;  ?>" name="subDate" type="date"></div>
 
 
             </div>
@@ -442,7 +442,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Summary of the Quarter:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="summary" style="width:80%; height:200px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="summary" style="width:80%; height:200px;"><?php echo $row['summary'] ?? null;  ?></textarea></div>
 
 
             </div>
@@ -457,11 +457,11 @@ include 'inc/header.php' ?>
                         <thead>
 
                         <tr>
-                            <th>Activity <br> <textarea id="" name="activity" style="width:80%; height:50px;"></textarea></th>
+                            <th>Activity <br> <textarea id="" name="activity" style="width:80%; height:50px;"><?php echo $row['activity'] ?? null;  ?></textarea></th>
                             <th>Deliverables in Reporting Period<br> <textarea id="" name="period"
-                                                                               style="width:80%; height:50px;"></textarea>
+                                                                               style="width:80%; height:50px;"><?php echo $row['deliverables'] ?? null;  ?></textarea>
                             </th>
-                            <th>Status Update<br> <textarea id="update" name="update" style="width:80%; height:50px;"></textarea>
+                            <th>Status Update<br> <textarea id="update" name="update" style="width:80%; height:50px;"><?php echo $row['s_update'] ?? null;  ?></textarea>
                             </th>
                         </tr>
                         </thead>
@@ -481,15 +481,15 @@ include 'inc/header.php' ?>
                         <thead>
 
                         <tr>
-                            <th>Day/Month/Year <br> <input id="" name="dDate">
+                            <th>Day/Month/Year <br> <input type="date" value="<?php echo $row['daymonth'] ?? null;  ?>" id="" name="dDate">
                             </th>
-                            <th>Training Topic<br> <textarea id="" name="topic" style="width:80%; height:50px;"></textarea>
+                            <th>Training Topic<br> <textarea id="" name="topic" style="width:80%; height:50px;"><?php echo $row['training'] ?? null;  ?></textarea>
                             </th>
                             <th>Training Participants<br> <textarea id="" name="people"
-                                                                    style="width:80%; height:50px;"></textarea></th>
-                            <th>No of Days<br> <textarea id="" name="days" style="width:80%; height:50px;"></textarea></th>
+                                                                    style="width:80%; height:50px;"><?php echo $row['participants'] ?? null;  ?></textarea></th>
+                            <th>No of Days<br> <textarea id="" name="days" style="width:80%; height:50px;"><?php echo $row['no_Days'] ?? null;  ?></textarea></th>
                             <th>No of Participants<br> <textarea id="nopeople" name="nopeople"
-                                                                 style="width:80%; height:50px;"></textarea></th>
+                                                                 style="width:80%; height:50px;"><?php echo $row['no_participants'] ?? null;  ?></textarea></th>
                         </tr>
                         </thead>
                     </table>

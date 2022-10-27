@@ -1,5 +1,8 @@
 <?php
 if (isset($_GET['id'])&&!empty($_GET['id'])) {
+    $media=mysqli_query($conn,"select * from mov_media where 
+                            indicator_id='".$_GET['id']."'");
+
     if (isset($_POST['upload'])) {
 // File upload configuration
         $targetDir = "../uploads/";

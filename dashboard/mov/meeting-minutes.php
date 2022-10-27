@@ -388,7 +388,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Meeting Title:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="mTitle" style="width:80%; height:30px;"></textarea>
+                <div class="col02-tab-text"><textarea id="" name="mTitle" style="width:80%; height:30px;"><?php echo $row['title'] ?></textarea>
                     <br> <?php $date = date('d-m-y h:i:s');
                     echo "<strong>Date:</strong>" . " " . $date; ?> </div>
 
@@ -400,7 +400,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Co-Chaired by:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="chairedBy" style="width:80%; height:40px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id=""  name="chairedBy" style="width:80%; height:40px;"><?php echo $row['chairedby'] ?></textarea></div>
 
 
             </div>
@@ -410,35 +410,64 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Partners Present:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="members" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="members" style="width:80%; height:100px;"><?php echo $row['members'] ?></textarea></div>
 
 
             </div>
 
 
             <div class="row">
+                <?php if(!empty($minutes)) {
+                    foreach ($minutes as $k => $minute) { ?>
+                        <div class="row">
+                            <div class="col2"><label>Primary Cluster:</label></div>
+                            <div class="col2">
+                                <div class="col02-tab-text">
+                                    <table id="employee_table_outcome">
+                                        <tr id="row_out">
+                                        <tr style='border-top: 1px solid #ccc; margin-top:0px; padding-top:0px;' id='row_out" + $rowout + "'><td>
+                                                <h3>Agenda Title:</h3>
+                                                <textarea  name='agenda[]' rows='2' cols='30'> </textarea>
+                                            </td><td><h3>Details:</h3>
+                                                <textarea  name='details[]' rows='7' cols='20'> </textarea> </td><td>
+                                    </table>
 
-                <div class="col02"><label for="title">Agenda:</label></div>
 
-                <div class="col02-tab-text">
-                    <table id="employee_table_outcome">
-                        <tr id="row_out">
+                                <input type="hidden" name="clusterid[]" value="<?php echo $clusters[$k]['cluster_id'] ?? null ?>" />
+                                <input id="" name="cluster_name[]" placeholder="Cluster Name" value="<?php echo $clusters[$k]['cluster_name'] ?? null ?>" />
+                                <br><br>
 
-                    </table>
+                                <label>Sub Cluster</label>
+                                <input id="" name="sub_cluster_name[]" placeholder="Sub Cluster Name" value="<?php echo $clusters[$k]['subcluster_name'] ?? null ?>" /> <br><br>
 
-                    <input type="button" onclick="add_row_outcome();" value="+ Add Agenda" class="col2-button">
+                                <label>Percentage</label>
+                                <input type="number" id="" name="cluster_perc[]" placeholder="%" value="<?php echo $clusters[$k]['percentage'] ?? null ?>" />
+                            </div>
+                        </div>
+                    <?php } } else { ?>
+                    <div class="col02"><label for="title">Agenda:</label></div>
 
-                    <table id="employee_table_outcome">
-                        <tr id="row_out">
+                    <div class="col02-tab-text">
+                        <table id="employee_table_outcome">
+                            <tr id="row_out">
+0
+                        </table>
 
-                    </table>
+                        <input type="button" onclick="add_row_outcome();" value="+ Add Agenda" class="col2-button">
 
-                    <table id="employee_table">
-                        <tr id="row1">
-                        </tr>
-                    </table>
+                        <table id="employee_table_outcome">
+                            <tr id="row_out">
 
-                </div>
+                        </table>
+
+                        <table id="employee_table">
+                            <tr id="row1">
+                            </tr>
+                        </table>
+
+                    </div>
+                <?php } ?>
+
 
 
             </div>
@@ -449,16 +478,16 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Next Meeting:</label></div>
 
-                <div class="col02-tab-text"><input name="nDate" type="date"/></div>
+                <div class="col02-tab-text"><input name="nDate" value="<?php echo $row['next_meeting'] ?>" type="date"/></div>
 
             </div>
 
 
             <div class="row">
-
+<?php if (mysqli_num_rows($minutes)<1){ ?>
                 <input type="submit" name="SaveMinutes" value="Save Minutes"
                        style="width:20%; height:50px; background:#027a14 !important; color:#fff; border:none;">
-
+<?php } ?>
             </div>
 
         </form>

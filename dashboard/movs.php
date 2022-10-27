@@ -177,25 +177,7 @@ include '../controllers/frameworkcontroller.php'
             </div>
 
 
-            <div class="">
-                <h3>Clusters</h3>
-                <table class="table table-bordered">
-                    <tr>
 
-                        <th>Primary Cluster</th>
-                        <th>Sub Cluster</th>
-                        <th>Percentage</th>
-                    </tr>
-                    <?php foreach ($clusters as $k => $cluster) { ?>
-                        <tr>
-
-                            <td><?php echo $cluster['cluster_name'] ?></td>
-                            <td><?php echo $cluster['subcluster_name'] ?></td>
-                            <td><?php echo $cluster['percentage'] ?>%</td>
-                        </tr>
-                    <?php } ?>
-                </table>
-            </div>
             <div class="">
                 <h3>Means of verification</h3>
                 <div class="row">
@@ -207,11 +189,14 @@ include '../controllers/frameworkcontroller.php'
                             <th>#</th>
                             <th>Project Output indicator</th>
                             <th>Means of verification</th>
+                            <th>Media</th>
                             <th>Target</th>
                             <th>Indicator</th>
                             <th>Activities</th>
                         </tr>
                         <?php
+
+
 
                         foreach ($outputIndicators as $k=> $outputIndicator) { ?>
                             <tr>
@@ -224,6 +209,11 @@ include '../controllers/frameworkcontroller.php'
 
                                     }?>
                                 </td>
+                                <td><?php
+                                    if (checkmov($outputIndicator['output_id'])){
+                                    echo mediamov(json_decode($outputIndicator['mov']), $outputIndicator['output_id']);}else{
+                                        echo "<p class='text-danger'>No verified</p>";
+                                    }?></td>
                                 <td><?php echo $outputIndicator['target'] ?? null ?></td>
                                 <td><?php echo $outputIndicator['indicator'] ?? null ?></td>
                                 <td><?php if(!is_null($outputIndicator['activities'])) {

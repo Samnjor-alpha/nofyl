@@ -196,3 +196,68 @@ function prntmov($mov,$indicatorid): string
         return "Unknown MOV";
     }
 }
+function mediamov($mov,$indicatorid): string
+{
+
+    if ($mov=='mov1'){
+        return "<a href='../dashboard/mov/meeting-minutes.php?id=".$indicatorid."'  > Coordination Meeting Minutes</a>";
+    }elseif($mov=='mov2'){
+        return "<a href='../dashboard/mov/photos.php?id=".$indicatorid."'  > Photos</a>";
+    }elseif ($mov=='mov3'){
+        return "<a href='../dashboard/mov/participant-list.php?id=".$indicatorid."'  > Participant List</a>";
+    }elseif ($mov=='mov4'){
+        return "<a href='../dashboard/mov/monthly-service-mapping-report.php?id=".$indicatorid."'  > Monthly Service Mapping Report</a>";
+    }elseif ($mov=='mov5'){
+        return "<a href='../dashboard/mov/monthly-service-monitoring-report.php?id=".$indicatorid."'  > Monthly Service Monitoring Report</a>";
+    }elseif ($mov=='mov6'){
+        return "<a href='../dashboard/mov/training-report.php?id=".$indicatorid."'  > Training Report</a>";
+    }elseif ($mov=='mov7'){
+        return "<a href='../dashboard/mov/awareness-activity-narrative-report.php?id=".$indicatorid."'  > Awareness Activity Narrative Report</a>";
+    }elseif ($mov=='mov8'){
+        return "<a href='../dashboard/mov/safety-audit-training-report.php?id=".$indicatorid."'  > Safety Audit Training Report</a>";
+    }elseif ($mov=='mov9'){
+        return "<a href='../dashboard/mov/safety-audit-report.php?id=".$indicatorid."'  > Safety Audit Report</a>";
+    }elseif ($mov=='mov10'){
+        return "<a href='../dashboard/mov/cash-for-work-monitoring-report.php?id=".$indicatorid."'  > Cash For Work Monitoring Report</a>";
+    }elseif ($mov=='mov11'){
+        return "<a href='../dashboard/mov/cash-for-work-monitoring-report.php?id=".$indicatorid."'  > Cash For work Narrative Report</a>";
+    }elseif ($mov=='mov12'){
+        return "<a href='../dashboard/mov/money-transfer-statement.php?id=".$indicatorid."'  > Money Transfer Statement</a>";
+    }elseif ($mov=='mov13'){
+        return "<a href='../dashboard/mov/activity-monitoring-report.php?id=".$indicatorid."'  > Activity Monitoring Report</a>";
+    }elseif ($mov=='mov14'){
+        return "<a href='../dashboard/mov/cfm-intake-forms.php?id=".$indicatorid."'  > CFM Intake Forms</a>";
+    }elseif ($mov=='mov15'){
+        return "<a href='../dashboard/mov/narrative.php?id=".$indicatorid."'  > Narrative Report</a>";
+    }elseif ($mov=='mov16'){
+        return "<a href='../dashboard/mov/meeting-minutes.php?id=".$indicatorid."'  > Decongestion Coordination Meeting Minutes</a>";
+    }elseif ($mov=='mov17'){
+        return "<a href='../dashboard/mov/narrative.php?id=".$indicatorid."'  > Human Interest Stories</a>";
+    }elseif ($mov=='mov18'){
+        return "<a href='../dashboard/mov/activity-monitoring-report.php?id=".$indicatorid."'  > Activity Monitoring Report</a>";
+    }elseif ($mov=='mov19'){
+        return "<a href='../dashboard/mov/land-tenure-documents.php?id=".$indicatorid."'  > Land Tenure Documents</a>";
+    }elseif ($mov=='mov20'){
+        return "<a href='../dashboard/mov/beneficiary-list.php?id=".$indicatorid."'  > Beneficiary List</a>";
+    }elseif ($mov=='mov21'){
+        return "<a href='../dashboard/mov/post-eviction-monitoring-report.php?id=".$indicatorid."'  > Post Eviction Monitoring Report</a>";
+    }elseif ($mov=='mov22'){
+        return "<a href='../dashboard/mov/money-transfer-statement.php?id=".$indicatorid."'  > Money Transfer Statement</a>";
+    }elseif ($mov=='mov23'){
+        return "<a href='../dashboard/mov/assessment-report.php?id=".$indicatorid."'  > Assessment Report</a>";
+    }elseif ($mov=='mov24'){
+        return "<a href='../dashboard/mov/quarterly-assessment-report.php?id=".$indicatorid."'  > Quarterly Assessment Report</a>";
+    }elseif ($mov=='mov25'){
+        return "<a href='../dashboard/mov/quarterly-eviction-dashboards.php?id=".$indicatorid."'  > Quarterly Eviction Dashboards</a>";
+    }
+}
+
+function previewdoc($link,$file): string
+{
+//    $im = new Imagick();
+//    $im->setResolution(300, 300);     //set the resolution of the resulting jpg
+//    $im->readImage($file[0]);    //[0] for the first page
+//    $im->setImageFormat('jpg');
+//    header('Content-Type: image/jpeg');
+    return "<a href='$link$file' target='_blank'>Preview Attachment</a>";
+}

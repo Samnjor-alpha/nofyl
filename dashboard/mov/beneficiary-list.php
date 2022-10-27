@@ -380,37 +380,54 @@ include 'inc/header.php' ?>
 <?php include('inc/container.php'); ?>
     <div class="container">
 
-        <form method="post" action="" enctype="multipart/form-data">
+        <div class="row-title">Beneficiary List</div>
+        <?php if (!checkmov($_GET['id'])){ ?>
+            <form method="post" action="" enctype="multipart/form-data">
 
 
-            <div class="row-title">Beneficiary List</div>
 
+
+                <div class="row" style="padding-left:5%;">
+
+                    <div class="col02"><label for="title">Upload Photos:</label></div>
+
+                    <div class="col02-tab-text">
+                        <input type="file"  name="files[]"
+                               accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,
+text/plain, application/pdf, image/*"
+                               multiple >
+                        <br> <?php $date = date('d-m-y h:i:s');
+                        echo "<strong>Date:</strong>" . " " . $date; ?> </div>
+
+
+                </div>
+
+
+                <div class="row">
+
+                    <input type="submit" name="upload" value="Upload Photos"
+                           style="width:20%; height:50px; background:#027a14 !important; color:#fff; border:none;">
+
+                </div>
+
+            </form>
+        <?php } ?>
+        <?php while ($row = mysqli_fetch_assoc($media)){?>
             <div class="row" style="padding-left:5%;">
 
-                <div class="col02"><label for="title">Upload List (PDF):</label></div>
-
-                <div class="col02-tab-text"><input type="file"  name="files[]"
-                           accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,
-text/plain, application/pdf, image/*"
-                           multiple >
-                    <br> <?php $date = date('d-m-y h:i:s');
-                    echo "<strong>Date:</strong>" . " " . $date; ?> </div>
-
-
+                <div class="col02"><label for="title">Media:</label></div>
+                <?php echo   previewdoc(NOFYL_URL."dashboard/uploads/",$row['file_name']) ?>
             </div>
 
 
-            <div class="row">
-
-                <input type="submit" name="upload" value="Upload List"
-                       style="width:20%; height:50px; background:#027a14 !important; color:#fff; border:none;">
-
-            </div>
-
-        </form>
+        <?php  }?>
 
 
-        <script>
+    </div>
+
+
+
+    <script>
 
 
             function add_row() {
@@ -520,5 +537,5 @@ text/plain, application/pdf, image/*"
 
         </script>
 
-    </div>
+
 <?php include('inc/footer.php'); ?>
