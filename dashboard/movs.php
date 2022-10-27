@@ -3,7 +3,8 @@ include '../config/config.php';
 include '../controllers/auth.php';
 include '../controllers/session.php';
 include '../controllers/helper.php';
-include '../controllers/viewproject.php'
+include '../controllers/viewproject.php';
+include '../controllers/frameworkcontroller.php'
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +16,7 @@ include '../controllers/viewproject.php'
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-        <link rel="stylesheet" href="assets/main.css">
+    <link rel="stylesheet" href="assets/main.css">
     <link rel="stylesheet" href="assets/pdf.css">
     <script src="assets/pdf.js"></script>
     <link rel="icon" href="https://www.nofyl.org/wp-content/uploads/Nofyl_logo.png" sizes="32x32"/>
@@ -147,103 +148,99 @@ include '../controllers/viewproject.php'
 
 <div class="container mt-3">
     <?php include 'navbar/viewtabs.php'?>
-    <div class="offset-10 fixed-top mt-5">
-        <button class="btn btn-sm btn-primary" id="download">Download Documentation</button>
-    </div>
+        <div id="print">
+        <h3><?php echo $project->Title ?> Documentation</h3>
+        <div class="row">
+            <h3>Project Details</h3>
+            <div>
+                <table class="table table-striped table-bordered" style="width:100%">
+
+                    <thead>
+                    <tr>
+                        <th>Organization</th>
+                        <th>Title</th>
+                        <th>Allocation</th>
+                        <th>Fund Code</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><?php echo $project->organization ?></td>
+                        <td><?php echo $project->Title ?></td>
+                        <td><?php echo $project->Allocation ?></td>
+                        <td><?php echo $project->Fund_Code ?></td>
+
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
 
 
-<div id="print">
-    <h3><?php echo $project->Title ?> Documentation</h3>
-    <div class="row">
-        <h3>Project Details</h3>
-        <div>
-            <table class="table table-striped table-bordered" style="width:100%">
-
-                <thead>
-                <tr>
-                    <th>Organization</th>
-                    <th>Title</th>
-                    <th>Allocation</th>
-                    <th>Fund Code</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td><?php echo $project->organization ?></td>
-                    <td><?php echo $project->Title ?></td>
-                    <td><?php echo $project->Allocation ?></td>
-                    <td><?php echo $project->Fund_Code ?></td>
-
-                </tr>
-                </tbody>
-            </table>
-
-        </div>
-        <div>
-            <table class="table table-striped table-bordered" style="width:100%">
-
-                <thead>
-                <tr>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Duration</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td><?php echo $project->Start_Date ?></td>
-                    <td><?php echo $project->End_Date ?></td>
-                    <td><?php echo noweeks($project->Start_Date,$project->End_Date) ?></td>
-
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="mb-1">
-            <h3>Project summary</h3>
-            <p><?php echo $cover->project_summary ?></p>
-        </div>
-        <div class="mb-1">
-            <h3>Project Objective</h3>
-            <p><?php  echo $framework->objective ?></p>
-        </div>
-        <div class="mb-1">
-            <h3>Clusters</h3>
-            <table class="table table-bordered">
-                <tr>
-
-                    <th>Primary Cluster</th>
-                    <th>Sub Cluster</th>
-                    <th>Percentage</th>
-                </tr>
-                <?php foreach ($clusters as $k => $cluster) { ?>
+            <div class="">
+                <h3>Clusters</h3>
+                <table class="table table-bordered">
                     <tr>
 
-                        <td><?php echo $cluster['cluster_name'] ?></td>
-                        <td><?php echo $cluster['subcluster_name'] ?></td>
-                        <td><?php echo $cluster['percentage'] ?>%</td>
+                        <th>Primary Cluster</th>
+                        <th>Sub Cluster</th>
+                        <th>Percentage</th>
                     </tr>
-                <?php } ?>
-            </table>
-        </div>
-        <div class="mb-1">
-            <h3>Country Context</h3>
-            <div class="row">
-                <div class="col-md-4">
-                    <p class=""><strong>Needs Assessment:</strong></p><small><?php echo $cover->needs_assessment ?></small>
-                </div>
-                <div class="col-md-4">
-                    <p class=""><strong>Grant Request Justification:</strong></p><small><?php echo $cover->justification ?></small>
-                </div>
-                <div class="col-md-4">
-                    <p class=""><strong>Allocation Strategy:</strong></p><small><?php echo $cover->allocation_strategy ?></small>
+                    <?php foreach ($clusters as $k => $cluster) { ?>
+                        <tr>
+
+                            <td><?php echo $cluster['cluster_name'] ?></td>
+                            <td><?php echo $cluster['subcluster_name'] ?></td>
+                            <td><?php echo $cluster['percentage'] ?>%</td>
+                        </tr>
+                    <?php } ?>
+                </table>
+            </div>
+            <div class="">
+                <h3>Means of verification</h3>
+                <div class="row">
+
+
+                    <table class="table table-striped indicators">
+                        <caption>Output Indicators</caption>
+                        <tr>
+                            <th>#</th>
+                            <th>Project Output indicator</th>
+                            <th>Means of verification</th>
+                            <th>Target</th>
+                            <th>Indicator</th>
+                            <th>Activities</th>
+                        </tr>
+                        <?php
+
+                        foreach ($outputIndicators as $k=> $outputIndicator) { ?>
+                            <tr>
+                                <td><?php echo ++$k ?></td>
+                                <td><?php echo getoutputname($outputIndicator['output_id']) ?></td>
+                                <td><?php
+
+                                    if (!is_null($outputIndicator['mov'])) {
+                                        echo "<p>" . prntmov(json_decode($outputIndicator['mov']), $outputIndicator['output_id']) . "</p>";
+
+                                    }?>
+                                </td>
+                                <td><?php echo $outputIndicator['target'] ?? null ?></td>
+                                <td><?php echo $outputIndicator['indicator'] ?? null ?></td>
+                                <td><?php if(!is_null($outputIndicator['activities'])) {
+                                        foreach (json_decode($outputIndicator['activities']) as $activity) {
+                                            echo "<p>".$activity."</p>" ?? null;
+                                        }
+                                    } ?>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </table>
+
                 </div>
             </div>
         </div>
 
     </div>
-
-</div>
 
 
 </div>

@@ -552,7 +552,7 @@ if (isset($_POST['clusters'])){?>
                             <?php foreach ($projectOutputs as $k=> $projectOutput) { ?>
                                 <tr>
                                     <td><?php echo ++$k ?></td>
-                                    <td><?php echo $projectOutput['outcome_id'] ?? null ?></td>
+                                    <td><?php echo getoutcomename($projectOutput['outcome_id']) ?></td>
                                     <td><?php echo $projectOutput['output'] ?? null ?></td>
                                     <td><?php echo getclustername($projectOutput['cluster_id']) ?></td>
                                 </tr>
@@ -574,7 +574,7 @@ if (isset($_POST['clusters'])){?>
                             foreach ($outputIndicators as $k=> $outputIndicator) { ?>
                                 <tr>
                                     <td><?php echo ++$k ?></td>
-                                    <td><?php echo $outputIndicator['output_id'] ?? null ?></td>
+                                    <td><?php echo getoutputname($outputIndicator['output_id']) ?></td>
                                     <td><?php
                                         if (!checkmov($outputIndicator['output_id'])) {
                                             if (!is_null($outputIndicator['mov'])) {
