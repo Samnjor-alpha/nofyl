@@ -83,8 +83,8 @@ if (isset($_POST['saveClusters'])){
     $outcome=$_POST['outcome'];
     $activities = $_POST['activity'];
     $indicatorsArray = $_POST["indicator"];
-    $indicatorsToSave=$indicatorsArray['text'];
-    $movs = $indicatorsArray['mov'];
+    $movarray=$indicatorsArray['mov'];
+    $texts = $indicatorsArray['text'];
     $targets = $indicatorsArray['target'];
 
     $toSave = [];
@@ -117,8 +117,16 @@ alert('Outcome out put is required');
                             }
                         }
                     }
-                    foreach ($indicatorsToSave as $t => $textIndicator) {
-                        if ($conn->query("insert into output_indicators (project_id, indicator, mov, target, output_id, cluster_id)  values ($prjid, '" . $textIndicator . "', '" . json_encode($movs[$t]) . "', '" . $targets[$t] . "', '" . $outputID . "', $clusterID) ")) {
+                    foreach ($movarray as $t => $textIndicator) {
+                        foreach ($texts as $text) {
+                            $textinds[] = $text;
+
+                        }
+                        foreach ($targets as $target) {
+                            $targetinds[] = $target;
+
+                        }
+                        if ($conn->query("insert into output_indicators (project_id, indicator, mov, target, output_id, cluster_id)  values ($prjid, '" . $text . "', '" . json_encode($textIndicator) . "', '" . $target . "', '" . $outputID . "', $clusterID) ")) {
                             $indicatorID = $conn->insert_id;
                         }
                     }

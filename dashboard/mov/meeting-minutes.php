@@ -417,40 +417,40 @@ include 'inc/header.php' ?>
 
 
             <div class="row">
-                <?php if(!empty($minutes)) {
-                    foreach ($minutes as $k => $minute) { ?>
-                        <div class="row">
-                            <div class="col2"><label>Primary Cluster:</label></div>
-                            <div class="col2">
-                                <div class="col02-tab-text">
-                                    <table id="employee_table_outcome">
-                                        <tr id="row_out">
-                                        <tr style='border-top: 1px solid #ccc; margin-top:0px; padding-top:0px;' id='row_out" + $rowout + "'><td>
-                                                <h3>Agenda Title:</h3>
-                                                <textarea  name='agenda[]' rows='2' cols='30'> </textarea>
-                                            </td><td><h3>Details:</h3>
-                                                <textarea  name='details[]' rows='7' cols='20'> </textarea> </td><td>
-                                    </table>
-
-
-                                <input type="hidden" name="clusterid[]" value="<?php echo $clusters[$k]['cluster_id'] ?? null ?>" />
-                                <input id="" name="cluster_name[]" placeholder="Cluster Name" value="<?php echo $clusters[$k]['cluster_name'] ?? null ?>" />
-                                <br><br>
-
-                                <label>Sub Cluster</label>
-                                <input id="" name="sub_cluster_name[]" placeholder="Sub Cluster Name" value="<?php echo $clusters[$k]['subcluster_name'] ?? null ?>" /> <br><br>
-
-                                <label>Percentage</label>
-                                <input type="number" id="" name="cluster_perc[]" placeholder="%" value="<?php echo $clusters[$k]['percentage'] ?? null ?>" />
-                            </div>
-                        </div>
-                    <?php } } else { ?>
+<!--                --><?php //if(!empty($minutes)) {
+//                    foreach ($minutes as $k => $minute) { ?>
+<!--                        <div class="row">-->
+<!--                            <div class="col2"><label>Primary Cluster:</label></div>-->
+<!--                            <div class="col2">-->
+<!--                                <div class="col02-tab-text">-->
+<!--                                    <table id="employee_table_outcome">-->
+<!--                                        <tr id="row_out">-->
+<!--                                        <tr style='border-top: 1px solid #ccc; margin-top:0px; padding-top:0px;' id='row_out" + $rowout + "'><td>-->
+<!--                                                <h3>Agenda Title:</h3>-->
+<!--                                                <textarea  name='agenda[]' rows='2' cols='30'> </textarea>-->
+<!--                                            </td><td><h3>Details:</h3>-->
+<!--                                                <textarea  name='details[]' rows='7' cols='20'> </textarea> </td><td>-->
+<!--                                    </table>-->
+<!---->
+<!---->
+<!--                                <input type="hidden" name="clusterid[]" value="--><?php //echo $clusters[$k]['cluster_id'] ?? null ?><!--" />-->
+<!--                                <input id="" name="cluster_name[]" placeholder="Cluster Name" value="--><?php //echo $clusters[$k]['cluster_name'] ?? null ?><!--" />-->
+<!--                                <br><br>-->
+<!---->
+<!--                                <label>Sub Cluster</label>-->
+<!--                                <input id="" name="sub_cluster_name[]" placeholder="Sub Cluster Name" value="--><?php //echo $clusters[$k]['subcluster_name'] ?? null ?><!--" /> <br><br>-->
+<!---->
+<!--                                <label>Percentage</label>-->
+<!--                                <input type="number" id="" name="cluster_perc[]" placeholder="%" value="--><?php //echo $clusters[$k]['percentage'] ?? null ?><!--" />-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    --><?php //} } else { ?>
                     <div class="col02"><label for="title">Agenda:</label></div>
 
                     <div class="col02-tab-text">
                         <table id="employee_table_outcome">
                             <tr id="row_out">
-0
+
                         </table>
 
                         <input type="button" onclick="add_row_outcome();" value="+ Add Agenda" class="col2-button">
@@ -466,7 +466,7 @@ include 'inc/header.php' ?>
                         </table>
 
                     </div>
-                <?php } ?>
+<!--                --><?php //} ?>
 
 
 

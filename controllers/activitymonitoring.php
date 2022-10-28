@@ -48,7 +48,7 @@ alert('All fields are required');
                                              no_participants='$noparticipants' 
                   where indicator_id='" . $_GET['id'] . "'";
                 if (mysqli_query($conn, $add)) {
-                    $update = mysqli_query($conn, "UPDATE output_indicators set upload_status='1' where output_id='" . $_GET['id'] . "'");
+                    $update=mysqli_query($conn, "UPDATE output_indicators set upload_status='1' where id='".$_GET['id']."'");
                     echo "<script>
             alert('Report updated succcessfully');
             window.location.href = '../clusters.php?id=" . getprojectid($_GET['id']) . "';
@@ -103,7 +103,7 @@ alert('All fields are required');
                                              no_Days='$days',
                                              no_participants='$noparticipants'";
                 if (mysqli_query($conn, $add)) {
-                    $update = mysqli_query($conn, "UPDATE output_indicators set upload_status='1' where output_id='" . $_GET['id'] . "'");
+                    $update=mysqli_query($conn, "UPDATE output_indicators set upload_status='1' where id='".$_GET['id']."'");
                     echo "<script>
             alert('Report submitted succcessfully');
             window.location.href = '../clusters.php?id=" . getprojectid($_GET['id']) . "';

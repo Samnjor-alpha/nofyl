@@ -62,7 +62,7 @@ function getoutcomename( $id)
 function checkmov( $output_id)
 {
     global $conn;
-    $check=mysqli_query($conn, "SELECT upload_status FROM output_indicators where output_id='$output_id'");
+    $check=mysqli_query($conn, "SELECT upload_status FROM output_indicators where id='$output_id'");
     $status=mysqli_fetch_assoc($check)['upload_status'];
     if ($status=='1'){
         return true;
@@ -74,7 +74,7 @@ function checkmov( $output_id)
 }
 function getprojectid($indicatorid){
     global $conn;
-    $getid=mysqli_query($conn, "select project_id from output_indicators where output_id='$indicatorid'");
+    $getid=mysqli_query($conn, "select project_id from output_indicators where id='$indicatorid'");
     return mysqli_fetch_assoc($getid)['project_id'];
 }
 function getoutputname($id){

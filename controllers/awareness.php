@@ -43,7 +43,7 @@ if (isset($_GET['id'])&&!empty($_GET['id'])) {
                            outcomes='$aware_outcome' where
                            indicator_id='".$_GET['id']."'";
             if (mysqli_query($conn,$add)){
-                $update = mysqli_query($conn, "UPDATE output_indicators set upload_status='1' where output_id='" . $_GET['id'] . "'");
+                $update=mysqli_query($conn, "UPDATE output_indicators set upload_status='1' where id='".$_GET['id']."'");
                 echo "<script>
             alert('Report updated succcessfully');
             window.location.href = '../clusters.php?id=".getprojectid($_GET['id'])."';
@@ -94,7 +94,7 @@ if (isset($_GET['id'])&&!empty($_GET['id'])) {
                            outcomes='$aware_outcome',
                            indicator_id='".$_GET['id']."'";
             if (mysqli_query($conn,$add)){
-                $update = mysqli_query($conn, "UPDATE output_indicators set upload_status='1' where output_id='" . $_GET['id'] . "'");
+                $update=mysqli_query($conn, "UPDATE output_indicators set upload_status='1' where id='".$_GET['id']."'");
                 echo "<script>
             alert('Report submitted succcessfully');
             window.location.href = '../clusters.php?id=".getprojectid($_GET['id'])."';
