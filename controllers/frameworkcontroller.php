@@ -43,7 +43,7 @@ if ($result = $conn->query($sql)) {
 }
 
 // indicators
-
+$sqlmovs = mysqli_query($conn,"select * from output_indicators where project_id=$prjid");
 $sql = "select * from output_indicators where project_id=$prjid";
 if ($result = $conn->query($sql)) {
     $outputIndicators = $result->fetch_all(MYSQLI_BOTH);

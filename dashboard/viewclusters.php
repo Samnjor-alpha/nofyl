@@ -276,7 +276,7 @@ include '../controllers/frameworkcontroller.php'
                                 <td><?php
 
                                         if (!is_null($outputIndicator['mov'])) {
-                                            echo "<p>" . prntmov(json_decode($outputIndicator['mov']), $outputIndicator['output_id']) . "</p>";
+                                            echo "<p>" . prntmov(json_decode($outputIndicator['mov']), $outputIndicator['id']) . "</p>";
 
                                     }?>
                                 </td>

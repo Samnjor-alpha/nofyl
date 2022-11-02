@@ -34,12 +34,13 @@ $months = floor(($diff - $years * 365 * 60 * 60 * 24)
 $days = floor($diff  / (60 * 60 * 24));
 
  $weeks=floor($diff/(60 * 60 *24*7));
-if ($days<7){
-    return $days." days";
-}elseif ($days<365){
+
+    $months = floor($days/30);
+
+    if ($days<28){
     return $weeks."weeks";
-}elseif ($days>=365){
-    return $years." years";
+}else{
+    return $months." months";
 }
 //// Print the result
 //printf("%d years, %d months, %d days", $years, $months,
