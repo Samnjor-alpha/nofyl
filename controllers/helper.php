@@ -262,3 +262,33 @@ function previewdoc($link,$file): string
 //    header('Content-Type: image/jpeg');
     return "<a href='$link$file' target='_blank'>Preview Attachment</a>";
 }
+function workplanactions($role,$prjid){
+    if($role=="admin"){
+        return '<a href="viewproject.php?id='.$prjid.'">View</a> |<a href="home.php?id='.$prjid.'">Edit</a>| <a href="?edit='.$prjid.'">Delete</a>';
+    }elseif ($role == 'employee' && getpermissiontoedit($prjid)){
+        return '<a href="viewproject.php?id='.$prjid.'">View</a> |<a href="home.php?id='.$prjid.'">Edit</a>';
+    }
+    elseif ($role == 'employee'){
+        return '<a href="viewproject.php?id='.$prjid.'">View</a>';
+    }
+}
+function getpreparedby($id): string
+{
+    global $conn;
+    $getuser=mysqli_query($conn, "select first_name,last_name from pm_users where id='$id'");
+    $row=mysqli_fetch_assoc($getuser);
+    return $row['first_name']." ".$row['last_name'];
+}
+function getpermissiontoedit($prjid): bool
+{
+    global $conn;
+    $getdata=mysqli_query($conn,"select * from project_grants where prj_id='$prjid' and edit='1'");
+    if (mysqli_num_rows($getdata)>0){
+        return true;
+    }else{
+        return false;
+    }
+
+}
+
+

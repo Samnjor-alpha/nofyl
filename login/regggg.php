@@ -77,7 +77,6 @@ include '../controllers/auth.php';
                             <select  name="urole" class="form-control form-select" required id="floatingPassword">
                             <option disabled selected>....</option>
                                 <option value="admin">Admin</option>
-                            <option value="manager">Manager</option>
                                 <option value="employee">Employee</option>
                             </select>
                             <label for="floatingPassword">Select Role</label>

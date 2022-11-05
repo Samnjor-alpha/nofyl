@@ -455,6 +455,8 @@ include '../controllers/frameworkcontroller.php'
         </div>
 
         <div class="row">
+
+
 <?php
 
 if (isset($_POST['clusters'])){?>
@@ -653,8 +655,12 @@ if (isset($_POST['clusters'])){?>
 
     function add_row_outcome() {
         $rowout = $("#employee_table_outcome tr").length;
+
         $rowout = $rowout + 1;
-        $("#employee_table tr:last").after("<tr style='border-top: 1px solid #ccc; margin-top:0px; padding-top:0px;float: left;' id='row_out" + $rowout + "'><td><h3>Outcome X</h3><textarea  name='outcome[]' rows='4' cols='100'></textarea> </td><td><input type='button' value='X' class='col2-buttonX' onclick=delete_row_out('row_out" + $rowout + "')><td>  <input type='button' onclick='add_row();' value='+ Add Output' class='col2-button'></td></tr>");
+
+
+        $("#employee_table tr:last").after("<tr style='border-top: 1px solid #ccc; margin-top:0px; padding-top:0px;float: left;' id='row_out" + $rowout + "'>" +
+            "<td><h3>Outcome<p id='no'></p></h3><textarea  name='outcome[]' rows='4' cols='100'></textarea> </td><td><input type='button' value='X' class='col2-buttonX' onclick=delete_row_out('row_out" + $rowout + "')><td>  <input type='button' onclick='add_row();' value='+ Add Output' class='col2-button'></td></tr>");
     }
 
     function delete_row_out(rowno) {
@@ -666,6 +672,9 @@ if (isset($_POST['clusters'])){?>
 
 
 
+</script>
+<script>
+    document.getElementById("demo").innerHTML = 5 + 6;
 </script>
 </body>
 </html>

@@ -7,7 +7,9 @@
     <ul class="navbar-nav">
 
         <li class="nav-item" style="margin-left:-300px;display: inline; ">
-            <a class="nav-link">Welcome, <?php echo $_SESSION['names'] ?></a>
+            <a class="nav-link">Welcome, <?php echo $_SESSION['names'] ?><br>
+            <?php echo $_SESSION['role'] ?>
+            </a>
 
         </li>
         <li class="nav-item">

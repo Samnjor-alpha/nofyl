@@ -151,9 +151,40 @@ include '../controllers/viewproject.php'
         <button class="btn btn-sm btn-primary" id="download">Download Documentation</button>
     </div>
 
+    <?php
+    if (!checkcomment($_GET['id'])){
 
+    if ($_SESSION['role']=="admin"){?>
+    <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Add Comments
+    </button>
+        <br>
+    <?php }}elseif($_SESSION['role']=="admin" || $_SESSION['user_id']==$project->prepared_by){?>
+            <div class="mt-2">
+    <textarea disabled><?= $comments->comments ?></textarea>
+            </div>
+    <?php }?>
+
+    <small>Prepared by: <strong><?php
+            if ($_SESSION['user_id']==$project->prepared_by){
+                echo "You";
+            }else {
+
+
+                echo getpreparedby($project->prepared_by);
+            }?></strong></small>
+    <div class="offset-3 col-6 ">
+        <?php if (!empty($msg)): ?>
+            <div class="alert <?php echo $msg_class ?> alert-dismissible fade show" role="alert">
+                <i class="bi <?php echo $msg_icon ?> me-1"></i>
+                <?php echo $msg?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php endif; ?>
+    </div>
 <div id="print">
     <h3><?php echo $project->Title ?> Documentation</h3>
+
     <div class="row">
         <h3>Project Details</h3>
         <div>
@@ -246,6 +277,38 @@ include '../controllers/viewproject.php'
 </div>
 
 
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Comments and grant permission to edit</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+
+                <form method="post" action="" >
+
+
+                    <div class="form-floating mb-3">
+                        <textarea name="comment" class="form-control" id="floatingInput" required placeholder="name@example.com"></textarea>
+                        <label for="floatingInput">Comments</label>
+                    </div>
+
+                    <div class="d-grid">
+                        <button name="grant" class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Submit</button>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
 </div>
 <script>
 

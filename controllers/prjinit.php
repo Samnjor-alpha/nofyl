@@ -24,6 +24,7 @@ if (isset($_POST['prj_init'])){
     $end_date_int = filter_var(stripslashes($_POST['end_date_int']), FILTER_SANITIZE_STRING);
     $org = filter_var(stripslashes($_POST['organization']), FILTER_SANITIZE_STRING);
     $primary_cluster = $_POST['cluster_name'];
+    $preparedby=$_SESSION['user_id'];
     $sub_cluster_name =$_POST['sub_cluster_name'];
     $clusteperc= $_POST['cluster_perc'];
     if (empty($allocation)|| empty($title)|| empty($fund_code)
@@ -45,7 +46,8 @@ alert('Cluster % should add to 100%');
                          Fund_Code='$fund_code',
                          Start_Date='$start_date',
                          End_Date='$end_date',
-                         organization='$org'";
+                         organization='$org',
+                         prepared_by='$preparedby'";
         if (mysqli_query($conn,$pjinit)){
             $prjid = mysqli_insert_id($conn);
             foreach ($_POST['cluster_name'] as $key => $value) {
