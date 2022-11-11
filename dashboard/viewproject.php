@@ -152,18 +152,36 @@ include '../controllers/viewproject.php'
     </div>
 
     <?php
-    if (!checkcomment($_GET['id'])){
 
-    if ($_SESSION['role']=="admin"){?>
-    <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Add Comments
+
+        if ($_SESSION['role']=="admin" && !checkgrants($_GET['id'])){?>
+    <form action="" method="post">
+        <button type="submit" name="grant" class="btn btn-sm btn-primary mt-3">
+        Grant <?= getpreparedby($project->prepared_by); ?> Edit permissions
     </button>
+    </form>
         <br>
-    <?php }}elseif($_SESSION['role']=="admin" || $_SESSION['user_id']==$project->prepared_by){?>
-            <div class="mt-2">
-    <textarea disabled><?= $comments->comments ?></textarea>
-            </div>
-    <?php }?>
+
+        <br>
+    <?php }elseif($_SESSION['role']=="admin" && checkgrants($_GET['id'])){?>
+            <div class ="row">
+                <div class="col-6">
+        <form action="" method="post">
+            <button type="submit" name="revoke" class="btn btn-sm btn-danger mt-3">
+                Revoke <?= getpreparedby($project->prepared_by); ?> Edit permissions
+            </button>
+        </form>
+                </div>
+                <div class="col-6">
+                    <button type="button" class="btn btn-sm btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Add comments
+                    </button>
+                </div>
+            <?php }else{ ?>
+
+
+
+      <?php }?>
 
     <small>Prepared by: <strong><?php
             if ($_SESSION['user_id']==$project->prepared_by){
@@ -283,7 +301,7 @@ include '../controllers/viewproject.php'
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Comments and grant permission to edit</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add Comments</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -294,11 +312,11 @@ include '../controllers/viewproject.php'
 
                     <div class="form-floating mb-3">
                         <textarea name="comment" class="form-control" id="floatingInput" required placeholder="name@example.com"></textarea>
-                        <label for="floatingInput">Comments</label>
+                        <label for="floatingInput">Comment</label>
                     </div>
 
                     <div class="d-grid">
-                        <button name="grant" class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Submit</button>
+                        <button name="addcomment" class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Submit</button>
                     </div>
 
                 </form>

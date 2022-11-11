@@ -266,7 +266,8 @@ function workplanactions($role,$prjid){
     if($role=="admin"){
         return '<a href="viewproject.php?id='.$prjid.'">View</a> |<a href="home.php?id='.$prjid.'">Edit</a>| <a href="?edit='.$prjid.'">Delete</a>';
     }elseif ($role == 'employee' && getpermissiontoedit($prjid)){
-        return '<a href="viewproject.php?id='.$prjid.'">View</a> |<a href="home.php?id='.$prjid.'">Edit</a>';
+        return '<a href="viewproject.php?id='.$prjid.'">View</a> | 
+<a href="home.php?id='.$prjid.'">Edit</a><a  href="wpcomments.php?id='.$prjid.'"><sup class="badge badge-danger text-white">'.countchanges($prjid).'</sup></a>';
     }
     elseif ($role == 'employee'){
         return '<a href="viewproject.php?id='.$prjid.'">View</a>';
@@ -279,10 +280,16 @@ function getpreparedby($id): string
     $row=mysqli_fetch_assoc($getuser);
     return $row['first_name']." ".$row['last_name'];
 }
+function countchanges($prjid){
+    global $conn;
+    $getdata=mysqli_query($conn,"select count(*) as t_changes from wp_comments where prj_id='$prjid'");
+
+    return mysqli_fetch_assoc($getdata)['t_changes'];
+}
 function getpermissiontoedit($prjid): bool
 {
     global $conn;
-    $getdata=mysqli_query($conn,"select * from project_grants where prj_id='$prjid' and edit='1'");
+    $getdata=mysqli_query($conn,"select * from project_grants where prj_id='$prjid'");
     if (mysqli_num_rows($getdata)>0){
         return true;
     }else{
@@ -292,3 +299,18 @@ function getpermissiontoedit($prjid): bool
 }
 
 
+function getincrement(int|string $index): string
+{
+
+    $indexed = explode( ".", $index ); // array( "1", "9", "9" )
+    if ( ++$indexed[2] > 9 ) { // if last incremented number is greater than 9 reset to 0
+        $indexed[2] = 0;
+        if ( ++$indexed[1] > 9 ) { // if second incremented number is greater than 9 reset to 0
+            $indexed[1] = 0;
+            ++$indexed[0]; // incremented first number
+        }
+    }
+    return $indexed = implode( ".", $indexed ); // implode array back to string
+
+
+}

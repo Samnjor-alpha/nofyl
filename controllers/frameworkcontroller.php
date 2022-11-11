@@ -49,6 +49,11 @@ if ($result = $conn->query($sql)) {
     $outputIndicators = $result->fetch_all(MYSQLI_BOTH);
 
 }
+
+$sql_o = "select * from output_indicators where project_id=$prjid";
+$result = $conn->query($sql_o);
+
+
 if (isset($_POST['saveFramework'])){
     if (empty($framework)){
         $project= filter_var(stripslashes($_POST['project_objective']), FILTER_SANITIZE_STRING);

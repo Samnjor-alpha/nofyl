@@ -16,7 +16,11 @@
         <li class="nav-item">
             <a class="nav-link <?php active('movs.php');?>" href="movs.php?id=<?php echo $_GET['id'] ?>">Uploads</a>
         </li>
-    <?php }else {?>
+        <?php if (checkcomment($_GET['id'])){ ?>
+        <li class="nav-item">
+            <a class="nav-link <?php active('wpcomments.php');?>" href="wpcomments.php?id=<?php echo $_GET['id'] ?>"><i class="text-danger">Comments</i></a>
+        </li>
+    <?php }}else {?>
 
     <?php } ?>
 

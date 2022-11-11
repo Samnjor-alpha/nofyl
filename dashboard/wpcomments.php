@@ -148,12 +148,10 @@ include '../controllers/frameworkcontroller.php'
 
 <div class="container mt-3">
     <?php include 'navbar/viewtabs.php'?>
-    <div class="offset-10 fixed-top mt-5">
-        <button class="btn btn-sm btn-primary" id="download">Download Cluster information</button>
-    </div>
 
 
-    <div id="print">
+
+    <div>
         <h3><?php echo $project->Title ?> Documentation</h3>
         <div class="row">
             <h3>Project Details</h3>
@@ -200,110 +198,31 @@ include '../controllers/frameworkcontroller.php'
                     </tbody>
                 </table>
             </div>
+            <table class="table table-striped table-bordered" style="width:100%">
 
-            <div class="">
-                <h3>Clusters</h3>
-                <table class="table table-bordered">
-                    <tr>
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Suggested By</th>
+                    <th>Comment</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+                $k=1;
+                while ($row=mysqli_fetch_assoc($resultcomment)){ ?>
+                <tr>
+                    <td><?= $k?></td>
+                    <td><?= getpreparedby($row['added_by'])?></td>
+                    <td><?= $row['comments'] ?></td>
+                    <td><?= date('d.M.Y H:i A',strtotime($row['added_at'])) ?></td>
 
-                        <th>Primary Cluster</th>
-                        <th>Sub Cluster</th>
-                        <th>Percentage</th>
-                    </tr>
-                    <?php foreach ($clusters as $k => $cluster) { ?>
-                        <tr>
+                </tr>
+                <?php $k++;} ?>
+                </tbody>
+            </table>
 
-                            <td><?php echo $cluster['cluster_name'] ?></td>
-                            <td><?php echo $cluster['subcluster_name'] ?></td>
-                            <td><?php echo $cluster['percentage'] ?>%</td>
-                        </tr>
-                    <?php } ?>
-                </table>
-            </div>
-            <div class="">
-                <h3>Means of verification</h3>
-                <div class="row">
-                    <table class="table table-striped outcomes">
-                        <caption>Outcomes</caption>
-                        <tr>
-                            <th>#</th>
-                            <th>Project Outcome</th>
-                            <th>Cluster</th>
-                        </tr>
-                        <?php foreach ($projectOutcomes as $k=>$projectOutcome) { ?>
-                            <tr>
-                                <td><?php echo ++$k ?></td>
-                                <td><?php echo $projectOutcome['outcome'] ?? null ?></td>
-                                <td><?php echo getclustername($projectOutcome['cluster_id']) ?></td>
-                            </tr>
-                        <?php } ?>
-                    </table>
-
-                    <table class="table table-striped outputs">
-                        <caption>Outputs</caption>
-                        <tr>
-                            <th>#</th>
-                            <th>Outcome ID</th>
-                            <th>Project Output</th>
-                            <th>Cluster</th>
-                        </tr>
-                        <?php foreach ($projectOutputs as $k=> $projectOutput) { ?>
-                            <tr>
-                                <td><?php echo ++$k ?></td>
-                                <td><?php echo getoutcomename($projectOutput['outcome_id']) ?></td>
-                                <td><?php echo $projectOutput['output'] ?? null ?></td>
-                                <td><?php echo getclustername($projectOutput['cluster_id']) ?></td>
-                            </tr>
-                        <?php } ?>
-                    </table>
-
-                    
-                    <table class="table table-striped indicators">
-                        <caption>Output Indicators</caption>
-                        <tr>
-                            <th>#</th>
-                            <th>Project Output indicator</th>
-                            <th>Means of verification</th>
-                            <th>Target</th>
-                            <th>Indicator</th>
-                            <th>Activities</th>
-                        </tr>
-                        <?php
-
-
-
-                        $ik="1.0.9";
-                        $k=getincrement($ik);
-
-                        while ($outputIndicator=mysqli_fetch_assoc($result)) { ?>
-                            <tr>
-                                <td><?php
-
-                                    echo getincrement($k);
-
-                                    ?></td>
-                                <td><?php echo getoutputname($outputIndicator['output_id']) ?></td>
-                                <td><?php
-
-                                    if (!is_null($outputIndicator['mov'])) {
-                                        echo "<p>" . prntmov(json_decode($outputIndicator['mov']), $outputIndicator['id']) . "</p>";
-
-                                    }?>
-                                </td>
-                                <td><?php echo $outputIndicator['target'] ?? null ?></td>
-                                <td><?php echo $outputIndicator['indicator'] ?? null ?></td>
-                                <td><?php if(!is_null($outputIndicator['activities'])) {
-                                        foreach (json_decode($outputIndicator['activities']) as $activity) {
-                                            echo "<p>".$activity."</p>" ?? null;
-                                        }
-                                    } ?>
-                                </td>
-                            </tr>
-                            <?php  $k=getincrement($k++);} ?>
-                    </table>
-
-                </div>
-            </div>
         </div>
 
     </div>

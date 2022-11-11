@@ -210,8 +210,8 @@ include '../controllers/frameworkcontroller.php'
                                     }?>
                                 </td>
                                 <td><?php
-                                    if (checkmov($outputIndicator['output_id'])){
-                                    echo mediamov(json_decode($outputIndicator['mov']), $outputIndicator['output_id']);}else{
+                                    if (checkmov($outputIndicator['id'])){
+                                    echo mediamov(json_decode($outputIndicator['mov']), $outputIndicator['id']);}else{
                                         echo "<p class='text-danger'>No verified</p>";
                                     }?></td>
                                 <td><?php echo $outputIndicator['target'] ?? null ?></td>

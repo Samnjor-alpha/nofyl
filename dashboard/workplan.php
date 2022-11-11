@@ -53,8 +53,8 @@ include '../controllers/workplan.php'
         <td><?php echo $row['Fund_Code'] ?></td>
         <td><?php echo $row['Title'] ?></td>
         <td><?php echo $row['organization'] ?></td>
-        <td><?php echo $row['Start_Date'] ?></td>
-        <td><?php echo $row['End_Date'] ?></td>
+        <td><?php echo date('d/M/Y',strtotime($row['Start_Date'])); ?></td>
+        <td><?php echo date('d/M/Y',strtotime($row['End_Date'])); ?></td>
         <td><?php echo workplanactions($_SESSION['role'],$row['ID']) ?></td>
     </tr>
 <?php                 $cnt = $cnt + 1;} ?>

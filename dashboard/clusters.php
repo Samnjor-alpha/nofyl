@@ -14,7 +14,7 @@ include '../controllers/frameworkcontroller.php'
 <style>
     select[multiple], select[size] {
         height: 200px;
-        width: 216%;
+        width: 150%;
         position: relative;
         left: -50%;
     }
@@ -573,9 +573,18 @@ if (isset($_POST['clusters'])){?>
                             </tr>
                             <?php
 
-                            foreach ($outputIndicators as $k=> $outputIndicator) { ?>
+
+
+                                $ik="1.0.9";
+$k=getincrement($ik);
+
+                            while ($outputIndicator=mysqli_fetch_assoc($result)) { ?>
                                 <tr>
-                                    <td><?php echo ++$k ?></td>
+                                    <td><?php
+
+                                            echo getincrement($k);
+
+                                         ?></td>
                                     <td><?php echo getoutputname($outputIndicator['output_id']) ?></td>
                                     <td><?php
                                         if (!checkmov($outputIndicator['id'])) {
@@ -595,7 +604,7 @@ if (isset($_POST['clusters'])){?>
                                         } ?>
                                     </td>
                                 </tr>
-                            <?php } ?>
+                            <?php  $k=getincrement($k++);} ?>
                         </table>
 
                     </div>
@@ -623,7 +632,7 @@ if (isset($_POST['clusters'])){?>
     function add_indicator() {
         $rowno_ind = $("#employee_table_ind tr").length;
         $rowno_ind = $rowno_ind + 1;
-        $("#employee_table tr:last").after("<tr style='border-top: 1px solid #ccc; margin-top:5px; padding-top:0px;float: left; color:#000;' id='row_ind" + $rowno_ind + "'><h3>Output X</h3><td style='font-weight:bold;'>Code<br><br><?php echo $project->Fund_Code ?? null ?></td><td style='font-weight:bold;'><?php echo  getclustername($_POST['clusters']) ?></td><td style='font-weight:bold;'>Indicator<br><br><textarea  name='indicator[text][]' rows='5' cols='25'> </textarea></td><td style='font-weight:bold;'>Means of Verification<br><select name='indicator[mov][]' id='mov' multiple><option value='mov0'>Select</option><option value='mov1'>Coordination Meeting Minutes</option><option value='mov2'>Photos</option><option value='mov3'>Participant List</option><option value='mov4'>Monthly Service Mapping Report</option><option value='mov5'>Monthly Service Monitoring Report</option><option value='mov6'>Training Report</option><option value='mov7'>Awareness Activity Narrative Report</option><option value='mov8'>Safety Audit Training Report</option><option value='mov9'>Safety Audit Report</option><option value='mov10'>Cash For Work Monitoring Report</option><option value='mov11'>Cash For work Narrative Report</option><option value='mov12'>Money Transfer Statement</option><option value='mov13'>Activity Monitoring Report</option><option value='mov14'>CFM Intake Forms</option><option value='mov15'>Narrative Report </option><option value='mov16'>Decongestion Coordination Meeting Minutes</option><option value='mov17'>Human Interest Stories</option><option value='mov18'>Activity Monitoring Report</option><option value='mov19'>Land Tenure Documents</option><option value='mov20'>Beneficiary List</option><option value='mov21'>Post Eviction Monitoring Report</option><option value='mov22'>Money Transfer Statement</option><option value='mov23'>Assessment Report</option><option value='mov24'>Quarterly Assessment Report</option><option value='mov25'>Quarterly Eviction Dashboards</option></select></td><td style='font-weight:bold;'>Total End-Cycle Target<br><br><input type='text' name='indicator[target][]' ></td><td><input type='button' value='X' class='col2-buttonX' onclick=delete_row_ind('row_ind" + $rowno_ind + "')></td><td><input type='button' value='+ Add Activity' class='col2-button' onclick='add_activity();'></td></tr>");
+        $("#employee_table tr:last").after("<tr style='border-top: 1px solid #ccc; margin-top:5px; padding-top:0px;float: left; color:#000;' id='row_ind" + $rowno_ind + "'><h3>Output X</h3><td style='font-weight:bold;'>Code<br><br><?php echo $project->Fund_Code ?? null ?></td><td style='font-weight:bold;'><?php echo  getclustername($_POST['clusters']) ?></td><td style='font-weight:bold;'>Indicator<textarea  name='indicator[text][]' rows='5' cols='20'> </textarea></td><td style='font-weight:bold;'>Means of Verification<br><select name='indicator[mov][]' id='mov' multiple><option value='mov0'>Select</option><option value='mov1'>Coordination Meeting Minutes</option><option value='mov2'>Photos</option><option value='mov3'>Participant List</option><option value='mov4'>Monthly Service Mapping Report</option><option value='mov5'>Monthly Service Monitoring Report</option><option value='mov6'>Training Report</option><option value='mov7'>Awareness Activity Narrative Report</option><option value='mov8'>Safety Audit Training Report</option><option value='mov9'>Safety Audit Report</option><option value='mov10'>Cash For Work Monitoring Report</option><option value='mov11'>Cash For work Narrative Report</option><option value='mov12'>Money Transfer Statement</option><option value='mov13'>Activity Monitoring Report</option><option value='mov14'>CFM Intake Forms</option><option value='mov15'>Narrative Report </option><option value='mov16'>Decongestion Coordination Meeting Minutes</option><option value='mov17'>Human Interest Stories</option><option value='mov18'>Activity Monitoring Report</option><option value='mov19'>Land Tenure Documents</option><option value='mov20'>Beneficiary List</option><option value='mov21'>Post Eviction Monitoring Report</option><option value='mov22'>Money Transfer Statement</option><option value='mov23'>Assessment Report</option><option value='mov24'>Quarterly Assessment Report</option><option value='mov25'>Quarterly Eviction Dashboards</option></select></td><td style='font-weight:bold;'>Total End-Cycle Target<br><br><input type='text' name='indicator[target][]' ></td><td><input type='button' value='X' class='col2-buttonX' onclick=delete_row_ind('row_ind" + $rowno_ind + "')></td><td><input type='button' value='+ Add Activity' class='col2-button' onclick='add_activity();'></td></tr>");
     }
 
     function delete_row_ind(rowno) {
@@ -674,7 +683,7 @@ if (isset($_POST['clusters'])){?>
 
 </script>
 <script>
-    document.getElementById("demo").innerHTML = 5 + 6;
+    document.getElementById("no").innerHTML = 5 + 6;
 </script>
 </body>
 </html>
