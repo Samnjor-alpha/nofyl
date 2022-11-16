@@ -1,6 +1,6 @@
 <?php
 include '../config/config.php';
-include '../controllers/auth.php';
+include '../controllers/authcontroller.php';
 include '../controllers/session.php';
 include '../controllers/helper.php';
 include '../controllers/workplan.php'

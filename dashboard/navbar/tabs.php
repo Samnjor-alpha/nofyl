@@ -15,7 +15,7 @@
             <a class="nav-link <?php active('clusters.php');?>" href="clusters.php?id=<?php echo $_GET['id'] ?>">Clusters</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link <?php active('workplan.php');?>" href="workplan.php">Work Plan</a>
+            <a class="nav-link <?php active('workplan.php');?>" href="workplan.php">Projects</a>
         </li>
         <?php }else {?>
         <a class="nav-link <?php active('home.php');?>" href="home.php">Create Project</a>
@@ -31,7 +31,7 @@
             <a class="nav-link <?php active('clusters.php');?>" href="clusters.php">Clusters</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link <?php active('workplan.php');?>" href="workplan.php">Work Plan</a>
+            <a class="nav-link <?php active('workplan.php');?>" href="workplan.php">Projects</a>
         </li>
         <?php } ?>
 

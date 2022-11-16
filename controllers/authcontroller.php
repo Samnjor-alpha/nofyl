@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (isset($_GET['logout'])){
+    logout();
+}
+
 function checkuserexists($email): bool
 {
 global $conn;
@@ -48,6 +52,10 @@ function adduser($fname, $lname, $email, $password, $role): bool
                          password='$hash',
                          role='$role'";
     if (mysqli_query($conn, $adduser)){
+        $_SESSION['user_id']=mysqli_insert_id($conn);
+        $_SESSION['role']=$role;
+        $_SESSION['email']=$email;
+        $_SESSION['names']=$fname.' '.$lname;
         return true;
     }else{
         return false;

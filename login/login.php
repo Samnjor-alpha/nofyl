@@ -1,6 +1,6 @@
 <?php
 include '../config/config.php';
-include '../controllers/auth.php';
+include '../controllers/authcontroller.php';
 ?>
 <html lang="">
 <head>
@@ -13,6 +13,7 @@ include '../controllers/auth.php';
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+    <?php include '../css/header.php'; ?>
     <style>
         body {
             background: #007bff;
@@ -50,10 +51,14 @@ include '../controllers/auth.php';
                             <label for="floatingInput">Email address</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="password" name="password" class="form-control" required id="floatingPassword" placeholder="Password">
-                            <label for="floatingPassword">Password</label>
+                            <input type="password" name="password" class="form-control" required id="pwd" placeholder="Password">
+                            <label for="pwd">Password</label>
                         </div>
-
+                        <div class="row mb-2">
+                            <div class="col-8">
+                                <input type="checkbox" onclick="showpassword()"> Show Password
+                            </div>
+                        </div>
 
                         <div class="d-grid">
                             <button name="loginBtn" class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Sign
@@ -66,5 +71,7 @@ include '../controllers/auth.php';
         </div>
     </div>
 </div>
+<?php include '../css/scripts.php';
+include '../controllers/auth.php';?>
 </body>
 </html>
