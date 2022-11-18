@@ -273,10 +273,14 @@ function workplanactions($role,$prjid){
         return '<a href="viewproject.php?id='.$prjid.'"><i class="fas fa-eye" title="View Project"></i></a>  
 | <a href="coverpage.php?id='.$prjid.'"><i class="far fa-edit text-success" title="Edit Project"></i></a>
 <a  href="wpcomments.php?id='.$prjid.'"><sup class="badge badge-danger text-white">'.countchanges($prjid).'</sup></a>';
-    }elseif ($role == 'supervisor' && getpermissiontoedit($prjid,$_SESSION['user_id'])){
-        return '<a href="viewproject.php?id='.$prjid.'"><i class="fas fa-eye" title="View Project"></i></a>  ';
+    }elseif ($role == 'staff' || $role == 'supervisor' && getpermissiontoedit($prjid,$_SESSION['user_id'])){
+        return '<a href="viewproject.php?id='.$prjid.'"><i class="fas fa-eye" title="View Project"></i></a>  
+| <a href="coverpage.php?id='.$prjid.'"><i class="far fa-edit text-success" title="Edit Project"></i></a>
+<a  href="wpcomments.php?id='.$prjid.'"><sup class="badge badge-danger text-white">'.countchanges($prjid).'</sup></a>';
     }
-
+    elseif ($role == 'staff'|| $role == 'supervisor'){
+        return '<a href="viewproject.php?id='.$prjid.'"><i class="fas fa-eye" title="View Project"></i></a';
+    }
 }
 function getpreparedby($id): string
 {

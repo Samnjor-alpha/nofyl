@@ -51,9 +51,11 @@ include '../controllers/workplan.php'
     while($row=mysqli_fetch_assoc($projects)){?>
     <tr>
         <td><?php echo $cnt?></td>
-        <td><?php echo $row['Fund_Code']; ?>
-            <br>
-            <?= checkifprjassign($row['ID']) ?>
+        <td><?php echo $row['Fund_Code'];
+        if ($_SESSION['role']=="admin") {
+            echo "<br>";
+            echo checkifprjassign($row['ID']);
+            }?>
         </td>
         <td><?php echo $row['Title'] ?></td>
         <td><?php echo $row['organization'] ?></td>

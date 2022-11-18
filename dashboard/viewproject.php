@@ -154,24 +154,10 @@ include '../controllers/viewproject.php'
     <?php
 
 
-        if ($_SESSION['role']=="admin" && !checkgrants($_GET['id'])){?>
-    <form action="" method="post">
-        <button type="submit" name="grant" class="btn btn-sm btn-primary mt-3">
-        Grant <?= getpreparedby($project->prepared_by); ?> Edit permissions
-    </button>
-    </form>
-        <br>
 
-        <br>
-    <?php }elseif($_SESSION['role']=="admin" && checkgrants($_GET['id'])){?>
+    if($_SESSION['role']=="admin" || $_SESSION['role']=="supervisor"){?>
             <div class ="row">
-                <div class="col-6">
-        <form action="" method="post">
-            <button type="submit" name="revoke" class="btn btn-sm btn-danger mt-3">
-                Revoke <?= getpreparedby($project->prepared_by); ?> Edit permissions
-            </button>
-        </form>
-                </div>
+
                 <div class="col-6">
                     <button type="button" class="btn btn-sm btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Add comments
