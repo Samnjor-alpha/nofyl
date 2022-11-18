@@ -10,7 +10,7 @@ include '../controllers/users.php'
 <html lang="en">
 <head>
     <title>NoFYl</title>
-    <?php include '../css/header.php'?>
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
@@ -18,6 +18,7 @@ include '../controllers/users.php'
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+    <?php include '../css/header.php'?>
 </head>
 <body>
 
@@ -77,23 +78,29 @@ include '../controllers/users.php'
                             <label for="floatingInput">Email address</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="password" name="password" class="form-control" required id="floatingPassword" placeholder="Password">
-                            <label for="floatingPassword">Password</label>
+                            <input type="password" name="password" class="form-control" required id="pwd" placeholder="Password">
+                            <label for="pwd">Password</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="password" name="cpassword" class="form-control" required id="floatingPassword" placeholder="Password">
-                            <label for="floatingPassword">Confirm Password</label>
+                            <input type="password" name="cpassword" class="form-control" required id="cpwd" placeholder="Password">
+                            <label for="cpwd">Confirm Password</label>
                         </div>
                         <div class="form-floating mb-3">
                             <select  name="urole" class="form-control form-select" required id="floatingPassword">
                                 <option disabled selected>....</option>
                                 <option value="admin">Admin</option>
-                                <option value="employee">Employee</option>
+                                <option value="supervisor">Supervisor</option>
+                                <option value="staff">Staff</option>
                             </select>
                             <label for="floatingPassword">Select Role</label>
                         </div>
+                        <div class="row mb-2">
+                            <div class="col-8">
+                                <input type="checkbox" onclick="showpassword()"> Show Password
+                            </div>
+                        </div>
                         <div class="d-grid">
-                            <button name="regBtn" class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Add User</button>
+                            <button name="adduser" class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Add User</button>
                         </div>
 
                     </form>
@@ -142,6 +149,9 @@ include '../controllers/users.php'
         $('#example').DataTable();
     });
 </script>
+<?php include '../css/scripts.php';
+
+include '../controllers/auth.php'?>
 </body>
 </html>
 

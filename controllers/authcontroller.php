@@ -62,6 +62,23 @@ function adduser($fname, $lname, $email, $password, $role): bool
     }
 
 }
+function addstaff($fname, $lname, $email, $password, $role): bool
+{
+    global $conn;
+    $hash = password_hash($password, PASSWORD_DEFAULT);
+    $adduser="insert into pm_users set first_name='$fname',
+                         last_name='$lname',
+                        email='$email',
+                         password='$hash',
+                         role='$role'";
+    if (mysqli_query($conn, $adduser)){
+
+        return true;
+    }else{
+        return false;
+    }
+
+}
 function checkloggedin(): bool
 {
     if (isset($_SESSION['user_id'])){

@@ -56,8 +56,12 @@ alert('Cluster % should add to 100%');
                 $cluster_perc = $_POST['cluster_perc'][$key];
                 $sql = "INSERT INTO clusters(project_id, cluster_name, subcluster_name, percentage) VALUES ('$prjid','$cluster', '$sub_cluster', '$cluster_perc')";
 
-                if (mysqli_query($conn, $sql)){
-                    header("location: coverpage.php?id=" . $prjid);
+                if (mysqli_query($conn, $sql)) {
+                    if ($_SESSION['role'] == 'admin') {
+                        header("location:workplan.php");
+                    } else {
+                        header("location: coverpage.php?id=" . $prjid);
+                    }
                 }
             }
 

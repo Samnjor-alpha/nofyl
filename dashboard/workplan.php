@@ -59,27 +59,74 @@ include '../controllers/workplan.php'
     </tr>
 <?php                 $cnt = $cnt + 1;} ?>
     </tbody>
-    <tfoot>
-    <tr>
-        <th>#</th>
-        <th>Fund Code</th>
-        <th>Project Title</th>
-        <th>Organisation</th>
-        <th>Start Date</th>
-        <th>End Date</th>
-        <th>Action</th>
 
-    </tr>
-    </tfoot>
 </table>
 </div>
     </div>
+
+    <div class="modal fade" id="assignstaff" tabindex="-1" data-bs-backdrop="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Assign Staff</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div  class="modal-body">
+                    <form method="post" action="" class="">
+                        <div class="form-group">
+                            <label for="idd">Select Staff</label>
+                            <select class="form-control" type="text" name="users" id="idd" multiple>
+                            <option selected disabled>Select user</option>
+                                <?php getstaff(); ?>
+                            </select>
+                        </div>
+
+                        <input  type="hidden" name="prj" id="id">
+                        <div class="form-group mt-2">
+                            <button type="submit" name="assign_prj" class="btn btn-success">Assign Staff</button>
+                        </div>
+                    </form>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<?php include '../css/scripts.php'; ?>
 <script>
+    $(document).ready(function(){
+
+
+        $("#assignstaff").modal({
+            keyboard: true,
+            show: false,
+
+        }).on("show.bs.modal", function(event){
+            var a = $(event.relatedTarget); // button the triggered modal
+            var id = a.data("id");
+
+
+
+
+            //displays values to modal
+
+            $(".modal-body #id").val( id );
+            $(".modal-body #idd").val( id );
+
+
+
+        });
+
+    });
     $(document).ready(function () {
         $('#example').DataTable();
     });
 </script>
+
 </body>
 </html>
 
