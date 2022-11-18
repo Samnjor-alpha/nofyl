@@ -3,7 +3,9 @@
 if ($_SESSION['role']=="admin"){
     $projects=mysqli_query($conn,"select * from prj_init order by ID desc");
 }else{
-    $projects=mysqli_query($conn,"select * from prj_init where prepared_by='".$_SESSION['user_id']."' order by ID desc");
+
+    $projects=mysqli_query($conn,"select * from prj_init inner join project_users where project_users.prj_id=prj_init.ID and  
+                                                    project_users.user_id='".$_SESSION['user_id']."' order by prj_init.ID desc");
 }
 
 if (isset($_GET['destroy'])){

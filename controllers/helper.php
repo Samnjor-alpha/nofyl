@@ -269,14 +269,14 @@ function workplanactions($role,$prjid){
 | <a href="home.php?id='.$prjid.'"><i class="far fa-edit text-success" title="Edit Project"></i></a>
 |<a data-toggle="modal" data-id="'.$prjid.'"  data-target="#assignstaff"> <i class="fas fa-user-plus" title="Assign Users"></i></a>
 | <a href="?destroy='.$prjid.'"><i class="fas fa-trash-alt text-danger" title="Delete"></i></a>';
-    }elseif ($role == 'employee' && getpermissiontoedit($prjid)){
+    }elseif ($role == 'staff'  && getpermissiontoedit($prjid,$_SESSION['user_id'])){
         return '<a href="viewproject.php?id='.$prjid.'"><i class="fas fa-eye" title="View Project"></i></a>  
-| <a href="home.php?id='.$prjid.'"><i class="far fa-edit text-success" title="Edit Project"></i></a>
+| <a href="coverpage.php?id='.$prjid.'"><i class="far fa-edit text-success" title="Edit Project"></i></a>
 <a  href="wpcomments.php?id='.$prjid.'"><sup class="badge badge-danger text-white">'.countchanges($prjid).'</sup></a>';
+    }elseif ($role == 'supervisor' && getpermissiontoedit($prjid,$_SESSION['user_id'])){
+        return '<a href="viewproject.php?id='.$prjid.'"><i class="fas fa-eye" title="View Project"></i></a>  ';
     }
-    elseif ($role == 'employee'){
-        return '<a href="viewproject.php?id='.$prjid.'"><i class="fas fa-eye" title="View Project"></i></a';
-    }
+
 }
 function getpreparedby($id): string
 {
@@ -291,10 +291,10 @@ function countchanges($prjid){
 
     return mysqli_fetch_assoc($getdata)['t_changes'];
 }
-function getpermissiontoedit($prjid): bool
+function getpermissiontoedit($prjid,$userid): bool
 {
     global $conn;
-    $getdata=mysqli_query($conn,"select * from project_grants where prj_id='$prjid'");
+    $getdata=mysqli_query($conn,"select * from project_users where prj_id='$prjid' and user_id='$userid'");
     if (mysqli_num_rows($getdata)>0){
         return true;
     }else{
@@ -326,8 +326,40 @@ function getstaff(): void
     $getuser=mysqli_query($conn, "select id,first_name,last_name,role from pm_users where role!='admin'");
     while ($row=mysqli_fetch_assoc($getuser)){
         echo"
-        <option value='".$row['id']."'>".$row['first_name'].' '.$row['last_name']."</option>
+        <option value='".$row['id']."'>".$row['first_name'].' '.$row['last_name']."-".showuserrole($row['role'])."</option>
         ";
     }
 
+}
+
+function showuserrole($role): string
+{
+if($role=="supervisor"){
+    return "<i class='badge badge-success'>Supervisor</i>";
+}else if($role=="staff"){
+    return "<i class='badge badge-primary'>Staff</i>";
+}else{
+    return "<i class='badge badge-danger'>$role</i>";
+}
+}
+function checkifprjassign($prjid): string
+{
+    global $conn;
+    $getdata=mysqli_query($conn,"select * from project_users where prj_id='$prjid'");
+
+    if(mysqli_num_rows($getdata)>0){
+        return "<i class='badge badge-success'>Assigned</i>";
+    }else{
+        return "<i class='badge badge-danger'>Not Assigned</i>";
+    }
+}
+function checkassigned($id,$prj): bool
+{
+    global $conn;
+    $getuser=mysqli_query($conn,"select * from project_users where prj_id='$prj' and user_id='$id'");
+    if (mysqli_num_rows($getuser)>0){
+        return true;
+    }else{
+        return false;
+    }
 }

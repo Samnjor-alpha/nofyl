@@ -9,7 +9,7 @@ include '../controllers/workplan.php'
 <html lang="en">
 <head>
     <title>NoFYl</title>
-<?php include '../css/header.php'?>
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
@@ -17,6 +17,7 @@ include '../controllers/workplan.php'
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+    <?php include '../css/header.php'?>
 </head>
 <body>
 
@@ -50,7 +51,10 @@ include '../controllers/workplan.php'
     while($row=mysqli_fetch_assoc($projects)){?>
     <tr>
         <td><?php echo $cnt?></td>
-        <td><?php echo $row['Fund_Code'] ?></td>
+        <td><?php echo $row['Fund_Code']; ?>
+            <br>
+            <?= checkifprjassign($row['ID']) ?>
+        </td>
         <td><?php echo $row['Title'] ?></td>
         <td><?php echo $row['organization'] ?></td>
         <td><?php echo date('d/M/Y',strtotime($row['Start_Date'])); ?></td>
@@ -75,13 +79,13 @@ include '../controllers/workplan.php'
                     <form method="post" action="" class="">
                         <div class="form-group">
                             <label for="idd">Select Staff</label>
-                            <select class="form-control" type="text" name="users" id="idd" multiple>
+                            <select class="form-control" type="text" name="users[]" id="idd" multiple>
                             <option selected disabled>Select user</option>
                                 <?php getstaff(); ?>
                             </select>
                         </div>
 
-                        <input  type="hidden" name="prj" id="id">
+                        <input  type="hidden" name="prjid" id="id">
                         <div class="form-group mt-2">
                             <button type="submit" name="assign_prj" class="btn btn-success">Assign Staff</button>
                         </div>
@@ -97,6 +101,7 @@ include '../controllers/workplan.php'
     </div>
 </div>
 <?php include '../css/scripts.php'; ?>
+<?php include '../controllers/assignstaff.php' ?>
 <script>
     $(document).ready(function(){
 
