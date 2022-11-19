@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../FLEET/.idea/FLEET.iml" filepath="$PROJECT_DIR$/../FLEET/.idea/FLEET.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/nofyl.iml" filepath="$PROJECT_DIR$/.idea/nofyl.iml" />
     </modules>
   </component>

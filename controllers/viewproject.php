@@ -18,7 +18,7 @@ $resultproject=mysqli_query($conn,"select * from prj_init where ID='$prjid'");
 $project = $resultproject->fetch_object();
 
 $resultcomment=mysqli_query($conn,"select * from wp_comments where prj_id='$prjid'");
-
+$assigned=mysqli_query($conn,"select * from project_users where prj_id='$prjid'");
 
 if (isset($_POST['grant'])){
     $userid=$project->prepared_by;
@@ -33,21 +33,7 @@ if (isset($_POST['grant'])){
         header("refresh:2;url=viewproject.php?id=$prjid");
     }
 }
-if (isset($_POST['addcomment'])){
-    date_default_timezone_set('Africa/Nairobi');
-    $userid=$project->prepared_by;
-    $prjid=$_GET['id'];
-    $comments=$_POST['comment'];
-$today=date("Y-m-d H:i:s");
-    $sqlcomment="insert into wp_comments set prj_id='$prjid', comments='$comments',added_at='$today', added_by='".$_SESSION['user_id']."'";
 
-    if (mysqli_query($conn, $sqlcomment)){
-        $msg = "Comments added successfully";
-        $msg_class = "alert-success";
-        $msg_icon = "bi-check-circle";
-        header("refresh:2;url=viewproject.php?id=$prjid");
-    }
-}
 if (isset($_POST['revoke'])){
 
     $prjid=$_GET['id'];
@@ -76,6 +62,82 @@ function checkgrants($id): bool
     global $conn;
     $getdata=mysqli_query($conn,"select * from project_grants where prj_id='$id'");
     if (mysqli_num_rows($getdata)>0){
+        return true;
+    }else{
+        return false;
+    }
+}
+function getassignedemailsall($prjid): array
+{
+    global $conn;
+    $getemails=mysqli_query($conn,"select * from project_users inner join pm_users where 
+                                                    project_users.prj_id='$prjid' and
+                                                    project_users.user_id=pm_users.id
+                                                    ");
+
+    $returnData = array();
+    $index = 0;
+    while($row = $getemails->fetch_assoc()){
+        $returnData[$index] = $row['email'];
+        $index++;
+    }
+    return $returnData;
+
+}
+function getassignedemails($prjid,$userid): array
+{
+    global $conn;
+    $getemails=mysqli_query($conn,"select * from project_users inner join pm_users where 
+                                                    project_users.prj_id='$prjid' and
+                                                    project_users.user_id=pm_users.id
+and 
+                                                    pm_users.id!='$userid'
+                                                    ");
+
+    $returnData = array();
+    $index = 0;
+    while($row = $getemails->fetch_assoc()){
+        $returnData[$index] = $row['email'];
+        $index++;
+    }
+    return $returnData;
+
+}
+function getprojectcode($prjid){
+    global $conn;
+    $getdata=mysqli_query($conn,"select Fund_Code from prj_init where ID='$prjid'");
+
+return mysqli_fetch_assoc($getdata)['Fund_Code'];
+}
+
+function sendemailnotification($to,$projectid){
+    $mail = getMail();
+    $mail->From = EMAIL_SMTP_USERNAME;
+    $mail->FromName = "NOFYL";
+
+    $addresses = explode(',', $to);
+    foreach ($addresses as $address) {
+        $mail->addBCC($address);
+    }
+
+
+
+    $mail->WordWrap = 50;                                 // set word wrap to 50 characters
+    // optional name
+    $mail->IsHTML(true);                                  // set email format to HTML
+
+    $mail->Subject = "NEW COMMENT ON YOUR ASSIGNED PROJECT";
+    $mail->Body    = "<div>
+<p>A comment has been added to the project assigned.Login to your account and make the changes suggested</p>
+<br>
+<b>Project Code:</b>".getprojectcode($projectid).";
+
+</div>";
+
+
+    if(!$mail->Send())
+    {
+
         return true;
     }else{
         return false;

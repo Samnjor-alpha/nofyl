@@ -20,6 +20,7 @@ include '../controllers/viewproject.php'
     <script src="assets/pdf.js"></script>
     <link rel="icon" href="https://www.nofyl.org/wp-content/uploads/Nofyl_logo.png" sizes="32x32"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+    <?php include '../css/header.php'?>
     <style>
         .row {
             width: 100%;
@@ -168,15 +169,23 @@ include '../controllers/viewproject.php'
 
 
       <?php }?>
-
+<div class="mt-4 mb-4">
     <small>Prepared by: <strong><?php
             if ($_SESSION['user_id']==$project->prepared_by){
                 echo "You";
             }else {
-
-
-                echo getpreparedby($project->prepared_by);
+               echo getpreparedby($project->prepared_by);
             }?></strong></small>
+    <br>
+    <small>Assigned to: <strong><?php
+            while ($rowass=mysqli_fetch_assoc($assigned)){
+            if ($_SESSION['user_id']==$rowass['user_id']){
+                echo "You , ";
+
+            }else {
+                echo getpreparedby($rowass['user_id']).",";
+            }}?></strong></small>
+</div>
     <div class="offset-3 col-6 ">
         <?php if (!empty($msg)): ?>
             <div class="alert <?php echo $msg_class ?> alert-dismissible fade show" role="alert">
@@ -225,7 +234,7 @@ include '../controllers/viewproject.php'
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+<!--                <tr>-->
                     <td><?php echo $project->Start_Date ?></td>
                     <td><?php echo $project->End_Date ?></td>
                     <td><?php echo noweeks($project->Start_Date,$project->End_Date) ?></td>
@@ -328,7 +337,7 @@ include '../controllers/viewproject.php'
 
 
 </script>
-
+<?php include '../controllers/addcomments.php' ?>
 
 
 </body>
