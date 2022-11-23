@@ -247,7 +247,7 @@ function mediamov($mov,$indicatorid): string
     }elseif ($mov=='mov9'){
         return "<a href='../dashboard/mov/safety-audit-report.php?id=".$indicatorid."'  > Safety Audit Report</a>";
     }elseif ($mov=='mov10'){
-        return "<a href='../dashboard/mov/cash-for-work-monitoring-report.php?id=".$indicatorid."'  > Cash For Work Monitoring Report</a>";
+        return "<a href='../dashboard/cash-for-work-monitoring-report.php?id=".$indicatorid."'  > Cash For Work Monitoring Report</a>";
     }elseif ($mov=='mov11'){
         return "<a href='../dashboard/mov/cash-for-work-monitoring-report.php?id=".$indicatorid."'  > Cash For work Narrative Report</a>";
     }elseif ($mov=='mov12'){
