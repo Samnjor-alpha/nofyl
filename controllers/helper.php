@@ -229,7 +229,7 @@ function mediamov($mov,$indicatorid): string
 {
 
     if ($mov=='mov1'){
-        return "<a href='../dashboard/mov/meeting-minutes.php?id=".$indicatorid."'  > Coordination Meeting Minutes</a>";
+        return "<a href='../dashboard/meeting-minutes.php?id=".$indicatorid."'  > Coordination Meeting Minutes</a>";
     }elseif($mov=='mov2'){
         return "<a href='../dashboard/mov/photos.php?id=".$indicatorid."'  > Photos</a>";
     }elseif ($mov=='mov3'){
@@ -239,7 +239,7 @@ function mediamov($mov,$indicatorid): string
     }elseif ($mov=='mov5'){
         return "<a href='../dashboard/mov/monthly-service-monitoring-report.php?id=".$indicatorid."'  > Monthly Service Monitoring Report</a>";
     }elseif ($mov=='mov6'){
-        return "<a href='../dashboard/mov/training-report.php?id=".$indicatorid."'  > Training Report</a>";
+        return "<a href='../dashboard/training-report.php?id=".$indicatorid."'  > Training Report</a>";
     }elseif ($mov=='mov7'){
         return "<a href='../dashboard/mov/awareness-activity-narrative-report.php?id=".$indicatorid."'  > Awareness Activity Narrative Report</a>";
     }elseif ($mov=='mov8'){
@@ -336,7 +336,7 @@ function getpermissiontoedit($prjid,$userid): bool
 }
 
 
-function getincrement(int|string $index): string
+function getincrement($index): string
 {
 
     $indexed = explode( ".", $index ); // array( "1", "9", "9" )

@@ -34,6 +34,7 @@ if (isset($_GET['id'])&&!empty($_GET['id'])) {
             if (move_uploaded_file($_FILES["files_p"]["tmp_name"], $targetFilePath_p)
                 && move_uploaded_file($_FILES["files_l"]["tmp_name"], $targetFilePath_l)) {
                 $add = "insert into training_report set
+                                r_title='$rtitle',
                   donor='$donor',
                   facilitator='$facilitator',
                   fromD='$fromDate',
