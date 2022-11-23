@@ -241,7 +241,7 @@ function mediamov($mov,$indicatorid): string
     }elseif ($mov=='mov6'){
         return "<a href='../dashboard/training-report.php?id=".$indicatorid."'  > Training Report</a>";
     }elseif ($mov=='mov7'){
-        return "<a href='../dashboard/mov/awareness-activity-narrative-report.php?id=".$indicatorid."'  > Awareness Activity Narrative Report</a>";
+        return "<a href='../dashboard/awareness-activity-narrative-report.php?id=".$indicatorid."'  > Awareness Activity Narrative Report</a>";
     }elseif ($mov=='mov8'){
         return "<a href='../dashboard/mov/safety-audit-training-report.php?id=".$indicatorid."'  > Safety Audit Training Report</a>";
     }elseif ($mov=='mov9'){
@@ -253,17 +253,17 @@ function mediamov($mov,$indicatorid): string
     }elseif ($mov=='mov12'){
         return "<a href='../dashboard/mov/money-transfer-statement.php?id=".$indicatorid."'  > Money Transfer Statement</a>";
     }elseif ($mov=='mov13'){
-        return "<a href='../dashboard/mov/activity-monitoring-report.php?id=".$indicatorid."'  > Activity Monitoring Report</a>";
+        return "<a href='../dashboard/activity-monitoring-report.php?id=".$indicatorid."'  > Activity Monitoring Report</a>";
     }elseif ($mov=='mov14'){
         return "<a href='../dashboard/mov/cfm-intake-forms.php?id=".$indicatorid."'  > CFM Intake Forms</a>";
     }elseif ($mov=='mov15'){
-        return "<a href='../dashboard/mov/narrative.php?id=".$indicatorid."'  > Narrative Report</a>";
+        return "<a href='../dashboard/narrative.php?id=".$indicatorid."'  > Narrative Report</a>";
     }elseif ($mov=='mov16'){
         return "<a href='../dashboard/mov/meeting-minutes.php?id=".$indicatorid."'  > Decongestion Coordination Meeting Minutes</a>";
     }elseif ($mov=='mov17'){
-        return "<a href='../dashboard/mov/narrative.php?id=".$indicatorid."'  > Human Interest Stories</a>";
+        return "<a href='../dashboard/narrative.php?id=".$indicatorid."'  > Human Interest Stories</a>";
     }elseif ($mov=='mov18'){
-        return "<a href='../dashboard/mov/activity-monitoring-report.php?id=".$indicatorid."'  > Activity Monitoring Report</a>";
+        return "<a href='../dashboard/activity-monitoring-report.php?id=".$indicatorid."'  > Activity Monitoring Report</a>";
     }elseif ($mov=='mov19'){
         return "<a href='../dashboard/mov/land-tenure-documents.php?id=".$indicatorid."'  > Land Tenure Documents</a>";
     }elseif ($mov=='mov20'){

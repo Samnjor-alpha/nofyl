@@ -421,7 +421,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Activity Indicator:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name=act_ind"" style="width:80%; height:50px;"></textarea></div>
+                <div class="col02-tab-text"><textarea  name=act_ind"" style="width:80%; height:50px;"></textarea></div>
 
 
             </div>
