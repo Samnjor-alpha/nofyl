@@ -1,9 +1,11 @@
 <ul class="nav nav-tabs">
-    <?php if (isset($_GET['id'])){?>
+    <?php if (isset($_GET['id'])){
+        if ($_SESSION['role']=='admin'){
+        ?>
     <li class="nav-item">
         <a class="nav-link <?php active('home.php');?>" href="home.php?id=<?php echo $_GET['id'] ?>">Create Project</a>
         </li>
-
+<?php } ?>
         <li class="nav-item">
 
             <a class="nav-link <?php active('coverpage.php');?>" href="coverpage.php?id=<?php echo $_GET['id'] ?>">Cover Page</a>

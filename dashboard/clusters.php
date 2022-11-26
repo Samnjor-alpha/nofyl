@@ -553,7 +553,9 @@ if (isset($_POST['clusters'])){?>
                             </tr>
                             <?php foreach ($projectOutputs as $k=> $projectOutput) { ?>
                                 <tr>
-                                    <td><?php echo ++$k ?></td>
+                                    <td><?php
+
+                                        echo ++$k ?></td>
                                     <td><?php echo getoutcomename($projectOutput['outcome_id']) ?></td>
                                     <td><?php echo $projectOutput['output'] ?? null ?></td>
                                     <td><?php echo getclustername($projectOutput['cluster_id']) ?></td>
@@ -573,16 +575,19 @@ if (isset($_POST['clusters'])){?>
                             </tr>
                             <?php
 
+                            $cnt=-1;
 
-
-                                $ik="1.0.9";
+                                $ik=clusterindex($projectOutputs,"0",$cnt);
 $k=getincrement($ik);
+
+
 
                             while ($outputIndicator=mysqli_fetch_assoc($result)) { ?>
                                 <tr>
                                     <td><?php
 
-                                            echo getincrement($k);
+                                        echo getincrement(clusterindex($projectOutputs,$outputIndicator['output_id'],$cnt));
+
 
                                          ?></td>
                                     <td><?php echo getoutputname($outputIndicator['output_id']) ?></td>
@@ -604,7 +609,8 @@ $k=getincrement($ik);
                                         } ?>
                                     </td>
                                 </tr>
-                            <?php  $k=getincrement($k++);} ?>
+                            <?php  $k=getincrement($k++);
+                            $cnt++;} ?>
                         </table>
 
                     </div>

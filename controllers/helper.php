@@ -269,7 +269,7 @@ function mediamov($mov,$indicatorid): string
     }elseif ($mov=='mov20'){
         return "<a href='../dashboard/mov/beneficiary-list.php?id=".$indicatorid."'  > Beneficiary List</a>";
     }elseif ($mov=='mov21'){
-        return "<a href='../dashboard/mov/post-eviction-monitoring-report.php?id=".$indicatorid."'  > Post Eviction Monitoring Report</a>";
+        return "<a href='../dashboard/post-eviction-monitoring-report.php?id=".$indicatorid."'  > Post Eviction Monitoring Report</a>";
     }elseif ($mov=='mov22'){
         return "<a href='../dashboard/mov/money-transfer-statement.php?id=".$indicatorid."'  > Money Transfer Statement</a>";
     }elseif ($mov=='mov23'){
@@ -348,6 +348,32 @@ function getincrement($index): string
         }
     }
     return implode( ".", $indexed ); // implode array back to string
+
+
+}
+function clusterindex($projectOutputs,$output_id,$cnt)
+{
+    foreach ($projectOutputs as $k=> $projectOutput){
+        $ik=++$k;
+$no=count($projectOutputs);
+$count=0;
+$count = strtolower($projectOutput['outcome_id']) == $output_id ? 1 : 0;
+        if ($projectOutput['outcome_id']==$output_id){
+
+          $ind="$ik.0.$cnt";
+            $indexed = explode( ".", $ind ); // array( "1", "9", "9" )
+            if ( ++$indexed[2] > 9 ) { // if last incremented number is greater than 9 reset to 0
+                $indexed[2] = 0;
+                if ( ++$indexed[1] > 9 ) { // if second incremented number is greater than 9 reset to 0
+                    $indexed[1] = 0;
+                    ++$indexed[0]; // incremented first number
+                }
+            }
+            return implode( ".", $indexed );
+
+        }
+
+    }
 
 
 }

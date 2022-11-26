@@ -272,14 +272,16 @@ include '../controllers/frameworkcontroller.php'
 
 
 
-                        $ik="1.0.9";
+                        $cnt=-1;
+
+                        $ik=clusterindex($projectOutputs,"0",$cnt);
                         $k=getincrement($ik);
 
                         while ($outputIndicator=mysqli_fetch_assoc($result)) { ?>
                             <tr>
                                 <td><?php
 
-                                    echo getincrement($k);
+                                    echo getincrement(clusterindex($projectOutputs,$outputIndicator['output_id'],$cnt));
 
                                     ?></td>
                                 <td><?php echo getoutputname($outputIndicator['output_id']) ?></td>
