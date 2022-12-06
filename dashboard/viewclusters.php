@@ -301,7 +301,9 @@ include '../controllers/frameworkcontroller.php'
                                     } ?>
                                 </td>
                             </tr>
-                            <?php  $k=getincrement($k++);} ?>
+                            <?php
+                            $cnt++;
+                            $k=getincrement($k++);} ?>
                     </table>
 
                 </div>

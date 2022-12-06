@@ -129,3 +129,32 @@ toastr.success('User created successfully.','User added successfully');
         }
     }
 }
+
+
+if (isset($_POST['update_user'])){
+
+    $email=filter_var(stripslashes($_POST['email']), FILTER_SANITIZE_STRING);
+    if (empty($email)){
+        echo "<script>
+toastr.error('Email is required','Details required');
+</script>";
+    }elseif(filter_var($email, FILTER_VALIDATE_EMAIL)===false) {
+
+        echo "<script>
+toastr.error('Incorrect email format','Wrong email format');
+</script>";
+    }elseif (checkemailexist_update($email,$_SESSION['user_id'])){
+        echo "<script>
+toastr.info('Email is associated with an account','Account exists');
+</script>";
+    }else{
+        $updateuser="update pm_users set email='$email' where id='".$_SESSION['user_id']."'";
+        if (mysqli_query($conn,$updateuser)){
+
+            echo "<script>
+toastr.success('Details updated successfully.','Update success');
+window.location.href='edit-profile.php'
+</script>";
+        }
+    }
+}

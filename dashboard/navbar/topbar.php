@@ -4,16 +4,18 @@
             <img src="https://www.nofyl.org/wp-content/uploads/Nofyl_logo.png" alt="Avatar Logo" class="rounded-pill">
         </a>
     </div>
-    <ul class="navbar-nav">
+    <div class="collapse navbar-collapse" style="margin-left: -15%" id="navbar-list-4">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="https://ui-avatars.com/api/?name=<?= $_SESSION['names']?>" width="40" height="40" class="rounded-circle">
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="edit-profile.php">Edit Profile</a>
+                    <a class="dropdown-item" href="<?php echo $_SERVER["SCRIPT_NAME"]?>?logout">Logout</a>
+                </div>
+            </li>
+        </ul>
+    </div>
 
-        <li class="nav-item" style="margin-left:-300px;display: inline; ">
-            <a class="nav-link">Welcome, <?php echo $_SESSION['names'] ?><br>
-            <?php echo $_SESSION['role'] ?>
-            </a>
-
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="<?php echo $_SERVER["SCRIPT_NAME"]?>?logout">Logout</a>
-        </li>
-    </ul>
 </nav>
