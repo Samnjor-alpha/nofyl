@@ -148,10 +148,15 @@ include '../controllers/frameworkcontroller.php'
 
 <div class="container mt-3">
     <?php include 'navbar/viewtabs.php'?>
+    <?php if (checkapproval($_GET['id'])){ ?>
+        <div class="offset-10 fixed-top mt-5">
+            <a href="?id=<?= $_GET['id'] ?>&&approve" class="btn btn-sm btn-danger">Approve Project</a>
+        </div>
+    <?php }else{ ?>
     <div class="offset-10 fixed-top mt-5">
         <button class="btn btn-sm btn-primary" id="download">Download Cluster information</button>
     </div>
-
+<?php } ?>
 
     <div id="print">
         <h3><?php echo $project->Title ?> Documentation</h3>
@@ -328,7 +333,7 @@ include '../controllers/frameworkcontroller.php'
 
 
 </script>
-
+<?php include '../controllers/addcomments.php'?>
 
 
 </body>

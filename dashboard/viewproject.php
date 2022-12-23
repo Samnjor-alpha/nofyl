@@ -148,11 +148,16 @@ include '../controllers/viewproject.php'
 
 <div class="container mt-3">
     <?php include 'navbar/viewtabs.php'?>
+    <?php if (checkapproval($_GET['id'])){ ?>
+        <div class="offset-10 fixed-top mt-5">
+            <a href="?id=<?= $_GET['id'] ?>&&approve" class="btn btn-sm btn-danger">Approve Project</a>
+        </div>
+    <?php }else{ ?>
     <div class="offset-10 fixed-top mt-5">
         <button class="btn btn-sm btn-primary" id="download">Download Documentation</button>
     </div>
 
-    <?php
+    <?php }
 
 
 

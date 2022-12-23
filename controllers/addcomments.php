@@ -28,3 +28,16 @@ setTimeout(function(){
 
     }
 }
+if (isset($_GET['id'])&&isset($_GET['approve'])){
+    global $conn;
+    $user="update prj_init set prj_status='1' where ID='".$_GET['id']."'";
+
+    if (mysqli_query($conn, $user)) {
+$location=$_SERVER['SCRIPT_NAME'].'?id='.$_GET['id'].'';
+        echo "<script>
+toastr.success('Project approved','Approved');
+window.location.href='$location';
+</script>";
+
+    }
+}

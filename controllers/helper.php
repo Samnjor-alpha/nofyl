@@ -421,3 +421,126 @@ function checkassigned($id,$prj): bool
         return false;
     }
 }
+
+function checkapproval($prjid): bool
+{
+    global $conn;
+    $getdata=mysqli_query($conn,"select prj_status from prj_init where ID='$prjid'");
+    $status=mysqli_fetch_assoc($getdata)['prj_status'];
+    if($status=='0'){
+        return true;
+    }else{
+        return false;
+    }
+
+}
+function getassignedemailsall($prjid): array
+{
+    global $conn;
+    $getemails=mysqli_query($conn,"select * from project_users inner join pm_users where 
+                                                    project_users.prj_id='$prjid' and
+                                                    project_users.user_id=pm_users.id
+                                                    ");
+
+    $returnData = array();
+    $index = 0;
+    while($row = $getemails->fetch_assoc()){
+        $returnData[$index] = $row['email'];
+        $index++;
+    }
+    return $returnData;
+
+}
+function getassignedemails($prjid,$userid): array
+{
+    global $conn;
+    $getemails=mysqli_query($conn,"select * from project_users inner join pm_users where 
+                                                    project_users.prj_id='$prjid' and
+                                                    project_users.user_id=pm_users.id
+and 
+                                                    pm_users.id!='$userid'
+                                                    ");
+
+    $returnData = array();
+    $index = 0;
+    while($row = $getemails->fetch_assoc()){
+        $returnData[$index] = $row['email'];
+        $index++;
+    }
+    return $returnData;
+
+}
+function getprojectcode($prjid){
+    global $conn;
+    $getdata=mysqli_query($conn,"select Fund_Code from prj_init where ID='$prjid'");
+
+    return mysqli_fetch_assoc($getdata)['Fund_Code'];
+}
+
+function sendemailnotification($to,$projectid){
+    $mail = getMail();
+    $mail->From = EMAIL_SMTP_USERNAME;
+    $mail->FromName = "NOFYL";
+
+    $addresses = explode(',', $to);
+    foreach ($addresses as $address) {
+        $mail->addBCC($address);
+    }
+
+
+
+    $mail->WordWrap = 50;                                 // set word wrap to 50 characters
+    // optional name
+    $mail->IsHTML(true);                                  // set email format to HTML
+
+    $mail->Subject = "NEW COMMENT ON YOUR ASSIGNED PROJECT";
+    $mail->Body    = "<div>
+<p>A comment has been added to the project assigned.Login to your account and make the changes suggested</p>
+<br>
+<b>Project Code:</b>".getprojectcode($projectid).";
+
+</div>";
+
+
+    if(!$mail->Send())
+    {
+
+        return true;
+    }else{
+        return false;
+    }
+}
+function sendAssignnotification($to,$projectid): bool
+{
+    $mail = getMail();
+    $mail->From = EMAIL_SMTP_USERNAME;
+    $mail->FromName = "NOFYL";
+
+    $addresses = explode(',', $to);
+    foreach ($addresses as $address) {
+        $mail->addBCC($address);
+    }
+
+
+
+    $mail->WordWrap = 50;                                 // set word wrap to 50 characters
+    // optional name
+    $mail->IsHTML(true);                                  // set email format to HTML
+
+    $mail->Subject = "NEW PROJECT ALERT";
+    $mail->Body    = "<div>
+<p>A new project has being assigned.Login to your account and add MOVS</p>
+<br>
+<b>Project Code:</b>".getprojectcode($projectid).";
+
+</div>";
+
+
+    if(!$mail->Send())
+    {
+
+        return true;
+    }else{
+        return false;
+    }
+}

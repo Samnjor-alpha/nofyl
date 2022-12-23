@@ -8,10 +8,18 @@ if (isset($_POST['assign_prj'])){
 if (!checkassigned($value,$prjid)){
     $add="insert into project_users set user_id='$value', prj_id='$prjid'";
     if (mysqli_query($conn,$add)){
+
+        if (sendAssignnotification(implode(',',getassignedemailsall($prjid)),$prjid)){
+            echo "
+        <script>
+        toastr.info('Notification sent successfully');
+        
+        </script>";
+        }
         echo "
         <script>
         toastr.success('Staff(s) assigned to project successfully');
-        
+        window.location.href='workplan.php'
         </script>";
     }else{
         echo "
