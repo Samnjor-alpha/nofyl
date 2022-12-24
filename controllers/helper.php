@@ -729,9 +729,9 @@ function prntallmovs($id): void
     while($outputIndicator=mysqli_fetch_assoc($sql)){
 
         // $movarray[]=$outputIndicator['mov'];
-        $movs=mov(json_decode($outputIndicator['mov']), $outputIndicator['id']);
+        $movs=" ";
 
-            $movs .= "|| " .prntmov(json_decode($outputIndicator['mov']), $outputIndicator['id'])." || " ;
+            $movs .= prntmov(json_decode($outputIndicator['mov']), $outputIndicator['id'])." || " ;
 
 
         echo $movs;
