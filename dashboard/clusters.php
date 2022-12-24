@@ -14,7 +14,7 @@ include '../controllers/frameworkcontroller.php'
 <style>
     select[multiple], select[size] {
         height: 200px;
-        width: 150%;
+        width: 100%;
         position: relative;
         left: -50%;
     }
