@@ -3,8 +3,15 @@
         if ($_SESSION['role']=='admin'){
         ?>
     <li class="nav-item">
-        <a class="nav-link <?php active('home.php');?>" href="home.php?id=<?php echo $_GET['id'] ?>">Create Project</a>
+        <a class="nav-link <?php active('home.php');?>" href="home.php?id=<?php echo $_GET['id'] ?>">Update Project</a>
         </li>
+            <li class="nav-item">
+
+                <a class="nav-link <?php active('coverpage.php');?>" href="coverpage.php?id=<?php echo $_GET['id'] ?>">Cover Page</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?php active('framework.php');?>" href="framework.php?id=<?php echo $_GET['id'] ?>">Logical Framework</a>
+            </li>
 <?php } ?>
 
         <li class="nav-item">

@@ -592,13 +592,15 @@ $k=getincrement($ik);
                                          ?></td>
                                     <td><?php echo getoutputname($outputIndicator['output_id']) ?></td>
                                     <td><?php
-                                        if (!checkmov($outputIndicator['id'])) {
+
                                             if (!is_null($outputIndicator['mov'])) {
-                                                echo "<p>" . mov(json_decode($outputIndicator['mov']), $outputIndicator['id']) . "</p>";
+
+                                                echo "<p>" . getallmovs($outputIndicator['output_id']) . "</p>";
                                             }
-                                        }else {
-                                        echo "<strong class='text-success'>Verified!</strong>";
-                                        }?>
+//                                        }else {
+//                                        echo "<strong class='text-success'>Verified!</strong>";
+//                                        }
+                                        ?>
                                     </td>
                                     <td><?php echo $outputIndicator['target'] ?? null ?></td>
                                     <td><?php echo $outputIndicator['indicator'] ?? null ?></td>

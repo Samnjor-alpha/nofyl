@@ -350,16 +350,38 @@ function getincrement($index): string
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function clusterindex($projectOutputs,$output_id,$cnt)
 {
     foreach ($projectOutputs as $k=> $projectOutput){
-        $ik=++$k;
-$no=count($projectOutputs);
-$count=0;
-$count = strtolower($projectOutput['outcome_id']) == $output_id ? 1 : 0;
+
+
+
+        $k=++$k;
+
         if ($projectOutput['outcome_id']==$output_id){
 
-          $ind="$ik.0.$cnt";
+            $ind="$k.0.$cnt";
+          $indexed = explode( ".", $ind ); // array( "1", "9", "9" )
+            if ($indexed[0]!==$k){
+                $ind="$k.0.-1";
+            }
             $indexed = explode( ".", $ind ); // array( "1", "9", "9" )
             if ( ++$indexed[2] > 9 ) { // if last incremented number is greater than 9 reset to 0
                 $indexed[2] = 0;
@@ -542,4 +564,52 @@ function sendAssignnotification($to,$projectid): bool
     }else{
         return false;
     }
+}
+
+function checkvariable($no,$no2){
+
+    $value=$no;
+    if ($value!==$no2){
+        return true;
+    }else{
+        return false;
+    }
+
+}
+
+function getallmovs($id): void
+{
+    global $conn;
+    $sql=mysqli_query($conn,"select id,mov from output_indicators where output_id='$id'");
+    while($outputIndicator=mysqli_fetch_assoc($sql)){
+
+        // $movarray[]=$outputIndicator['mov'];
+        $movs=mov(json_decode($outputIndicator['mov']), $outputIndicator['id']);
+        if (!checkmov($outputIndicator['id'])) {
+            $movs .= "||" . mov(json_decode($outputIndicator['mov']), $outputIndicator['id']);
+        }else{
+            $movs.= "||<strong class='text-success'>Verified!</strong>,".mov(json_decode($outputIndicator['mov']), $outputIndicator['id']);
+        }
+
+        echo $movs;
+
+    }
+
+}
+function prntallmovs($id): void
+{
+    global $conn;
+    $sql=mysqli_query($conn,"select id,mov from output_indicators where output_id='$id'");
+    while($outputIndicator=mysqli_fetch_assoc($sql)){
+
+        // $movarray[]=$outputIndicator['mov'];
+        $movs=mov(json_decode($outputIndicator['mov']), $outputIndicator['id']);
+
+            $movs .= "|| " .prntmov(json_decode($outputIndicator['mov']), $outputIndicator['id'])." || " ;
+
+
+        echo $movs;
+
+    }
+
 }
