@@ -749,8 +749,12 @@ function prntallmovs($id): void
 
             $movs .= prntmov(json_decode($outputIndicator['mov']), $outputIndicator['id'])." || " ;
 
+if ($_SESSION['role']=='admin' || $_SESSION['role']=='supervisor'){
+    echo "<a data-toggle='modal' class='text-primary btn btn-sm' data-outcome='".prntmov(json_decode($outputIndicator['mov']), $outputIndicator['id'])."' data-target='#viewoutcome' data-id='".$outputIndicator['id']."'>".$movs."</a>";
+}else{
+    echo $movs;
+}
 
-        echo "<a data-toggle='modal' class='text-primary btn btn-sm' data-outcome='".prntmov(json_decode($outputIndicator['mov']), $outputIndicator['id'])."' data-target='#viewoutcome' data-id='".$outputIndicator['id']."'>".$movs."</a>";
     }
 
 }
