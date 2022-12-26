@@ -36,12 +36,18 @@ if ($result = $conn->query($sql)) {
 
 // outputs
 
-$sql = "select * from project_outputs where project_id=$prjid";
+$sql = "select * from project_outputs where project_id=$prjid group by outcome_id";
 if ($result = $conn->query($sql)) {
     $projectOutputs = $result->fetch_all(MYSQLI_BOTH);
 
 }
 
+
+$sql = "select * from project_outputs where project_id=$prjid";
+if ($result = $conn->query($sql)) {
+    $projectOutputss = $result->fetch_all(MYSQLI_BOTH);
+
+}
 // indicators
 $sqlmovs = mysqli_query($conn,"select * from output_indicators where project_id=$prjid");
 $sql = "select * from output_indicators where project_id=$prjid group by output_id";
@@ -83,9 +89,18 @@ alert('all fields are required');
         }
     }
 }
+function getclusterid($outcome_id)
+{
+    global $conn;
+    $sql=mysqli_query($conn,"select cluster_id from project_outcomes where id='$outcome_id'");
+    return mysqli_fetch_assoc($sql)['cluster_id'];
+
+}
+
 if (isset($_POST['saveClusters'])){
     $clusterID = $_POST['cid'];
     $outcome=$_POST['outcome'];
+    $output=$_POST['output'];
     $activities = $_POST['activity'];
     $indicatorsArray = $_POST["indicator"];
     $movarray=$indicatorsArray['mov'];
@@ -103,48 +118,104 @@ alert('Outcome out put is required');
         foreach ($_POST['outcome'] as $k => $outcome) {
             if (!empty($outcome)) {
 
-                if (!is_array($outcome)) {
+
                     if ($conn->query("insert into project_outcomes (project_id, outcome, cluster_id) values ($prjid, '" . $outcome . "', $clusterID)")) {
 
                         $outcomeID = $conn->insert_id;
-                    }
-                } else {
-                    // outputs
+                        foreach ($_POST['output'] as $o => $output) {
+                            if (!empty($output)) {
+                                if (!is_array($output)) {
+                                    if ($conn->query("insert into project_outputs (project_id, outcome_id, output, cluster_id) VALUES ($prjid, $outcomeID, '" . $output . "', $clusterID)")) {
+                                        $outputID = $conn->insert_id;
+                                        foreach ($movarray as $t => $textIndicator) {
+                                            foreach ($texts as $text) {
+                                                $textinds[] = $text;
 
-                    foreach ($outcome as $o => $output) {
-                        if (!empty($output)) {
+                                            }
+                                            foreach ($targets as $target) {
+                                                $targetinds[] = $target;
 
-                            if (!is_array($output)) {
-                                if ($conn->query("insert into project_outputs (project_id, outcome_id, output, cluster_id) VALUES ($prjid, $outcomeID, '" . $output . "', $clusterID)")) {
-                                    $outputID = $conn->insert_id;
+                                            }
+                                            if ($conn->query("insert into output_indicators (project_id, indicator, mov, target, output_id, cluster_id)  values ($prjid, '" . $text . "', '" . json_encode($textIndicator) . "', '" . $target . "', '" . $outputID . "', $clusterID) ")) {
+                                                $indicatorID = $conn->insert_id;
+                                            }
+                                        }
+                                        foreach ($activities as $activity) {
+                                            $toSave[] = $activity;
 
+                                        }
+                                        if (!empty($toSave) && $conn->query("update output_indicators set activities='" . json_encode($toSave) . "' where output_id=$outputID")) {
+
+                                        }
+                                    }
                                 }
+
                             }
                         }
                     }
-                    foreach ($movarray as $t => $textIndicator) {
-                        foreach ($texts as $text) {
-                            $textinds[] = $text;
 
-                        }
-                        foreach ($targets as $target) {
-                            $targetinds[] = $target;
-
-                        }
-                        if ($conn->query("insert into output_indicators (project_id, indicator, mov, target, output_id, cluster_id)  values ($prjid, '" . $text . "', '" . json_encode($textIndicator) . "', '" . $target . "', '" . $outputID . "', $clusterID) ")) {
-                            $indicatorID = $conn->insert_id;
-                        }
-                    }
-                    foreach ($activities as $activity) {
-                        $toSave[] = $activity;
-
-                    }
-                    if (!empty($toSave) && $conn->query("update output_indicators set activities='" . json_encode($toSave) . "' where output_id=$outputID")) {
-
-                    }
-                }
             }
             header("location: clusters.php?id=" . $prjid);
         }
     }
 }
+if (isset($_POST['add_output'])){
+    $clusterID =getclusterid($_POST['outcome_id']);
+    $outcomeID=$_POST['outcome_id'];
+    $output=$_POST['output'];
+    $activities = $_POST['activity'];
+    $indicatorsArray = $_POST["indicator"];
+    $movarray=$indicatorsArray['mov'];
+    $texts = $indicatorsArray['text'];
+    $targets = $indicatorsArray['target'];
+
+    $toSave = [];
+    if (is_null($clusterID)|| is_null($output)){
+        echo"<script>
+alert('Outcome out put is required');
+        </script>";
+    }else {
+
+
+
+                    foreach ($_POST['output'] as $o => $output) {
+                        if (!empty($output)) {
+                            if (!is_array($output)) {
+                                if ($conn->query("insert into project_outputs (project_id, outcome_id, output, cluster_id) VALUES ($prjid, $outcomeID, '" . $output . "', $clusterID)")) {
+                                    $outputID = $conn->insert_id;
+                                    foreach ($movarray as $t => $textIndicator) {
+                                        foreach ($texts as $text) {
+                                            $textinds[] = $text;
+
+                                        }
+                                        foreach ($targets as $target) {
+                                            $targetinds[] = $target;
+
+                                        }
+                                        if ($conn->query("insert into output_indicators (project_id, indicator, mov, target, output_id, cluster_id)  values ($prjid, '" . $text . "', '" . json_encode($textIndicator) . "', '" . $target . "', '" . $outputID . "', $clusterID) ")) {
+                                            $indicatorID = $conn->insert_id;
+                                        }
+                                    }
+                                    foreach ($activities as $activity) {
+                                        $toSave[] = $activity;
+
+                                    }
+                                    if (!empty($toSave) && $conn->query("update output_indicators set activities='" . json_encode($toSave) . "' where output_id=$outputID")) {
+
+                                    }
+                                }
+                            }
+
+                        }
+                        header("location: clusters.php?id=" . $prjid);
+                    }
+                }
+
+
+
+
+}
+
+
+
+

@@ -10,8 +10,19 @@ include '../controllers/frameworkcontroller.php'
 <head>
     <title>NoFYl</title>
     <?php include '../css/header.php'?>
+    <script	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <style>
+
+    /* Important part */
+    .modal-dialog{
+        overflow-y: initial !important
+    }
+    .modal-body{
+        height: 80vh;
+        overflow-y: auto;
+    }
     select[multiple], select[size] {
         height: 200px;
         width: 100%;
@@ -529,6 +540,7 @@ if (isset($_POST['clusters'])){?>
                     <div class="row">
                         <table class="table table-striped outcomes">
                             <caption>Outcomes</caption>
+
                             <tr>
                                 <th>#</th>
                                 <th>Project Outcome</th>
@@ -537,7 +549,7 @@ if (isset($_POST['clusters'])){?>
                             <?php foreach ($projectOutcomes as $k=>$projectOutcome) { ?>
                                 <tr>
                                     <td><?php echo ++$k ?></td>
-                                    <td><?php echo $projectOutcome['outcome'] ?? null ?></td>
+                                    <td><a data-toggle="modal" class="text-primary btn btn-sm"  data-target="#viewoutcome"   data-outcome="<?= $projectOutcome['outcome'] ?>"  data-id="<?=$projectOutcome['id'] ?>" title="Add multiple outputs"><?php echo $projectOutcome['outcome'] ?? null ?></a></td>
                                     <td><?php echo getclustername($projectOutcome['cluster_id']) ?></td>
                                 </tr>
                             <?php } ?>
@@ -547,7 +559,7 @@ if (isset($_POST['clusters'])){?>
                             <caption>Outputs</caption>
                             <tr>
                                 <th>#</th>
-                                <th>Outcome ID</th>
+                                <th>Outcome</th>
                                 <th>Project Output</th>
                                 <th>Cluster</th>
                             </tr>
@@ -557,7 +569,9 @@ if (isset($_POST['clusters'])){?>
 
                                         echo ++$k ?></td>
                                     <td><?php echo getoutcomename($projectOutput['outcome_id']) ?></td>
-                                    <td><?php echo $projectOutput['output'] ?? null ?></td>
+                                    <td><?=
+                                       getoutputs($projectOutput['outcome_id']);
+                                          ?></td>
                                     <td><?php echo getclustername($projectOutput['cluster_id']) ?></td>
                                 </tr>
                             <?php } ?>
@@ -577,7 +591,7 @@ if (isset($_POST['clusters'])){?>
 
                             $cnt=-1;
 
-                                $ik=clusterindex($projectOutputs,"0",$cnt);
+                                $ik=clusterindex($projectOutputss,"0",$cnt);
 $k=getincrement($ik);
 
 
@@ -586,7 +600,7 @@ $k=getincrement($ik);
                                 <tr>
                                     <td><?php
 
-                                        echo getincrement(clusterindex($projectOutputs,$outputIndicator['output_id'],$cnt));
+                                        echo getincrement(clusterindex($projectOutputss,$outputIndicator['output_id'],$cnt));
 
 
                                          ?></td>
@@ -623,13 +637,81 @@ $k=getincrement($ik);
     </form>
 
 </div>
+<div class="modal modal-xl fade" id="viewoutcome" tabindex="-1" data-bs-backdrop="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Output</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div  class="modal-body">
+                <form method="post" action="" class="">
+                    <input  type="hidden" name="outcome_id" id="idd">
+                    <div class="form-group">
+                        <label for="dname">Outcome Name:</label>
+<!--                        <input disabled class="form-control" type="text" readonly  name="outcome" id="dname">-->
+                        <span class="text-capitalize" id="dname"></span>
+                    </div>
+<div class="row form-group">
+    <div id="container1" class="container1">
+
+        <table id="employee_table_outcome" align=center>
+            <tr id="row_out">
+
+        </table>
+
+
+        <table id="employee_table_ind" align=center>
+            <tr id="row_ind">
+
+        </table>
+
+        <table id="employee_table_ver" align=center>
+            <tr id="row_act">
+
+        </table>
+
+
+        <table id="employee_table_act" align=center>
+            <tr id="row_act">
+
+        </table>
+
+        <table id="employee_table" align=center>
+
+            <tr id="row1">
+            </tr>
+        </table>
+
+
+        <input type="button" onclick="add_rowO();" value="+ Add a New Output"
+               class="col2-button">
+    </div>
+</div>
+
+
+                    <div class="form-group mt-2">
+                        <button type="submit" name="add_output" class="btn btn-success">Save</button>
+                    </div>
+                </form>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script>
 
 
     function add_row() {
         $rowno = $("#employee_table tr").length;
         $rowno = $rowno + 1;
-        $("#employee_table tr:last").after("<tr style='border-top: 1px solid #ccc; margin-top:0px; padding-top:0px;float: left;' id='row" + $rowno + "'><td><h3>Output </h3><textarea  name='outcome[output][]' rows='4' cols='100'> </textarea> </td><td><input type='button' value='X' class='col2-buttonX' onclick=delete_row('row" + $rowno + "')><td><input type='button' value='+ Add Indicator' class='col2-button' onclick='add_indicator();'></td></tr>");
+        $("#employee_table tr:last").after("<tr style='border-top: 1px solid #ccc; margin-top:0px; padding-top:0px;float: left;' id='row" + $rowno + "'><td><h3>Output </h3><textarea  name='output[]' rows='4' cols='100'> </textarea> </td><td><input type='button' value='X' class='col2-buttonX' onclick=delete_row('row" + $rowno + "')><td><input type='button' value='+ Add Indicator' class='col2-button' onclick='add_indicator();'></td></tr>");
     }
 
     function delete_row(rowno) {
@@ -668,8 +750,15 @@ $k=getincrement($ik);
     function delete_row_ver(row_ver) {
         $('#' + $row_ver).remove();
     }
+    function add_rowO() {
+        $rowout = $("#employee_table_outcome tr").length;
+
+        $rowout = $rowout + 1;
 
 
+        $("#employee_table tr:last").after("<tr style='border-top: 1px solid #ccc; margin-top:0px; padding-top:0px;float: left;' id='row_out" + $rowout + "'>" +
+            "<td><h3>Output<p id='no'></p></h3><textarea  name='output[]' rows='4' cols='100'></textarea> </td><td><input type='button' value='X' class='col2-buttonX' onclick=delete_row_out('row_out" + $rowout + "')><td>  <input type='button' onclick='add_indicator();' value='+ Add Indicators' class='col2-button'></td></tr>");
+    }
     function add_row_outcome() {
         $rowout = $("#employee_table_outcome tr").length;
 
@@ -679,19 +768,68 @@ $k=getincrement($ik);
         $("#employee_table tr:last").after("<tr style='border-top: 1px solid #ccc; margin-top:0px; padding-top:0px;float: left;' id='row_out" + $rowout + "'>" +
             "<td><h3>Outcome<p id='no'></p></h3><textarea  name='outcome[]' rows='4' cols='100'></textarea> </td><td><input type='button' value='X' class='col2-buttonX' onclick=delete_row_out('row_out" + $rowout + "')><td>  <input type='button' onclick='add_row();' value='+ Add Output' class='col2-button'></td></tr>");
     }
-
     function delete_row_out(rowno) {
         $('#' + rowno).remove();
     }
 
+        $(document).ready(function(){
+        $("#updatedriver").modal({
+            keyboard: true,
+            show: false,
+
+        }).on("show.bs.modal", function(event){
+            var button = $(event.relatedTarget); // button the triggered modal
+            var tripid = button.data("id");
 
 
 
+            //displays values to modal
+
+            $(".modal-body #id").val( tripid );
+
+        });
+        $("#viewdriver").modal({
+        keyboard: true,
+        show: false,
+
+    }).on("show.bs.modal", function(event){
+        var button = $(event.relatedTarget); // button the triggered modal
+        var id = button.data("id");
+        var dname = button.data("dname");
 
 
-</script>
-<script>
-    document.getElementById("no").innerHTML = 5 + 6;
+
+        //displays values to modal
+
+        $(".modal-body #id").val( id );
+        $(".modal-body #id").val( id );
+        $(".modal-body #name").val( dname );
+
+    });
+        $("#viewoutcome").modal({
+        keyboard: true,
+        show: false,
+
+    }).on("show.bs.modal", function(event){
+        var button = $(event.relatedTarget); // button the triggered modal
+        var id = button.data("id");
+        var dname = button.data("outcome");
+
+
+
+        //displays values to modal
+
+        $(".modal-body #id").val( id );
+        $(".modal-body #idd").val( id );
+        $(".modal-body #dname").text( dname );
+
+
+    });
+
+    });
+
+
+
 </script>
 </body>
 </html>

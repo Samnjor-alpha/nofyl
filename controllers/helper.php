@@ -495,36 +495,52 @@ function getincrement($index): string
 
 function clusterindex($projectOutputs,$output_id,$cnt)
 {
-    foreach ($projectOutputs as $k=> $projectOutput){
+    global $conn;
+    $sql = "select * from project_outputs where project_id='" . $_GET['id'] . "' group by outcome_id";
+    if ($result = $conn->query($sql)) {
+        $projectOutputss = $result->fetch_all(MYSQLI_BOTH);
+        foreach ($projectOutputs as $k => $projectOutput) {
+           $kl= count($projectOutputss);
 
 
+        $k = ++$k;
 
-        $k=++$k;
+        if ($projectOutput['id'] == $output_id) {
+           //$kd= count(getcoutput($output_id));
+            if ($k>$kl){
 
-        if ($projectOutput['outcome_id']==$output_id){
+                $ind = "$kl.0.$cnt";
 
-            $ind="$k.0.$cnt";
-          $indexed = explode( ".", $ind ); // array( "1", "9", "9" )
-            if ($indexed[0]!==$k){
-                $ind="$k.0.-1";
+            }else{
+                $ind = "$k.0.$cnt";
             }
-            $indexed = explode( ".", $ind ); // array( "1", "9", "9" )
-            if ( ++$indexed[2] > 9 ) { // if last incremented number is greater than 9 reset to 0
+//            $ind = "$k.0.$cnt";
+
+            $indexed = explode(".", $ind); // array( "1", "9", "9" )
+            if (++$indexed[2] > 9) { // if last incremented number is greater than 9 reset to 0
                 $indexed[2] = 0;
-                if ( ++$indexed[1] > 9 ) { // if second incremented number is greater than 9 reset to 0
+                if (++$indexed[1] > 9) { // if second incremented number is greater than 9 reset to 0
                     $indexed[1] = 0;
                     ++$indexed[0]; // incremented first number
                 }
             }
-            return implode( ".", $indexed );
+            return implode(".", $indexed);
 
         }
 
     }
 
 
+    }
 }
 
+function getcoutput($output_id)
+{
+    global $conn;
+    $sql = "select * from output_indicators where output_id='$output_id' group by output_id";
+    if ($result = $conn->query($sql)) {
+     return  $result->fetch_all(MYSQLI_BOTH);}
+    }
 function getstaff(): void
 {
     global $conn;
@@ -738,4 +754,16 @@ function prntallmovs($id): void
 
     }
 
+}
+function  getoutputs($id): string
+{
+
+    global $conn;
+    $sql=mysqli_query($conn,"select * from project_outputs where outcome_id='$id'");
+    $outputs="";
+    while ($row=mysqli_fetch_assoc($sql)){
+
+        $outputs.="||".$row['output'];
+    }
+    return $outputs;
 }
