@@ -41,3 +41,23 @@ window.location.href='$location';
 
     }
 }
+if (isset($_POST['add_mov_cmnt'])){
+    date_default_timezone_set('Africa/Nairobi');
+$prjid=$_GET['id'];
+    $movid=$_POST['mov_id'];
+    $comments=$_POST['comment'];
+    $today=date("Y-m-d H:i:s");
+
+    $sqlcomment="insert into movs_cmnts set mov_id='$movid', mov_comment='$comments',added_at='$today', added_by='".$_SESSION['user_id']."'";
+
+    if (mysqli_query($conn, $sqlcomment)) {
+        $location = 'viewclusters.php?id=' . $prjid;
+           echo "<script>
+toastr.success('Added successfully','Comment added');
+            window.location.href = '$location';
+         
+</script>";
+
+    }
+
+}

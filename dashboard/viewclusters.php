@@ -21,6 +21,9 @@ include '../controllers/frameworkcontroller.php'
     <script src="assets/pdf.js"></script>
     <link rel="icon" href="https://www.nofyl.org/wp-content/uploads/Nofyl_logo.png" sizes="32x32"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+    <script	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <?php include '../css/header.php'?>
     <style>
         .row {
             width: 100%;
@@ -256,7 +259,9 @@ include '../controllers/frameworkcontroller.php'
                             <tr>
                                 <td><?php echo ++$k ?></td>
                                 <td><?php echo getoutcomename($projectOutput['outcome_id']) ?></td>
-                                <td><?php echo $projectOutput['output'] ?? null ?></td>
+                                <td><?=
+                                    getoutputs($projectOutput['outcome_id']);
+                                    ?></td>
                                 <td><?php echo getclustername($projectOutput['cluster_id']) ?></td>
                             </tr>
                         <?php } ?>
@@ -286,7 +291,7 @@ include '../controllers/frameworkcontroller.php'
                             <tr>
                                 <td><?php
 
-                                    echo getincrement(clusterindex($projectOutputs,$outputIndicator['output_id'],$cnt));
+                                    echo getincrement(clusterindex($projectOutputss,$outputIndicator['output_id'],$cnt));
 
                                     ?></td>
                                 <td><?php echo getoutputname($outputIndicator['output_id']) ?></td>
@@ -294,7 +299,7 @@ include '../controllers/frameworkcontroller.php'
 
                                     if (!is_null($outputIndicator['mov'])) {
 
-                                        echo "<p>" . prntallmovs($outputIndicator['output_id']) . "</p>";
+                                         prntallmovs($outputIndicator['output_id']);
 
                                     }?>
                                 </td>
@@ -319,7 +324,37 @@ include '../controllers/frameworkcontroller.php'
     </div>
 
 
+
 </div>
+<div class="modal  fade" id="viewoutcome" tabindex="-1" data-bs-backdrop="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="dname" class="modal-title">Add Comment</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div  class="modal-body">
+                <form method="post" action="" class="">
+                    <input  type="hidden" name="mov_id" id="idd">
+                    <div class="form-group">
+                        <label>Comment:</label>
+                        <textarea name="comment" class="form-control" id="comment"></textarea>
+                    </div>
+                    <div class="form-group mt-2">
+                        <button type="submit" name="add_mov_cmnt" class="btn btn-sm btn-success">Add Comment</button>
+                    </div>
+                </form>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script>
 
     function add_row() {
@@ -331,6 +366,65 @@ include '../controllers/frameworkcontroller.php'
     function delete_row(rowno) {
         $('#' + rowno).remove();
     }
+
+
+        $(document).ready(function(){
+        $("#updatedriver").modal({
+            keyboard: true,
+            show: false,
+
+        }).on("show.bs.modal", function(event){
+            var button = $(event.relatedTarget); // button the triggered modal
+            var tripid = button.data("id");
+
+
+
+            //displays values to modal
+
+            $(".modal-body #id").val( tripid );
+
+        });
+        $("#viewdriver").modal({
+        keyboard: true,
+        show: false,
+
+    }).on("show.bs.modal", function(event){
+        var button = $(event.relatedTarget); // button the triggered modal
+        var id = button.data("id");
+        var dname = button.data("dname");
+
+
+
+        //displays values to modal
+
+        $(".modal-body #id").val( id );
+        $(".modal-body #id").val( id );
+        $(".modal-body #name").val( dname );
+
+    });
+        $("#viewoutcome").modal({
+        keyboard: true,
+        show: false,
+
+    }).on("show.bs.modal", function(event){
+        var button = $(event.relatedTarget); // button the triggered modal
+        var id = button.data("id");
+        var dname = button.data("outcome");
+
+
+
+        //displays values to modal
+
+        $(".modal-body #id").val( id );
+        $(".modal-body #idd").val( id );
+
+        $(".modal-header #dname").text( "Add comment for "+dname );
+
+
+    });
+
+    });
+
 
 
 </script>
