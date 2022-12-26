@@ -20,9 +20,11 @@
         <li class="nav-item">
             <a class="nav-link <?php active('wpcomments.php');?>" href="wpcomments.php?id=<?php echo $_GET['id'] ?>"><i class="text-danger">Comments</i></a>
         </li>
-    <?php }}else {?>
-
-    <?php } ?>
+    <?php }elseif(checkmovcomments($_GET['id'])) {?>
+        <li class="nav-item">
+            <a class="nav-link <?php active('movcomments.php');?>" href="movcomments.php?id=<?php echo $_GET['id'] ?>"><i class="text-danger">MOV Comments</i></a>
+        </li>
+    <?php }} ?>
 
 
 </ul>

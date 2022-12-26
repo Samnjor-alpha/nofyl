@@ -18,6 +18,7 @@ $resultproject=mysqli_query($conn,"select * from prj_init where ID='$prjid'");
 $project = $resultproject->fetch_object();
 
 $resultcomment=mysqli_query($conn,"select * from wp_comments where prj_id='$prjid'");
+$resultmovcomment=mysqli_query($conn,"select * from movs_cmnts where prj_id='$prjid'");
 $assigned=mysqli_query($conn,"select * from project_users where prj_id='$prjid'");
 
 if (isset($_POST['grant'])){
@@ -57,6 +58,17 @@ function checkcomment($id): bool
         return false;
     }
 }
+function checkmovcomments($id): bool
+{
+    global $conn;
+    $getdata=mysqli_query($conn,"select * from movs_cmnts where prj_id='$id'");
+    if (mysqli_num_rows($getdata)>0){
+        return true;
+    }else{
+        return false;
+    }
+}
+
 function checkgrants($id): bool
 {
     global $conn;

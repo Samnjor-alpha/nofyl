@@ -48,7 +48,7 @@ $prjid=$_GET['id'];
     $comments=$_POST['comment'];
     $today=date("Y-m-d H:i:s");
 
-    $sqlcomment="insert into movs_cmnts set mov_id='$movid', mov_comment='$comments',added_at='$today', added_by='".$_SESSION['user_id']."'";
+    $sqlcomment="insert into movs_cmnts set mov_id='$movid',prj_id='".$_GET['id']."', mov_comment='$comments',added_at='$today', added_by='".$_SESSION['user_id']."'";
 
     if (mysqli_query($conn, $sqlcomment)) {
         $location = 'viewclusters.php?id=' . $prjid;
@@ -58,6 +58,12 @@ toastr.success('Added successfully','Comment added');
          
 </script>";
 
+    }else{
+        echo "<script>
+toastr.error('An error occurred','Error');
+            window.location.href = '$location';
+         
+</script>";
     }
 
 }
