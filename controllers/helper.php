@@ -708,7 +708,8 @@ function sendAssignnotification($to,$projectid): bool
     }
 }
 
-function checkvariable($no,$no2){
+function checkvariable($no,$no2): bool
+{
 
     $value=$no;
     if ($value!==$no2){

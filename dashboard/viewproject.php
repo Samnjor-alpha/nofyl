@@ -162,13 +162,13 @@ include '../controllers/viewproject.php'
 
 
     if($_SESSION['role']=="admin" || $_SESSION['role']=="supervisor"){?>
-            <div class ="row">
+            <!-- <div class ="row">
 
                 <div class="col-6">
                     <button type="button" class="btn btn-sm btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Add comments
                     </button>
-                </div>
+                </div> -->
             <?php }else{ ?>
 
 
