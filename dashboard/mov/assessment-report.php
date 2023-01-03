@@ -390,7 +390,7 @@ include 'inc/header.php' ?>
 
                 <div class="row" style="padding-left:5%;">
 
-                    <div class="col02"><label for="title">Upload Photos:</label></div>
+                    <div class="col02"><label for="title">Upload:</label></div>
 
                     <div class="col02-tab-text">
                         <input type="file"  name="files[]"
@@ -406,7 +406,7 @@ text/plain, application/pdf, image/*"
 
                 <div class="row">
 
-                    <input type="submit" name="upload" value="Upload Photos"
+                    <input type="submit" name="upload" value="Upload"
                            style="width:20%; height:50px; background:#027a14 !important; color:#fff; border:none;">
 
                 </div>

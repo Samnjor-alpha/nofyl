@@ -569,7 +569,7 @@ include 'inc/header.php' ?>
 
             <div class="row" style="padding-left:5%;">
 
-                <div class="col02"><label for="title">Upload Photos:</label></div>
+                <div class="col02"><label for="title">Upload:</label></div>
 
                 <div class="col02-tab-text"><input type="file"  name="files_p"
                            accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,

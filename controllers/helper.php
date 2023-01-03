@@ -123,7 +123,7 @@ function mov($mov,$indicatorid): string
 
     }elseif($mov=='mov2'){
         if (!checkmov($indicatorid)){
-            return "<a href='../dashboard/mov/photos.php?id=".$indicatorid."'  >Upload Photos</a>";
+            return "<a href='../dashboard/mov/photos.php?id=".$indicatorid."'  >Upload</a>";
         }else{
             return "<strong class='text-success'>Verified</strong>";
         }
