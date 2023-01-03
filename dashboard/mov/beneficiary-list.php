@@ -456,7 +456,7 @@ text/plain, application/pdf, image/*"
             function add_activity() {
                 $row_act = $("#employee_table_act tr").length;
                 $row_act = $row_act + 1;
-                $("#employee_table tr:last").after("<tr style='border-top: 1px solid #ccc; margin-top:0px; padding-top:0px;float: left;' id='row_act" + $row_act + "'><td><label>Activity X</label></td><td><textarea  name='name[]' rows='3' cols='150'> </textarea></td></tr>");
+                $("#employee_table tr:last").after("<tr style='border-top: 1px solid #ccc; margin-top:0px; padding-top:0px;float: left;' id='row_act" + $row_act + "'><td><label>Activity</label></td><td><textarea  name='name[]' rows='3' cols='150'> </textarea></td></tr>");
             }
 
             function delete_row_act(row_act) {

@@ -198,7 +198,7 @@ include '../controllers/frameworkcontroller.php'
 
 
 
-                        foreach ($outputIndicators as $k=> $outputIndicator) { ?>
+                        foreach ($outputIndicatorsm as $k=> $outputIndicator) { ?>
                             <tr>
                                 <td><?php echo ++$k ?></td>
                                 <td><?php echo getoutputname($outputIndicator['output_id']) ?></td>
@@ -212,7 +212,7 @@ include '../controllers/frameworkcontroller.php'
                                 <td><?php
                                     if (checkmov($outputIndicator['id'])){
                                     echo mediamov(json_decode($outputIndicator['mov']), $outputIndicator['id']);}else{
-                                        echo "<p class='text-danger'>No verified</p>";
+                                        echo "<p class='text-danger'>Not verified</p>";
                                     }?></td>
                                 <td><?php echo $outputIndicator['target'] ?? null ?></td>
                                 <td><?php echo $outputIndicator['indicator'] ?? null ?></td>

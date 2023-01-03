@@ -55,7 +55,11 @@ if ($result = $conn->query($sql)) {
     $outputIndicators = $result->fetch_all(MYSQLI_BOTH);
 
 }
+$sqll = "select * from output_indicators where project_id=$prjid";
+if ($result = $conn->query($sqll)) {
+    $outputIndicatorsm = $result->fetch_all(MYSQLI_BOTH);
 
+}
 $sql_o = "select * from output_indicators where project_id='$prjid' group by output_id";
 $result = $conn->query($sql_o);
 

@@ -123,7 +123,7 @@ function mov($mov,$indicatorid): string
 
     }elseif($mov=='mov2'){
         if (!checkmov($indicatorid)){
-            return "<a href='../dashboard/mov/photos.php?id=".$indicatorid."'  >Upload</a>";
+            return "<a href='../dashboard/mov/photos.php?id=".$indicatorid."'  >Upload Photos</a>";
         }else{
             return "<strong class='text-success'>Verified</strong>";
         }
@@ -298,9 +298,9 @@ function prntmov($mov,$indicatorid): string
 {
 
     if ($mov=='mov1'){
-        return "<a> Coordination Meeting Minutes";
+        return "Coordination Meeting Minutes";
     }elseif($mov=='mov2'){
-        return "<a > Photos";
+        return "Photos";
     }elseif ($mov=='mov3'){
         return "Participant List";
     }elseif ($mov=='mov4'){
@@ -357,7 +357,7 @@ function mediamov($mov,$indicatorid): string
     if ($mov=='mov1'){
         return "<a href='../dashboard/meeting-minutes.php?id=".$indicatorid."'  > Coordination Meeting Minutes</a>";
     }elseif($mov=='mov2'){
-        return "<a href='../dashboard/mov/photos.php?id=".$indicatorid."'  > Photos</a>";
+        return "<a href='../dashboard/mov/photos.php?id=".$indicatorid."'> Photos</a>";
     }elseif ($mov=='mov3'){
         return "<a href='../dashboard/mov/participant-list.php?id=".$indicatorid."'  > Participant List</a>";
     }elseif ($mov=='mov4'){
