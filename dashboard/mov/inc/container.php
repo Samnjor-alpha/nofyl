@@ -34,7 +34,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="index.php" class="navbar-brand"><img
+            <a href="../workplan.php" class="navbar-brand"><img
                         src="https://www.nofyl.org/wp-content/uploads/Nofyl_logo.png"
                         alt="Northern Frontier Youth League" class="main-logo"></a>
         </div>
@@ -43,7 +43,7 @@
                 <ul class="nav navbar-nav" style="background:#fff;">
                     <li class="active"
                         style="background:#fff; font-weight:bold; font-size:17px; margin-top:20px; color:#000; letter-spacing:1px;">
-                        <a href="index.php">NoFYL Project Documentation Portal</a></li>
+                        <a href="../../workplan.php">NoFYL Project Documentation Portal</a></li>
                 </ul>
                 <?php if (!empty($_SESSION["userid"])) { ?>
                     <ul class="nav navbar-nav navbar-right" style="font-size:11px;">

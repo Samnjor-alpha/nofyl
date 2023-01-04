@@ -118,91 +118,91 @@ function mov($mov,$indicatorid): string
         if (!checkmov($indicatorid)){
             return "<a href='../dashboard/mov/meeting-minutes.php?id=".$indicatorid."'  >Upload Coordination Meeting Minutes</a>";
         }else{
-            return "<strong class='text-success'>Verified</strong>";
+            return "<a class='text-success' href='../dashboard/mov/meeting-minutes.php?id=".$indicatorid."' title='Coordination Meeting Minutes'  >Verified</a>";
         }
 
     }elseif($mov=='mov2'){
         if (!checkmov($indicatorid)){
             return "<a href='../dashboard/mov/photos.php?id=".$indicatorid."'  >Upload Photos</a>";
         }else{
-            return "<strong class='text-success'>Verified</strong>";
+            return "<a class='text-success' href='../dashboard/mov/photos.php?id=".$indicatorid."' title='Photos'>Verified</a>";
         }
 
     }elseif ($mov=='mov3'){
         if (!checkmov($indicatorid)){
             return "<a href='../dashboard/mov/participant-list.php?id=".$indicatorid."'  >Upload Participant List</a>";
         }else{
-            return "<strong class='text-success'>Verified</strong>";
+            return "<a class='text-success' href='../dashboard/mov/participant-list.php?id=".$indicatorid."' title='Participant List'  >Verified</a>";
         }
 
     }elseif ($mov=='mov4'){
         if (!checkmov($indicatorid)){
             return "<a href='../dashboard/mov/monthly-service-mapping-report.php?id=".$indicatorid."'  >Upload Monthly Service Mapping Report</a>";
         }else{
-            return "<strong class='text-success'>Verified</strong>";
+            return "<a class='text-success' href='../dashboard/mov/monthly-service-mapping-report.php?id=".$indicatorid."'  >Verified</a>";
         }
 
     }elseif ($mov=='mov5'){
         if (!checkmov($indicatorid)){
             return "<a href='../dashboard/mov/monthly-service-monitoring-report.php?id=".$indicatorid."'  >Upload Monthly Service Monitoring Report</a>";
         }else{
-            return "<strong class='text-success'>Verified</strong>";
+            return "<a class='text-success' href='../dashboard/mov/monthly-service-monitoring-report.php?id=".$indicatorid."' title='Monthly Service monitoring'   >Verified</a>";
         }
 
     }elseif ($mov=='mov6'){
         if (!checkmov($indicatorid)){
             return "<a href='../dashboard/mov/training-report.php?id=".$indicatorid."'  >Upload Training Report</a>";
         }else{
-            return "<strong class='text-success'>Verified</strong>";
+            return "<a class='text-success' class='text-success' href='../dashboard/mov/training-report.php?id=".$indicatorid."' title='Training Report'  >Verified</a>";
         }
 
     }elseif ($mov=='mov7'){
         if (!checkmov($indicatorid)){
             return "<a href='../dashboard/mov/awareness-activity-narrative-report.php?id=".$indicatorid."'  >Upload Awareness Activity Narrative Report</a>";
         }else{
-            return "<strong class='text-success'>Verified</strong>";
+            return "<a class='text-success' href='../dashboard/mov/awareness-activity-narrative-report.php?id=".$indicatorid."' title='Awareness Activity Report'  >Verified</a>";
         }
 
     }elseif ($mov=='mov8'){
         if (!checkmov($indicatorid)){
             return "<a href='../dashboard/mov/safety-audit-training-report.php?id=".$indicatorid."'  >Upload Safety Audit Training Report</a>";
         }else{
-            return "<strong class='text-success'>Verified</strong>";
+            return "<a class='text-success' href='../dashboard/mov/safety-audit-training-report.php?id=".$indicatorid."' title='Safety Audit Training Report'  >Verified</a>";
         }
 
     }elseif ($mov=='mov9'){
         if (!checkmov($indicatorid)){
             return "<a href='../dashboard/mov/safety-audit-report.php?id=".$indicatorid."'  >Upload Safety Audit Report</a>";
         }else{
-            return "<strong class='text-success'>Verified</strong>";
+            return "<a class='text-success' href='../dashboard/mov/safety-audit-report.php?id=".$indicatorid."'  >Verified</a>";
         }
 
     }elseif ($mov=='mov10'){
         if (!checkmov($indicatorid)){
             return "<a href='../dashboard/mov/cash-for-work-monitoring-report.php?id=".$indicatorid."'  >Upload Cash For Work Monitoring Report</a>";
         }else{
-            return "<strong class='text-success'>Verified</strong>";
+            return "<a class='text-success' href='../dashboard/mov/cash-for-work-monitoring-report.php?id=".$indicatorid."' title='Cash For Work Monitoring Report' >Verified</a>";
         }
 
     }elseif ($mov=='mov11'){
         if (!checkmov($indicatorid)){
             return "<a href='../dashboard/mov/cash-for-work-monitoring-report.php?id=".$indicatorid."'  >Upload Cash For work Narrative Report</a>";
         }else{
-            return "<strong class='text-success'>Verified</strong>";
+            return "<a class='text-success' href='../dashboard/mov/cash-for-work-monitoring-report.php?id=".$indicatorid."' title='Cash for work Narrative Report'  >Verified</a>";
         }
 
     }elseif ($mov=='mov12'){
         if (!checkmov($indicatorid)){
             return "<a href='../dashboard/mov/money-transfer-statement.php?id=".$indicatorid."'  >Upload Money Transfer Statement</a>";
         }else{
-            return "<strong class='text-success'>Verified</strong>";
+            return "<a class='text-success' href='../dashboard/mov/money-transfer-statement.php?id=".$indicatorid."' title='Money Transfer Statement' >Verified</a>";
         }
 
     }elseif ($mov=='mov13'){
         if (!checkmov($indicatorid)){
             return "<a href='../dashboard/mov/activity-monitoring-report.php?id=".$indicatorid."'  >Upload Activity Monitoring Report</a>";
         }else{
-            return "<strong class='text-success'>Verified</strong>";
+            return "<a class='text-success' href='../dashboard/mov/activity-monitoring-report.php?id=".$indicatorid."' title='Activity Monitoring Report'  >Verified</a>";
         }
 
 
@@ -210,84 +210,85 @@ function mov($mov,$indicatorid): string
         if (!checkmov($indicatorid)){
             return "<a href='../dashboard/mov/cfm-intake-forms.php?id=".$indicatorid."'  >Upload CFM Intake Forms</a>";
         }else{
-            return "<strong class='text-success'>Verified</strong>";
+            return "<a class='text-success' href='../dashboard/mov/cfm-intake-forms.php?id=".$indicatorid."' title='CFM Intake Forms'  >Verified!</a>";
         }
 
     }elseif ($mov=='mov15'){
         if (!checkmov($indicatorid)){
             return "<a href='../dashboard/mov/narrative.php?id=".$indicatorid."'  >Upload Narrative Report</a>";
         }else{
-            return "<strong class='text-success'>Verified</strong>";
+            return "<a class='text-success' href='../dashboard/mov/narrative.php?id=".$indicatorid."' title='Narrative Report' >Verified!</a>";
         }
 
     }elseif ($mov=='mov16'){
         if (!checkmov($indicatorid)){
             return "<a href='../dashboard/mov/meeting-minutes.php?id=".$indicatorid."'  >Upload Decongestion Coordination Meeting Minutes</a>";
         }else{
-            return "<strong class='text-success'>Verified</strong>";
+            return "<a class='text-success' href='../dashboard/mov/meeting-minutes.php?id=".$indicatorid."'  title='Decongestion Coordination Meeting minutes' >Verified!</a>";
         }
 
     }elseif ($mov=='mov17'){
         if (!checkmov($indicatorid)){
             return "<a href='../dashboard/mov/narrative.php?id=".$indicatorid."'  >Upload Human Interest Stories</a>";
         }else{
-            return "<strong class='text-success'>Verified</strong>";
+            return "<a class='text-success' href='../dashboard/mov/narrative.php?id=".$indicatorid."' title='Human Interest Stories'  >Verified</a>";
         }
 
     }elseif ($mov=='mov18'){
         if (!checkmov($indicatorid)){
             return "<a href='../dashboard/mov/activity-monitoring-report.php?id=".$indicatorid."'  >Upload Activity Monitoring Report</a>";
         }else{
-            return "<strong class='text-success'>Verified</strong>";
+            return "<a class='text-success' href='../dashboard/mov/activity-monitoring-report.php?id=".$indicatorid."' title='Activity Monitoring Report'  >Verified!</a>";
         }
 
     }elseif ($mov=='mov19'){
         if (!checkmov($indicatorid)){
             return "<a href='../dashboard/mov/land-tenure-documents.php?id=".$indicatorid."'  >Upload Land Tenure Documents</a>";
         }else{
-            return "<strong class='text-success'>Verified</strong>";
+            return "<a class='text-success' href='../dashboard/mov/land-tenure-documents.php?id=".$indicatorid."' title='Land Tenure Documents'  >Verified!</a>";
         }
 
     }elseif ($mov=='mov20'){
         if (!checkmov($indicatorid)){
             return "<a href='../dashboard/mov/beneficiary-list.php?id=".$indicatorid."'  >Upload Beneficiary List</a>";
         }else{
-            return "<strong class='text-success'>Verified</strong>";
+            return "<a class='text-success' href='../dashboard/mov/beneficiary-list.php?id=".$indicatorid."' title='Beneficiary List'  >Verified</a>";
         }
 
     }elseif ($mov=='mov21'){
         if (!checkmov($indicatorid)){
             return "<a href='../dashboard/mov/post-eviction-monitoring-report.php?id=".$indicatorid."'  >Upload Post Eviction Monitoring Report</a>";
         }else{
-            return "<strong class='text-success'>Verified</strong>";
+            return "<a class='text-success' href='../dashboard/mov/post-eviction-monitoring-report.php?id=".$indicatorid."' title='Post Eviction Monitoring Report'  >Verified</a>";
         }
 
     }elseif ($mov=='mov22'){
         if (!checkmov($indicatorid)){
             return "<a href='../dashboard/mov/money-transfer-statement.php?id=".$indicatorid."'  >Upload Money Transfer Statement</a>";
         }else{
-            return "<strong class='text-success'>Verified</strong>";
+            return "<a class='text-success' href='../dashboard/mov/money-transfer-statement.php?id=".$indicatorid."' title='Money Transfer Statement' >Verified</a>";
         }
 
     }elseif ($mov=='mov23'){
         if (!checkmov($indicatorid)){
             return "<a href='../dashboard/mov/assessment-report.php?id=".$indicatorid."'  >Upload Assessment Report</a>";
         }else{
-            return "<strong class='text-success'>Verified</strong>";
+            return "<a class='text-success' href='../dashboard/mov/assessment-report.php?id=".$indicatorid."' title='Assessment Report' >Verified</a>";
+
         }
 
     }elseif ($mov=='mov24'){
         if (!checkmov($indicatorid)){
             return "<a href='../dashboard/mov/quarterly-assessment-report.php?id=".$indicatorid."'  >Upload Quarterly Assessment Report</a>";
         }else{
-            return "<strong class='text-success'>Verified</strong>";
+            return "Verified";
         }
 
     }elseif ($mov=='mov25'){
         if (!checkmov($indicatorid)){
             return "<a href='../dashboard/mov/quarterly-eviction-dashboards.php?id=".$indicatorid."'  >Upload Quarterly Eviction Dashboards</a>";
         }else{
-            return "<strong class='text-success'>Verified</strong>";
+            return "Verified";
         }
 
     }else{
