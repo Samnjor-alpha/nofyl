@@ -64,6 +64,22 @@ alert('Select a file to upload');
 </script>";
         }
     }
+    if (isset($_GET['delete'])){
+        $page=$_SERVER['PHP_SELF']."?id=".$_GET['id'];
+        $getmedia=mysqli_query($conn,"select file_name from
+                     mov_media where id='".$_GET['delete']."' ");
+        $mrow=mysqli_fetch_assoc($getmedia);
+        $filename=$mrow['file_name'];
+        $delete="delete from mov_media where id='".$_GET['delete']."'";
+        if (mysqli_query($conn,$delete)){
+            mysqli_query($conn,"update output_indicators set upload_status='0' where id='".$_GET['id']."' ");
+            unlink("../uploads/$filename");
+            echo"<script>
+alert('Upload deleted successfully');
+window.location.href='$page'
+</script>";
+        }
+    }
 }
 else{
 

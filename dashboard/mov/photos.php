@@ -415,7 +415,9 @@ text/plain, application/pdf, image/*"
     <div class="row" style="padding-left:5%;">
 
         <div class="col02"><label for="title">Media:</label></div>
-            <?php echo   previewdoc(NOFYL_URL."dashboard/uploads/",$row['file_name']) ?>
+        <div class="col02"><?php echo   previewdoc(NOFYL_URL."dashboard/uploads/",$row['file_name']) ?></div>
+
+        <div class="col02"><a  class="text-danger" href="?id=<?= $_GET['id'] ?>&&delete=<?= $row['id']?>">Delete Attachment</a></div>
         </div>
 
 
