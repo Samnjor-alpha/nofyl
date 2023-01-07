@@ -389,7 +389,7 @@ include 'inc/header.php' ?>
                 <div class="col02"><label for="title">Report Title:</label></div>
 
                 <div class="col02-tab-text">
-                    <textarea id="" name="rtitle" style="width:80%; height:30px;"></textarea>
+                    <textarea id="" name="rtitle" style="width:80%; height:30px;"><?= $row['r_title']?? null ?></textarea>
                     <br> <?php $date = date('d-m-y h:i:s');
                     echo "<strong>Date:</strong>" . " " . $date; ?> </div>
 
@@ -410,7 +410,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Donor:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="donor" style="width:80%; height:30px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="donor" style="width:80%; height:30px;"><?= $row['donor']?? null ?></textarea></div>
 
 
             </div>
@@ -420,7 +420,7 @@ include 'inc/header.php' ?>
                 <div class="col02"><label for="title">Training Facilitator (s): (If multiple, use a comma after every
                         name)</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="facilitator" style="width:80%; height:50px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="facilitator" style="width:80%; height:50px;"><?= $row['facilitator']?? null ?></textarea></div>
 
 
             </div>
@@ -430,7 +430,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Dates of Training:</label></div>
 
-                <div class="col02-tab-text">From: <input name="fromD" type="date"/> <br><br>To: <input name="toD" type="date"/></div>
+                <div class="col02-tab-text">From: <input name="fromD" value="<?= $row['fromD']?? null ?>" type="date"/> <br><br>To: <input name="toD" value="<?= $row['toD']?? null ?>" type="date"/></div>
 
 
             </div>
@@ -440,7 +440,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Location of Training:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="loc_train" style="width:80%; height:50px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="loc_train" style="width:80%; height:50px;"><?= $row['loc_training']?? null ?></textarea></div>
 
 
             </div>
@@ -451,7 +451,7 @@ include 'inc/header.php' ?>
                 <div class="col02"><label for="title">Target Group (s): (If multiple, use a comma after every
                         name)</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="target_group" style="width:80%; height:50px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="target_group" style="width:80%; height:50px;"><?= $row['group_name']?? null ?></textarea></div>
 
 
             </div>
@@ -461,7 +461,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Delivery Method:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="delivery" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="delivery" style="width:80%; height:100px;"><?= $row['delivery']?? null ?></textarea></div>
 
 
             </div>
@@ -470,7 +470,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Number of Participants:</label></div>
 
-                <div class="col02-tab-text">Male: <input name="noM" type="number"/> <br><br>Female: <input name="noF" type="number"/></div>
+                <div class="col02-tab-text">Male: <input name="noM" value="<?= $row['no_males']?? null ?>" type="number"/> <br><br>Female: <input name="noF" value="<?= $row['no_females']??null ?>" type="number"/></div>
 
 
             </div>
@@ -480,7 +480,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Objectives:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="objective" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="objective" style="width:80%; height:100px;"><?= $row['objectives']?? null ?></textarea></div>
 
 
             </div>
@@ -489,7 +489,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Executive Summary:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="summary" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="summary" style="width:80%; height:100px;"><?= $row['summary'] ?? null ?></textarea></div>
 
 
             </div>
@@ -499,7 +499,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Introduction:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="intro" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="intro" style="width:80%; height:100px;"><?= $row['intro'] ?? null ?></textarea></div>
 
 
             </div>
@@ -509,7 +509,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Training Ground Norms:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="norms" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="norms" style="width:80%; height:100px;"><?= $row['ground_norms']?? null ?></textarea></div>
 
 
             </div>
@@ -518,7 +518,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Expectations from Participants:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="expectations" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="expectations" style="width:80%; height:100px;"><?= $row['expectation'] ?? null ?></textarea></div>
 
 
             </div>
@@ -530,7 +530,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Training Proceedings:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="proceedings" style="width:80%; height:300px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="proceedings" style="width:80%; height:300px;"><?= $row['proceedings'] ?? null ?></textarea></div>
 
 
             </div>
@@ -540,7 +540,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Training Impact:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="impact" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="impact" style="width:80%; height:100px;"><?= $row['impact'] ?? null ?></textarea></div>
 
 
             </div>
@@ -550,7 +550,8 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Conclusion:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="conclusion" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text">
+                    <textarea id="" name="conclusion" style="width:80%; height:100px;"><?= $row['conclusion'] ?? null ?></textarea></div>
 
 
             </div>
@@ -560,11 +561,11 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Recommendations:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="recommend" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="recommend" style="width:80%; height:100px;"><?= $row['recommendations'] ?? null ?></textarea></div>
 
 
             </div>
-
+            <?php if (empty($row['photos'])){ ?>
             <div class="row-title">Annexes</div>
 
             <div class="row" style="padding-left:5%;">
@@ -575,10 +576,11 @@ include 'inc/header.php' ?>
                            accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,
 text/plain, application/pdf, image/*"
                             ></div>
+                <?php } ?>
 
 
             </div>
-
+            <?php if (empty($row['participant'])){ ?>
             <div class="row" style="padding-left:5%;">
 
                 <div class="col02"><label for="title">Upload Participant List:</label></div>
@@ -587,16 +589,20 @@ text/plain, application/pdf, image/*"
                            accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,
 text/plain, application/pdf, image/*"
                             ></div>
-
+<?php } ?>
 
             </div>
 
 
             <div class="row">
-
+<?php if (mysqli_num_rows($trainreport)<1){ ?>
                 <input type="submit" name="saveReport" value="Save Report"
                        style="width:20%; height:50px; background:#027a14 !important; color:#fff; border:none;">
-
+<?php }else{ ?>
+        <input value="<?= $row['id'] ?>" type="hidden" name="tid">
+    <input type="submit" name="updateReport" value="Update Training Report"
+           style="width:20%; height:50px; background:#027a14 !important; color:#fff; border:none;">
+                <?php  } ?>
             </div>
 
         </form>

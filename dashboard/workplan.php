@@ -33,6 +33,7 @@ include '../controllers/workplan.php'
 
     <div class="card mt-3">
         <div class="card-body">
+       <?php if (mysqli_num_rows($projects)>0){ ?>
 <table id="example" class="table table-striped table-bordered" style="width:100%">
     <thead>
     <tr>
@@ -67,6 +68,9 @@ include '../controllers/workplan.php'
     </tbody>
 
 </table>
+            <?php }else{ ?>
+           <h5 class="text-center text-muted">No Projects assigned or created yet!</h5>
+            <?php } ?>
 </div>
     </div>
 
