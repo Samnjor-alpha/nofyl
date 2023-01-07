@@ -534,11 +534,16 @@ include 'inc/header.php' ?>
 
 
     <div class="row">
-
+<?php if (mysqli_num_rows($awareness)<1){ ?>
         <input type="submit" value="Save Report"
                name="saveReport"
                style="width:20%; height:50px; background:#027a14 !important; color:#fff; border:none;">
-
+<?php }else { ?>
+        <input type="hidden" name="aid" value="<?= $row['id'] ?>">
+    <input type="submit" value="Update Report"
+           name="updateReport"
+           style="width:20%; height:50px; background:#027a14 !important; color:#fff; border:none;">
+        <?php } ?>
     </div>
 
     </form>
