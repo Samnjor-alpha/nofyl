@@ -501,10 +501,14 @@ include 'inc/header.php' ?>
 
 
             <div class="row">
-
-                <input type="submit" name="saveReport" value="Save Update"
+<?php if (mysqli_num_rows($activity)<1){ ?>
+                <input type="submit" name="saveReport" value="Save Report"
                        style="width:20%; height:50px; background:#027a14 !important; color:#fff; border:none;">
-
+<?php } else{ ?>
+        <input value="<?= $row['id'] ?>" type="hidden" name="uid">
+    <input type="submit" name="updateReport" value="Update Report"
+           style="width:20%; height:50px; background:#027a14 !important; color:#fff; border:none;">
+                <?php } ?>
             </div>
 
         </form>

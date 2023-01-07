@@ -432,7 +432,7 @@ include 'inc/header.php' ?>
             </div>
 
             <div class="row" style="padding-left:5%;">
-
+                <?php if (is_null($row['sheet'])){ ?>
                 <div class="col02"><label for="title">Upload Beneficiary Sheet :</label></div>
 
                 <div class="col02-tab-text">
@@ -440,9 +440,9 @@ include 'inc/header.php' ?>
                            accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,
 text/plain, application/pdf, image/*">
                 </div>
-<?php if (!is_null($row['sheet'])){
-    echo previewdoc(NOFYL_URL . "dashboard/uploads/", $row['sheet']) ;
- }else{?>
+
+  <?php }else{  echo previewdoc(NOFYL_URL . "dashboard/uploads/", $row['sheet']) ; ?>
+
                 <?php } ?>
 
             </div>
@@ -460,10 +460,14 @@ text/plain, application/pdf, image/*">
 
 
             <div class="row">
-
+<?php if (mysqli_num_rows($cow)<1){ ?>
                 <input type="submit" name="saveReport" value="Save Report"
                        style="width:20%; height:50px; background:#027a14 !important; color:#fff; border:none;">
-
+<?php }else{ ?>
+        <input value="<?= $row['id'] ?>" type="hidden" name="cid">
+    <input type="submit" name="updateReport" value="Update Report"
+           style="width:20%; height:50px; background:#027a14 !important; color:#fff; border:none;">
+                <?php } ?>
             </div>
 
         </form>
