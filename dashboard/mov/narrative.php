@@ -394,8 +394,8 @@ include 'inc/header.php' ?>
                         <thead>
                         <tr>
                             <th>Activity Code: <br>
-                                <input name="act_code" type="number"></th>
-                            <th>Activity Name:<br> <textarea id="" name="activity" style="width:80%; height:50px;"></textarea>
+                                <input name="act_code" type="number" value="<?= $row['act_code'] ?? null  ?>"></th>
+                            <th>Activity Name:<br> <textarea id="" name="activity" style="width:80%; height:50px;"><?= $row['act_name'] ?? null  ?></textarea>
                             </th>
 
                         </tr>
@@ -412,7 +412,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Activity Description: </label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="act_desc" style="width:80%; height:200px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="act_desc" style="width:80%; height:200px;"><?= $row['act_desc'] ?></textarea></div>
 
 
             </div>
@@ -421,7 +421,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Activity Indicator:</label></div>
 
-                <div class="col02-tab-text"><textarea  name=act_ind"" style="width:80%; height:50px;"></textarea></div>
+                <div class="col02-tab-text"><textarea  name=act_ind"" style="width:80%; height:50px;"><?= $row['act_ind'] ?></textarea></div>
 
 
             </div>
@@ -435,11 +435,11 @@ include 'inc/header.php' ?>
                         <thead>
                         <tr>
                             <th>Indicator Target: <br>
-                                <input  name="ind_target" type="number"></th>
+                                <input  name="ind_target" value="<?= $row['ind_target'] ?>" type="number"></th>
                             <th>Cumulative Target Reached:<br> <input
-                                        name="cu_target"
+                                        name="cu_target" value="<?= $row['cu_target'] ?>"
                                         type="number"></th>
-                            <th>Target Reached:<br> <input name="target" type="number"></th>
+                            <th>Target Reached:<br> <input name="target"  value="<?= $row['target']?>" type="number"></th>
                         </tr>
                         </thead>
                     </table>
@@ -457,8 +457,8 @@ include 'inc/header.php' ?>
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>From: <br> <input name="fromD" type="date"></th>
-                            <th>To:<br> <input name="toD" type="date"></th>
+                            <th>From: <br> <input name="fromD" value="<?= $row['fromD']?>" type="date"></th>
+                            <th>To:<br> <input name="toD" type="date" value="<?= $row['toD']?>"></th>
                         </tr>
                         </thead>
                     </table>
@@ -476,8 +476,8 @@ include 'inc/header.php' ?>
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>Name: <br> <input name="name" type="text" style="width:100%"></th>
-                            <th>Title:<br> <input name="title" type="text" style="width:100%"></th>
+                            <th>Name: <br> <input name="name" type="text" value="<?= $row['name_reporter']?>" style="width:100%"></th>
+                            <th>Title:<br> <input name="title" type="text" value="<?= $row['title']?>" style="width:100%"></th>
                         </tr>
                         </thead>
                     </table>
@@ -491,7 +491,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Summary:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="summary" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="summary" style="width:80%; height:100px;"><?= $row['summary'] ?></textarea></div>
 
 
             </div>
@@ -501,7 +501,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Key Achievements:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="achievement" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="achievement" style="width:80%; height:100px;"><?= $row['achievements'] ?></textarea></div>
 
 
             </div>
@@ -510,7 +510,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Challenges: </label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="challenge" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="challenge" style="width:80%; height:100px;"><?= $row['challenges'] ?></textarea></div>
 
 
             </div>
@@ -520,7 +520,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Recommendations:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="recommendation" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="recommendation" style="width:80%; height:100px;"><?= $row['recommendations'] ?></textarea></div>
 
 
             </div>
@@ -529,7 +529,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Coordination & Advocacy:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="advocacy" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="advocacy" style="width:80%; height:100px;"><?= $row['advocancy'] ?></textarea></div>
 
 
             </div>
@@ -540,12 +540,12 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Human Interest Stories:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="stories" style="width:80%; height:300px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="stories" style="width:80%; height:300px;"><?= $row['stories'] ?></textarea></div>
 
 
             </div>
 
-
+<?php if (is_null($row['photos'])){ ?>
             <div class="row" style="padding-left:5%;">
 
                 <div class="col02"><label for="title">Upload:</label></div>
@@ -557,13 +557,17 @@ text/plain, application/pdf, image/*"
 
 
             </div>
-
+            <?php } ?>
 
             <div class="row">
-
+<?php if (mysqli_num_rows($narrative)<1){ ?>
                 <input type="submit" name="saveReport" value="Save Report"
                        style="width:20%; height:50px; background:#027a14 !important; color:#fff; border:none;">
-
+<?php } else { ?>
+        <input value="<?= $row['id'] ?>" type="hidden" name="nid">
+                <input type="submit" name="updateReport" value="Update Report"
+                       style="width:20%; height:50px; background:#027a14 !important; color:#fff; border:none;">
+                <?php } ?>
             </div>
 
         </form>

@@ -1,5 +1,8 @@
 <?php
 if (isset($_GET['id'])&&!empty($_GET['id'])) {
+    $indid=$_GET['id'];
+    $narrative=mysqli_query($conn,"select  * from narrative   where indicator_id=$indid");
+    $row= mysqli_fetch_assoc($narrative);
 if (isset($_POST['saveReport']))
 {
     $targetDir = "../uploads/";
@@ -72,6 +75,67 @@ if (isset($_POST['saveReport']))
 
 
 }
+    if (isset($_POST['updateReport']))
+    {
+
+
+        $activity=$_POST['activity']??null;
+        $act_code=$_POST['act_code']??null;
+        $act_desc=$_POST['act_desc']??null;
+        $act_ind=$_POST['act_ind']??null;
+        $target=$_POST['target']??null;
+        $ind_target=$_POST['ind_target']??null;
+        $cu_target=$_POST['cu_target']??null;
+        $fromDate=date('Y-m-d',strtotime($_POST['fromD'])) ??null;
+        $toDate=date('Y-m-d',strtotime($_POST['toD'])) ??null;
+        $name=$_POST['name']??null;
+        $title=$_POST['title']??null;
+        $summary=$_POST['summary']??null;
+        $achievement=$_POST['achievement']??null;
+        $challenge=$_POST['challenge']??null;
+        $recommendation=$_POST['recommendation']??null;
+        $advocacy=$_POST['advocacy']??null;
+        $stories=$_POST['stories']??null;
+        $nid=$_POST['nid'];
+
+// Check whether file type is valid
+
+                $add = "update narrative set
+                   act_code='$act_code',
+                   act_name='$activity',
+                   act_desc='$act_desc',
+                   act_ind='$act_ind',
+                   ind_target='$ind_target',
+                   cu_target='$cu_target',
+                   target='$target',
+                   fromD='$fromDate',
+                   toD='$toDate',
+                   name_reporter='$name',
+                   title='$title',
+                   summary='$summary',
+                   achievements='$achievement',
+                   challenges='$challenge',  
+                   recommendations='$recommendation',
+                   advocancy='$advocacy',
+                   stories='$stories'
+                   where id='$nid'";
+
+                if (mysqli_query($conn, $add)) {
+                    $update=mysqli_query($conn, "UPDATE output_indicators set upload_status='1' where id='".$_GET['id']."'");
+                    echo "<script>
+            alert('Report updated successfully');
+            window.location.href = '../clusters.php?id=".getprojectid($_GET['id'])."';
+</script>";
+                }
+            }
+
+
+
+
+
+
+
+
 
 
 

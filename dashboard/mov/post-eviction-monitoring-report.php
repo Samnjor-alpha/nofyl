@@ -392,9 +392,9 @@ include 'inc/header.php' ?>
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>Activity Code: <br> <input
+                            <th>Activity Code: <br> <input value="<?= $row['act_code'] ?>"
                                          name="act_code" type="text" style="width:100%;"></th>
-                            <th>Activity Name:<br> <input name="activity" type="text" style="width:100%;"></th>
+                            <th>Activity Name:<br> <input name="activity" value="<?= $row['act_name'] ?>" type="text" style="width:100%;"></th>
 
                         </tr>
                         </thead>
@@ -409,7 +409,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Activity Description:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="act_desc" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="act_desc" style="width:80%; height:100px;"><?= $row['act_desc'] ?></textarea></div>
 
 
             </div>
@@ -418,7 +418,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Activity Indicator:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="act_ind" style="width:80%; height:70px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="act_ind" style="width:80%; height:70px;"><?= $row['act_ind'] ?></textarea></div>
 
 
             </div>
@@ -432,9 +432,9 @@ include 'inc/header.php' ?>
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>Indicator Target <br> <input name="ind_target" type="number"></th>
-                            <th>Cumulative Reached<br> <input name="cu_target" type="number"></th>
-                            <th>Target Reached<br> <input name="target" type="number"></th>
+                            <th>Indicator Target <br> <input name="ind_target" value="<?= $row['ind_target'] ?>" type="number"></th>
+                            <th>Cumulative Reached<br> <input name="cu_target" type="number" value="<?= $row['cu_target'] ?>"></th>
+                            <th>Target Reached<br> <input name="target" type="number" value="<?= $row['target'] ?>" ></th>
 
                         </tr>
                         </thead>
@@ -454,11 +454,11 @@ include 'inc/header.php' ?>
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>District <br> <input name="district" type="text"></th>
-                            <th>Men<br> <input name="men" type="number"></th>
-                            <th>Women<br> <input name="women" type="number"></th>
-                            <th>Boys<br> <input type="number" name="boys"></th>
-                            <th>Girls <br> <input type="number" name="girls"></th>
+                            <th>District <br> <input name="district" value="<?= $row['district']??null ?>" type="text"></th>
+                            <th>Men<br> <input name="men" type="number" value="<?= $row['men']??null ?>"></th>
+                            <th>Women<br> <input name="women" type="number" value="<?=$row['women']?? null ?>"></th>
+                            <th>Boys<br> <input type="number" name="boys" value="<?=$row['boys']?? null ?>"></th>
+                            <th>Girls <br> <input type="number" name="girls" value="<?=$row['girls']?? null ?>"></th>
 
 
                         </tr>
@@ -477,10 +477,10 @@ include 'inc/header.php' ?>
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>Activity<br> <input name="act" type="text"></th>
-                            <th>Target planned <br> <input name="planned" type="number"></th>
-                            <th>Target Achieved<br> <input type="number" name="achieved"></th>
-                            <th>% Achievement<br> <input type="number" name="achievement"></th>
+                            <th>Activity<br> <input name="act" value="<?=$row['act_target']?? null ?>" type="text"></th>
+                            <th>Target planned <br> <input name="planned" value="<?=$row['targ_planned']?? null ?>" type="number"></th>
+                            <th>Target Achieved<br> <input type="number" value="<?=$row['targ_achieved']?? null ?>" name="achieved"></th>
+                            <th>% Achievement<br> <input type="number" value="<?=$row['achievement']?? null ?>" name="achievement"></th>
 
                         </tr>
                         </thead>
@@ -499,8 +499,8 @@ include 'inc/header.php' ?>
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>From<br> <input type="date" name="fromD"></th>
-                            <th>To <br> <input type="date" name="toD"></th>
+                            <th>From<br> <input value="<?=$row['fromD']?? null ?>" type="date" name="fromD"></th>
+                            <th>To <br> <input type="date" value="<?=$row['toD']?? null ?>" name="toD"></th>
 
                         </tr>
                         </thead>
@@ -519,8 +519,8 @@ include 'inc/header.php' ?>
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>Name<br> <input type="text" name="name" style="width:100%;"></th>
-                            <th>Title <br> <input type="text" name="title" style="width:100%;"></th>
+                            <th>Name<br> <input type="text" value="<?=$row['name']?? null ?>" name="name" style="width:100%;"></th>
+                            <th>Title <br> <input type="text" value="<?=$row['title']?? null ?>" name="title" style="width:100%;"></th>
 
                         </tr>
                         </thead>
@@ -535,7 +535,7 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Summary:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="summary" style="width:80%; height:100px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="summary" style="width:80%; height:100px;"><?=$row['summary'] ?></textarea></div>
 
 
             </div>
@@ -544,12 +544,12 @@ include 'inc/header.php' ?>
 
                 <div class="col02"><label for="title">Human Interest Stories:</label></div>
 
-                <div class="col02-tab-text"><textarea id="" name="stories" style="width:80%; height:300px;"></textarea></div>
+                <div class="col02-tab-text"><textarea id="" name="stories" style="width:80%; height:300px;"><?=$row['stories']?? null ?></textarea></div>
 
 
             </div>
 
-
+<?php if (is_null($row['photo'])){ ?>
             <div class="row" style="padding-left:5%;">
 
                 <div class="col02"><label for="title">Upload:</label></div>
@@ -561,16 +561,20 @@ text/plain, application/pdf, image/*"
 
 
             </div>
-
+<?php } ?>
 
 
 
 
     <div class="row">
-
+<?php if (mysqli_num_rows($posteviction)<1){ ?>
         <input type="submit" name="saveReport" value="Save Report"
                style="width:20%; height:50px; background:#027a14 !important; color:#fff; border:none;">
-
+<?php }else{ ?>
+        <input name="pid" value="<?=$row['id'] ?>" type="hidden">
+    <input type="submit" name="updateReport" value="Update Report"
+           style="width:20%; height:50px; background:#027a14 !important; color:#fff; border:none;">
+        <?php } ?>
     </div>
 
     </form>
