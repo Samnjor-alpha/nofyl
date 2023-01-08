@@ -154,7 +154,7 @@ include '../controllers/viewproject.php'
         </div>
     <?php }elseif(!checkapproval($_GET['id'])){ ?>
     <div class="offset-10 fixed-top mt-5">
-        <button class="btn btn-sm btn-primary" id="download">Download Documentation</button>
+        <a class="btn btn-success" href="movs.php?id=<?= $_GET['id'] ?>">View MOVs</a>
     </div>
 
     <?php }

@@ -21,6 +21,7 @@ include '../controllers/frameworkcontroller.php'
     <script src="assets/pdf.js"></script>
     <link rel="icon" href="https://www.nofyl.org/wp-content/uploads/Nofyl_logo.png" sizes="32x32"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+    <?php include '../css/header.php'?>
     <style>
         .row {
             width: 100%;
