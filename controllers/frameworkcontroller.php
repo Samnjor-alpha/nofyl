@@ -93,16 +93,11 @@ alert('all fields are required');
         }
     }
 }
-function getclusterid($outcome_id)
-{
-    global $conn;
-    $sql=mysqli_query($conn,"select cluster_id from project_outcomes where id='$outcome_id'");
-    return mysqli_fetch_assoc($sql)['cluster_id'];
 
-}
 
 if (isset($_POST['saveClusters'])){
     $clusterID = $_POST['cid'];
+    $indexmov=$_POST['indexmov'];
     $outcome=$_POST['outcome'];
     $output=$_POST['output'];
     $activities = $_POST['activity'];
@@ -123,7 +118,7 @@ alert('Outcome out put is required');
             if (!empty($outcome)) {
 
 
-                    if ($conn->query("insert into project_outcomes (project_id, outcome, cluster_id) values ($prjid, '" . $outcome . "', $clusterID)")) {
+                    if ($conn->query("insert into project_outcomes (project_id,indexmov,outcome, cluster_id) values ('$prjid','$indexmov', '" . $outcome . "', '$clusterID')")) {
 
                         $outcomeID = $conn->insert_id;
                         foreach ($_POST['output'] as $o => $output) {
@@ -221,5 +216,45 @@ alert('Outcome out put is required');
 }
 
 
+if (isset($_POST['update_act'])){
+    $outputID=$_POST['outcome_id'];
+    $activity=$_POST['activity'];
+    $toSave[] = $activity;
+    if (empty($activity)|| empty($outputID)){
+        echo "<script>
+alert('All fields are required');
+</script>";
+    }else{
+        $sql="update output_indicators set activities='" . json_encode($toSave) . "' where output_id='$outputID'";
+        if (mysqli_query($conn,$sql)){
+            $location='clusters.php?id='.$prjid.'';
+            echo "<script>
+alert('Activity updated successfully');
+window.location.href='$location';
+</script>";
 
+        }
+    }
 
+}
+if (isset($_POST['add_act'])){
+    $outputID=$_POST['outcome_id'];
+    $activity=$_POST['activity'];
+    $toSave[] = $activity;
+    if (empty($activity)|| empty($outputID)){
+        echo "<script>
+alert('All fields are required');
+</script>";
+    }else{
+        $sql="update output_indicators set activities='" . json_encode($toSave) . "' where output_id='$outputID'";
+        if (mysqli_query($conn,$sql)){
+            $location='clusters.php?id='.$prjid.'';
+            echo "<script>
+alert('Activity added successfully');
+window.location.href='$location';
+</script>";
+
+        }
+    }
+
+}

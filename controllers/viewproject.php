@@ -48,7 +48,7 @@ if (isset($_POST['revoke'])){
         header("refresh:2;url=viewproject.php?id=$prjid");
     }
 }
-function checkcomment($id): bool
+function checkcomment($id)
 {
     global $conn;
     $getdata=mysqli_query($conn,"select * from wp_comments where prj_id='$id'");
@@ -58,7 +58,7 @@ function checkcomment($id): bool
         return false;
     }
 }
-function checkmovcomments($id): bool
+function checkmovcomments($id)
 {
     global $conn;
     $getdata=mysqli_query($conn,"select * from movs_cmnts where prj_id='$id'");
@@ -69,7 +69,7 @@ function checkmovcomments($id): bool
     }
 }
 
-function checkgrants($id): bool
+function checkgrants($id)
 {
     global $conn;
     $getdata=mysqli_query($conn,"select * from project_grants where prj_id='$id'");

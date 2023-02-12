@@ -19,7 +19,7 @@ include '../controllers/frameworkcontroller.php'
     .modal-dialog{
         overflow-y: initial !important
     }
-    .modal-body{
+    #modal-body{
         height: 80vh;
         overflow-y: auto;
     }
@@ -619,10 +619,14 @@ $k=getincrement($ik);
                                     <td><?php echo $outputIndicator['target'] ?? null ?></td>
                                     <td><?php echo $outputIndicator['indicator'] ?? null ?></td>
                                     <td><?php if(!is_null($outputIndicator['activities'])) {
-                                            foreach (json_decode($outputIndicator['activities']) as $activity) {
-                                                echo "<p>".$activity."</p>" ?? null;
-                                            }
-                                        } ?>
+                                            foreach (json_decode($outputIndicator['activities']) as $activity) {?>
+                                        <a  data-toggle='modal' data-act='<?= $activity?>' data-id='<?= $outputIndicator['output_id'] ?>' class='text-primary btn btn-sm'  data-target='#editact' title='Edit Activity'><?= $activity ?></a>
+
+
+                                        <?php    }
+                                        }else{?>
+                                        <a data-toggle='modal' class='text-primary btn btn-sm'  data-id='<?= $outputIndicator['output_id'] ?>' data-target='#addact' title='Add Activity'>N/A</a>
+                                        <?php }?>
                                     </td>
                                 </tr>
                             <?php  $k=getincrement($k++);
@@ -644,7 +648,7 @@ $k=getincrement($ik);
                 <h5 class="modal-title">Add Output</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div  class="modal-body">
+            <div id="modal-body" class="modal-body">
                 <form method="post" action="" class="">
                     <input  type="hidden" name="outcome_id" id="idd">
                     <div class="form-group">
@@ -692,6 +696,54 @@ $k=getincrement($ik);
 
                     <div class="form-group mt-2">
                         <button type="submit" name="add_output" class="btn btn-success">Save</button>
+                    </div>
+                </form>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal  fade" id="editact" tabindex="-1" data-bs-backdrop="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Activity</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div  class="modal-body">
+                <form method="post" action="" class="">
+                    <input type="hidden"   name="outcome_id" id="idd">
+                    <textarea class="form-control"  name="activity" id="editact_txt"></textarea>
+                    <div class="form-group mt-2">
+                        <button type="submit" name="update_act" class="btn btn-success">Update</button>
+                    </div>
+                </form>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal  fade" id="addact" tabindex="-1" data-bs-backdrop="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Activity</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div  class="modal-body">
+                <form method="post" action="" class="">
+                    <input  type="hidden" name="outcome_id" id="idd">
+                    <textarea name="activity" class="form-control" id="addact_txt"></textarea>
+                    <div class="form-group mt-2">
+                        <button type="submit" name="add_act" class="btn btn-success">Add</button>
                     </div>
                 </form>
 
@@ -766,44 +818,47 @@ $k=getincrement($ik);
 
 
         $("#employee_table tr:last").after("<tr style='border-top: 1px solid #ccc; margin-top:0px; padding-top:0px;float: left;' id='row_out" + $rowout + "'>" +
-            "<td><h3>Outcome<p id='no'></p></h3><textarea  name='outcome[]' rows='4' cols='100'></textarea> </td><td><input type='button' value='X' class='col2-buttonX' onclick=delete_row_out('row_out" + $rowout + "')><td>  <input type='button' onclick='add_row();' value='+ Add Output' class='col2-button'></td></tr>");
+            "<td><h3>Mov Index<p id='no'></p></h3><input  name='indexmov'><h3>Outcome<p id='no'></p></h3><textarea  name='outcome[]' rows='4' cols='100'></textarea> </td><td><input type='button' value='X' class='col2-buttonX' onclick=delete_row_out('row_out" + $rowout + "')><td>  <input type='button' onclick='add_row();' value='+ Add Output' class='col2-button'></td></tr>");
     }
     function delete_row_out(rowno) {
         $('#' + rowno).remove();
     }
 
         $(document).ready(function(){
-        $("#updatedriver").modal({
-            keyboard: true,
-            show: false,
+            $("#addact").modal({
+                keyboard: true,
+                show: false,
 
-        }).on("show.bs.modal", function(event){
-            var button = $(event.relatedTarget); // button the triggered modal
-            var tripid = button.data("id");
+            }).on("show.bs.modal", function(event){
+                var button = $(event.relatedTarget); // button the triggered modal
+                var id = button.data("id");
 
 
 
-            //displays values to modal
 
-            $(".modal-body #id").val( tripid );
+                //displays values to modal
 
-        });
-        $("#viewdriver").modal({
+                $(".modal-body #idd").val( id );
+
+
+
+            });
+        $("#editact").modal({
         keyboard: true,
         show: false,
 
     }).on("show.bs.modal", function(event){
         var button = $(event.relatedTarget); // button the triggered modal
         var id = button.data("id");
-        var dname = button.data("dname");
+        var activity = button.data("act");
 
 
 
         //displays values to modal
 
-        $(".modal-body #id").val( id );
-        $(".modal-body #id").val( id );
-        $(".modal-body #name").val( dname );
+        $(".modal-body #idd").val( id );
+
+        $(".modal-body #editact_txt").val( activity );
 
     });
         $("#viewoutcome").modal({

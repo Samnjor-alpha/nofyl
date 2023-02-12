@@ -16,6 +16,7 @@ if (isset($_GET['id'])&&!empty($_GET['id'])) {
         $nDate=$_POST['nDate'];
         $agenda=$_POST['agenda'];
         $details=$_POST['details'];
+        $date=date('Y-m-d H:i:s');
         if (empty($title)|| empty($chaired) || empty($agenda)|| empty($details)|| empty($nDate)){
             echo '<script>
 alert("all fields are required");
@@ -23,7 +24,7 @@ alert("all fields are required");
         }else{
             $ind_id=trim($_GET['id']);
             $ndate=date('Y-m-d',strtotime($nDate));
-            $addminutes="insert into minutes set indicator_id='".$_GET['id']."',members='$members',title='$title',chairedby='$chaired',next_meeting='$ndate'";
+            $addminutes="insert into minutes set indicator_id='".$_GET['id']."',members='$members',title='$title',chairedby='$chaired',next_meeting='$ndate',posted_at='$date'";
             if (mysqli_query($conn,$addminutes)){
                 $minuteid=mysqli_insert_id($conn);
                 foreach ($_POST['agenda'] as $k => $agenda) {
@@ -55,6 +56,7 @@ if (isset($_POST['updateMinutes'])) {
     $agenda = $_POST['agenda'];
     $details = $_POST['details'];
     $minid=$_POST['min_id'];
+
 
     if (empty($title) || empty($chaired) || empty($agenda) || empty($details) || empty($nDate)) {
         echo '<script>

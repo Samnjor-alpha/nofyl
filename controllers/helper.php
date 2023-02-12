@@ -356,55 +356,55 @@ function mediamov($mov,$indicatorid): string
 {
 
     if ($mov=='mov1'){
-        return "<a href='../dashboard/meeting-minutes.php?id=".$indicatorid."'  > Coordination Meeting Minutes</a>";
+        return "<a  title='Click to Download' href='../dashboard/meeting-minutes.php?id=".$indicatorid."'  > Coordination Meeting Minutes</a>";
     }elseif($mov=='mov2'){
-        return "<a href='../dashboard/mov/photos.php?id=".$indicatorid."'> Photos</a>";
+        return "<a title='Click to Download' href='..//dashboard/mov/photos.php?id=".$indicatorid."'> Photos</a>";
     }elseif ($mov=='mov3'){
-        return "<a href='../dashboard/mov/participant-list.php?id=".$indicatorid."'  > Participant List</a>";
+        return "<a title='Click to Download' href='..//dashboard/mov/participant-list.php?id=".$indicatorid."'  > Participant List</a>";
     }elseif ($mov=='mov4'){
-        return "<a href='../dashboard/mov/monthly-service-mapping-report.php?id=".$indicatorid."'  > Monthly Service Mapping Report</a>";
+        return "<a title='Click to Download' href='..//dashboard/mov/monthly-service-mapping-report.php?id=".$indicatorid."'  > Monthly Service Mapping Report</a>";
     }elseif ($mov=='mov5'){
-        return "<a href='../dashboard/mov/monthly-service-monitoring-report.php?id=".$indicatorid."'  > Monthly Service Monitoring Report</a>";
+        return "<a title='Click to Download' href='..//dashboard/mov/monthly-service-monitoring-report.php?id=".$indicatorid."'  > Monthly Service Monitoring Report</a>";
     }elseif ($mov=='mov6'){
-        return "<a href='../dashboard/training-report.php?id=".$indicatorid."'  > Training Report</a>";
+        return "<a title='Click to Download' href='..//dashboard/training-report.php?id=".$indicatorid."'  > Training Report</a>";
     }elseif ($mov=='mov7'){
-        return "<a href='../dashboard/awareness-activity-narrative-report.php?id=".$indicatorid."'  > Awareness Activity Narrative Report</a>";
+        return "<a title='Click to Download' href='..//dashboard/awareness-activity-narrative-report.php?id=".$indicatorid."'  > Awareness Activity Narrative Report</a>";
     }elseif ($mov=='mov8'){
-        return "<a href='../dashboard/mov/safety-audit-training-report.php?id=".$indicatorid."'  > Safety Audit Training Report</a>";
+        return "<a title='Click to Download' href='..//dashboard/mov/safety-audit-training-report.php?id=".$indicatorid."'  > Safety Audit Training Report</a>";
     }elseif ($mov=='mov9'){
-        return "<a href='../dashboard/mov/safety-audit-report.php?id=".$indicatorid."'  > Safety Audit Report</a>";
+        return "<a title='Click to Download' href='..//dashboard/mov/safety-audit-report.php?id=".$indicatorid."'  > Safety Audit Report</a>";
     }elseif ($mov=='mov10'){
-        return "<a href='../dashboard/cash-for-work-monitoring-report.php?id=".$indicatorid."'  > Cash For Work Monitoring Report</a>";
+        return "<a title='Click to Download' href='..//dashboard/cash-for-work-monitoring-report.php?id=".$indicatorid."'  > Cash For Work Monitoring Report</a>";
     }elseif ($mov=='mov11'){
-        return "<a href='../dashboard/mov/cash-for-work-monitoring-report.php?id=".$indicatorid."'  > Cash For work Narrative Report</a>";
+        return "<a title='Click to Download' href='..//dashboard/mov/cash-for-work-monitoring-report.php?id=".$indicatorid."'  > Cash For work Narrative Report</a>";
     }elseif ($mov=='mov12'){
-        return "<a href='../dashboard/mov/money-transfer-statement.php?id=".$indicatorid."'  > Money Transfer Statement</a>";
+        return "<a title='Click to Download' href='..//dashboard/mov/money-transfer-statement.php?id=".$indicatorid."'  > Money Transfer Statement</a>";
     }elseif ($mov=='mov13'){
-        return "<a href='../dashboard/activity-monitoring-report.php?id=".$indicatorid."'  > Activity Monitoring Report</a>";
+        return "<a title='Click to Download' href='..//dashboard/activity-monitoring-report.php?id=".$indicatorid."'  > Activity Monitoring Report</a>";
     }elseif ($mov=='mov14'){
-        return "<a href='../dashboard/mov/cfm-intake-forms.php?id=".$indicatorid."'  > CFM Intake Forms</a>";
+        return "<a title='Click to Download' href='..//dashboard/mov/cfm-intake-forms.php?id=".$indicatorid."'  > CFM Intake Forms</a>";
     }elseif ($mov=='mov15'){
-        return "<a href='../dashboard/narrative.php?id=".$indicatorid."'  > Narrative Report</a>";
+        return "<a title='Click to Download' href='..//dashboard/narrative.php?id=".$indicatorid."'  > Narrative Report</a>";
     }elseif ($mov=='mov16'){
-        return "<a href='../dashboard/mov/meeting-minutes.php?id=".$indicatorid."'  > Decongestion Coordination Meeting Minutes</a>";
+        return "<a title='Click to Download' href='..//dashboard/mov/meeting-minutes.php?id=".$indicatorid."'  > Decongestion Coordination Meeting Minutes</a>";
     }elseif ($mov=='mov17'){
-        return "<a href='../dashboard/narrative.php?id=".$indicatorid."'  > Human Interest Stories</a>";
+        return "<a title='Click to Download' href='..//dashboard/narrative.php?id=".$indicatorid."'  > Human Interest Stories</a>";
     }elseif ($mov=='mov18'){
-        return "<a href='../dashboard/activity-monitoring-report.php?id=".$indicatorid."'  > Activity Monitoring Report</a>";
+        return "<a title='Click to Download' href='..//dashboard/activity-monitoring-report.php?id=".$indicatorid."'  > Activity Monitoring Report</a>";
     }elseif ($mov=='mov19'){
-        return "<a href='../dashboard/mov/land-tenure-documents.php?id=".$indicatorid."'  > Land Tenure Documents</a>";
+        return "<a title='Click to Download' href='..//dashboard/mov/land-tenure-documents.php?id=".$indicatorid."'  > Land Tenure Documents</a>";
     }elseif ($mov=='mov20'){
-        return "<a href='../dashboard/mov/beneficiary-list.php?id=".$indicatorid."'  > Beneficiary List</a>";
+        return "<a title='Click to Download' href='..//dashboard/mov/beneficiary-list.php?id=".$indicatorid."'  > Beneficiary List</a>";
     }elseif ($mov=='mov21'){
-        return "<a href='../dashboard/post-eviction-monitoring-report.php?id=".$indicatorid."'  > Post Eviction Monitoring Report</a>";
+        return "<a title='Click to Download' href='..//dashboard/post-eviction-monitoring-report.php?id=".$indicatorid."'  > Post Eviction Monitoring Report</a>";
     }elseif ($mov=='mov22'){
-        return "<a href='../dashboard/mov/money-transfer-statement.php?id=".$indicatorid."'  > Money Transfer Statement</a>";
+        return "<a title='Click to Download' href='..//dashboard/mov/money-transfer-statement.php?id=".$indicatorid."'  > Money Transfer Statement</a>";
     }elseif ($mov=='mov23'){
-        return "<a href='../dashboard/mov/assessment-report.php?id=".$indicatorid."'  > Assessment Report</a>";
+        return "<a title='Click to Download' href='..//dashboard/mov/assessment-report.php?id=".$indicatorid."'  > Assessment Report</a>";
     }elseif ($mov=='mov24'){
-        return "<a href='../dashboard/mov/quarterly-assessment-report.php?id=".$indicatorid."'  > Quarterly Assessment Report</a>";
+        return "<a title='Click to Download' href='..//dashboard/mov/quarterly-assessment-report.php?id=".$indicatorid."'  > Quarterly Assessment Report</a>";
     }elseif ($mov=='mov25'){
-        return "<a href='../dashboard/mov/quarterly-eviction-dashboards.php?id=".$indicatorid."'  > Quarterly Eviction Dashboards</a>";
+        return "<a title='Click to Download' href='..//dashboard/mov/quarterly-eviction-dashboards.php?id=".$indicatorid."'  > Quarterly Eviction Dashboards</a>";
     }
 }
 
@@ -748,11 +748,12 @@ function prntallmovs($id): void
 
         // $movarray[]=$outputIndicator['mov'];
         $movs=" ";
+        $movsa=" ";
 
             $movs .= prntmov(json_decode($outputIndicator['mov']), $outputIndicator['id'])." || " ;
-
+        $movsa .= mova(json_decode($outputIndicator['mov']), $outputIndicator['id'])." || " ;
 if ($_SESSION['role']=='admin' || $_SESSION['role']=='supervisor'){
-    echo "<a data-toggle='modal' class='text-primary btn btn-sm' data-outcome='".prntmov(json_decode($outputIndicator['mov']), $outputIndicator['id'])."' data-target='#viewoutcome' data-id='".$outputIndicator['id']."'>".$movs."</a>";
+    echo $movsa;
 }else{
     echo $movs;
 }
@@ -771,4 +772,208 @@ function  getoutputs($id): string
         $outputs.="||".$row['output'];
     }
     return $outputs;
+}
+function mova($mov,$indicatorid): string
+{
+
+    if ($mov=='mov1'){
+        if (!checkmov($indicatorid)){
+            return "<a href='../dashboard/mov/meeting-minutes.php?id=".$indicatorid."'  >Upload Coordination Meeting Minutes</a>";
+        }else{
+            return "<a class='text-success' href='../dashboard/mov/meeting-minutes.php?id=".$indicatorid."' title='Coordination Meeting Minutes'  >View</a>";
+        }
+
+    }elseif($mov=='mov2'){
+        if (!checkmov($indicatorid)){
+            return "<a href='../dashboard/mov/photos.php?id=".$indicatorid."'  >Upload Photos</a>";
+        }else{
+            return "<a class='text-success' href='../dashboard/mov/photos.php?id=".$indicatorid."' title='Photos'>View</a>";
+        }
+
+    }elseif ($mov=='mov3'){
+        if (!checkmov($indicatorid)){
+            return "<a href='../dashboard/mov/participant-list.php?id=".$indicatorid."'  >Upload Participant List</a>";
+        }else{
+            return "<a class='text-success' href='../dashboard/mov/participant-list.php?id=".$indicatorid."' title='Participant List'  >View</a>";
+        }
+
+    }elseif ($mov=='mov4'){
+        if (!checkmov($indicatorid)){
+            return "<a href='../dashboard/mov/monthly-service-mapping-report.php?id=".$indicatorid."'  >Upload Monthly Service Mapping Report</a>";
+        }else{
+            return "<a class='text-success' href='../dashboard/mov/monthly-service-mapping-report.php?id=".$indicatorid."'  >View</a>";
+        }
+
+    }elseif ($mov=='mov5'){
+        if (!checkmov($indicatorid)){
+            return "<a href='../dashboard/mov/monthly-service-monitoring-report.php?id=".$indicatorid."'  >Upload Monthly Service Monitoring Report</a>";
+        }else{
+            return "<a class='text-success' href='../dashboard/mov/monthly-service-monitoring-report.php?id=".$indicatorid."' title='Monthly Service monitoring'   >View</a>";
+        }
+
+    }elseif ($mov=='mov6'){
+        if (!checkmov($indicatorid)){
+            return "<a href='../dashboard/mov/training-report.php?id=".$indicatorid."'  >Upload Training Report</a>";
+        }else{
+            return "<a class='text-success' class='text-success' href='../dashboard/mov/training-report.php?id=".$indicatorid."' title='Training Report'  >View</a>";
+        }
+
+    }elseif ($mov=='mov7'){
+        if (!checkmov($indicatorid)){
+            return "<a href='../dashboard/mov/awareness-activity-narrative-report.php?id=".$indicatorid."'  >Upload Awareness Activity Narrative Report</a>";
+        }else{
+            return "<a class='text-success' href='../dashboard/mov/awareness-activity-narrative-report.php?id=".$indicatorid."' title='Awareness Activity Report'  >View</a>";
+        }
+
+    }elseif ($mov=='mov8'){
+        if (!checkmov($indicatorid)){
+            return "<a href='../dashboard/mov/safety-audit-training-report.php?id=".$indicatorid."'  >Upload Safety Audit Training Report</a>";
+        }else{
+            return "<a class='text-success' href='../dashboard/mov/safety-audit-training-report.php?id=".$indicatorid."' title='Safety Audit Training Report'  >View</a>";
+        }
+
+    }elseif ($mov=='mov9'){
+        if (!checkmov($indicatorid)){
+            return "<a href='../dashboard/mov/safety-audit-report.php?id=".$indicatorid."'  >Upload Safety Audit Report</a>";
+        }else{
+            return "<a class='text-success' href='../dashboard/mov/safety-audit-report.php?id=".$indicatorid."'  >View</a>";
+        }
+
+    }elseif ($mov=='mov10'){
+        if (!checkmov($indicatorid)){
+            return "<a href='../dashboard/mov/cash-for-work-monitoring-report.php?id=".$indicatorid."'  >Upload Cash For Work Monitoring Report</a>";
+        }else{
+            return "<a class='text-success' href='../dashboard/mov/cash-for-work-monitoring-report.php?id=".$indicatorid."' title='Cash For Work Monitoring Report' >View</a>";
+        }
+
+    }elseif ($mov=='mov11'){
+        if (!checkmov($indicatorid)){
+            return "<a href='../dashboard/mov/cash-for-work-monitoring-report.php?id=".$indicatorid."'  >Upload Cash For work Narrative Report</a>";
+        }else{
+            return "<a class='text-success' href='../dashboard/mov/cash-for-work-monitoring-report.php?id=".$indicatorid."' title='Cash for work Narrative Report'  >View</a>";
+        }
+
+    }elseif ($mov=='mov12'){
+        if (!checkmov($indicatorid)){
+            return "<a href='../dashboard/mov/money-transfer-statement.php?id=".$indicatorid."'  >Upload Money Transfer Statement</a>";
+        }else{
+            return "<a class='text-success' href='../dashboard/mov/money-transfer-statement.php?id=".$indicatorid."' title='Money Transfer Statement' >View</a>";
+        }
+
+    }elseif ($mov=='mov13'){
+        if (!checkmov($indicatorid)){
+            return "<a href='../dashboard/mov/activity-monitoring-report.php?id=".$indicatorid."'  >Upload Activity Monitoring Report</a>";
+        }else{
+            return "<a class='text-success' href='../dashboard/mov/activity-monitoring-report.php?id=".$indicatorid."' title='Activity Monitoring Report'  >View</a>";
+        }
+
+
+    }elseif ($mov=='mov14'){
+        if (!checkmov($indicatorid)){
+            return "<a href='../dashboard/mov/cfm-intake-forms.php?id=".$indicatorid."'  >Upload CFM Intake Forms</a>";
+        }else{
+            return "<a class='text-success' href='../dashboard/mov/cfm-intake-forms.php?id=".$indicatorid."' title='CFM Intake Forms'  >View!</a>";
+        }
+
+    }elseif ($mov=='mov15'){
+        if (!checkmov($indicatorid)){
+            return "<a href='../dashboard/mov/narrative.php?id=".$indicatorid."'  >Upload Narrative Report</a>";
+        }else{
+            return "<a class='text-success' href='../dashboard/mov/narrative.php?id=".$indicatorid."' title='Narrative Report' >View!</a>";
+        }
+
+    }elseif ($mov=='mov16'){
+        if (!checkmov($indicatorid)){
+            return "<a href='../dashboard/mov/meeting-minutes.php?id=".$indicatorid."'  >Upload Decongestion Coordination Meeting Minutes</a>";
+        }else{
+            return "<a class='text-success' href='../dashboard/mov/meeting-minutes.php?id=".$indicatorid."'  title='Decongestion Coordination Meeting minutes' >View!</a>";
+        }
+
+    }elseif ($mov=='mov17'){
+        if (!checkmov($indicatorid)){
+            return "<a href='../dashboard/mov/narrative.php?id=".$indicatorid."'  >Upload Human Interest Stories</a>";
+        }else{
+            return "<a class='text-success' href='../dashboard/mov/narrative.php?id=".$indicatorid."' title='Human Interest Stories'  >View</a>";
+        }
+
+    }elseif ($mov=='mov18'){
+        if (!checkmov($indicatorid)){
+            return "<a href='../dashboard/mov/activity-monitoring-report.php?id=".$indicatorid."'  >Upload Activity Monitoring Report</a>";
+        }else{
+            return "<a class='text-success' href='../dashboard/mov/activity-monitoring-report.php?id=".$indicatorid."' title='Activity Monitoring Report'  >View!</a>";
+        }
+
+    }elseif ($mov=='mov19'){
+        if (!checkmov($indicatorid)){
+            return "<a href='../dashboard/mov/land-tenure-documents.php?id=".$indicatorid."'  >Upload Land Tenure Documents</a>";
+        }else{
+            return "<a class='text-success' href='../dashboard/mov/land-tenure-documents.php?id=".$indicatorid."' title='Land Tenure Documents'  >View!</a>";
+        }
+
+    }elseif ($mov=='mov20'){
+        if (!checkmov($indicatorid)){
+            return "<a href='../dashboard/mov/beneficiary-list.php?id=".$indicatorid."'  >Upload Beneficiary List</a>";
+        }else{
+            return "<a class='text-success' href='../dashboard/mov/beneficiary-list.php?id=".$indicatorid."' title='Beneficiary List'  >View</a>";
+        }
+
+    }elseif ($mov=='mov21'){
+        if (!checkmov($indicatorid)){
+            return "<a href='../dashboard/mov/post-eviction-monitoring-report.php?id=".$indicatorid."'  >Upload Post Eviction Monitoring Report</a>";
+        }else{
+            return "<a class='text-success' href='../dashboard/mov/post-eviction-monitoring-report.php?id=".$indicatorid."' title='Post Eviction Monitoring Report'  >View</a>";
+        }
+
+    }elseif ($mov=='mov22'){
+        if (!checkmov($indicatorid)){
+            return "<a href='../dashboard/mov/money-transfer-statement.php?id=".$indicatorid."'  >Upload Money Transfer Statement</a>";
+        }else{
+            return "<a class='text-success' href='../dashboard/mov/money-transfer-statement.php?id=".$indicatorid."' title='Money Transfer Statement' >View</a>";
+        }
+
+    }elseif ($mov=='mov23'){
+        if (!checkmov($indicatorid)){
+            return "<a href='../dashboard/mov/assessment-report.php?id=".$indicatorid."'  >Upload Assessment Report</a>";
+        }else{
+            return "<a class='text-success' href='../dashboard/mov/assessment-report.php?id=".$indicatorid."' title='Assessment Report' >View</a>";
+
+        }
+
+    }elseif ($mov=='mov24'){
+        if (!checkmov($indicatorid)){
+            return "<a href='../dashboard/mov/quarterly-assessment-report.php?id=".$indicatorid."'  >Upload Quarterly Assessment Report</a>";
+        }else{
+            return "View";
+        }
+
+    }elseif ($mov=='mov25'){
+        if (!checkmov($indicatorid)){
+            return "<a href='../dashboard/mov/quarterly-eviction-dashboards.php?id=".$indicatorid."'  >Upload Quarterly Eviction Dashboards</a>";
+        }else{
+            return "View";
+        }
+
+    }else{
+        return "Unknown MOV";
+    }
+}
+function  getindexmov($cid)
+{
+    global $conn;
+    $sql=mysqli_query($conn,"select indexmov from project_outcomes where cluster_id='$cid'");
+    return mysqli_fetch_assoc($sql)['indexmov'];
+}
+function getclusterid($outcome_id)
+{
+    global $conn;
+    $sql=mysqli_query($conn,"select cluster_id from project_outcomes where id='$outcome_id'");
+    return mysqli_fetch_assoc($sql)['cluster_id'];
+
+}
+function getclusterbyindicatorid($outcome_id)
+{
+    global $conn;
+    $sql=mysqli_query($conn,"select cluster_id from output_indicators where id='$outcome_id'");
+    return mysqli_fetch_assoc($sql)['cluster_id'];
+
 }

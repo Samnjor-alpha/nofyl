@@ -47,11 +47,12 @@ $prjid=$_GET['id'];
     $movid=$_POST['mov_id'];
     $comments=$_POST['comment'];
     $today=date("Y-m-d H:i:s");
+    $pid=getprojectid($_GET['id']);
 
-    $sqlcomment="insert into movs_cmnts set mov_id='$movid',prj_id='".$_GET['id']."', mov_comment='$comments',added_at='$today', added_by='".$_SESSION['user_id']."'";
+    $sqlcomment="insert into movs_cmnts set mov_id='$movid',prj_id='$pid', mov_comment='$comments',added_at='$today', added_by='".$_SESSION['user_id']."'";
 
     if (mysqli_query($conn, $sqlcomment)) {
-        $location = 'viewclusters.php?id=' . $prjid;
+        $location = '../viewclusters.php?id=' . getprojectid($prjid);
            echo "<script>
 toastr.success('Added successfully','Comment added');
             window.location.href = '$location';

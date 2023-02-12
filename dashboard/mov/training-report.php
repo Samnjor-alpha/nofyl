@@ -2,7 +2,9 @@
 include '../../config/config.php';
 include '../../controllers/helper.php';
 include '../../controllers/trainreport.php';
-include 'inc/header.php' ?>
+include 'inc/header.php';
+include '../../controllers/authcontroller.php';
+include '../../controllers/session.php'; ?>
     <title>Training Report</title>
     <script src="js/jquery.dataTables.min.js"></script>
     <script src="js/dataTables.bootstrap.min.js"></script>
@@ -13,13 +15,14 @@ include 'inc/header.php' ?>
     <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+<?php include '../../css/header.php'?>
 
     <style>
         .row {
             width: 100%;
             padding: 20px 0 20px 20px;
             border-bottom: 1px solid #ccc;
-            font-size: 12px;
+            
         }
 
         .col1 {
@@ -30,7 +33,7 @@ include 'inc/header.php' ?>
         .col2 {
             width: 50%;
             float: left;
-            font-size: 12px;
+            
             padding-left: 3%;
         }
 
@@ -120,7 +123,7 @@ include 'inc/header.php' ?>
         select {
             width: 40%;
             height: 30px;
-            font-size: 12px;
+            
             background-color: transparent;
             border: #ccc solid 1px;
             padding: 0 1em 0 0;
@@ -378,7 +381,15 @@ include 'inc/header.php' ?>
     </style>
 <?php include('inc/container.php'); ?>
     <div class="container">
+        <div class="col-4 mb-4">
+            <?php
+            if ($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'supervisor') {
+                echo "<a data-toggle='modal' class='btn btn-primary btn-sm'  data-target='#viewoutcome' data-id='" . $_GET['id'] . "'>Add Comment</a>";
+            }
 
+
+            ?>
+        </div>
         <form method="post" action="" enctype="multipart/form-data">
 
 
@@ -719,4 +730,13 @@ text/plain, application/pdf, image/*"
         </script>
 
     </div>
-<?php include('inc/footer.php'); ?>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+
+<?php
+include 'addcomment.php';
+include '../../controllers/addcomments.php';
+include('inc/footer.php');
+?>
