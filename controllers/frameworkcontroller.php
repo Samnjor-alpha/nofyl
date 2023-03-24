@@ -219,8 +219,11 @@ if (isset($_POST['add_indout'])){
     $clusterID =getclusteridbyoutput($_POST['outputid']);
     $output=$_POST['outputid'];
     $movarray=$_POST['mov'];
-    $target=getoutputtarget($output);
-    $indicator=getindicatorbyoutput($output);
+//    $target=getoutputtarget($output);
+    $target=$_POST['target'] ?? getoutputtarget($output);
+    $indicator=$_POST['indicator']?? getindicatorbyoutput($output);
+    $activity=$_POST['activity'] ?? null;
+//    $indicator=getindicatorbyoutput($output);
 
 
 

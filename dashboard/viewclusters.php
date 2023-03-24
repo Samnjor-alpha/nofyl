@@ -231,21 +231,7 @@ include '../controllers/frameworkcontroller.php'
             <div class="">
                 <h3>Means of verification</h3>
                 <div class="row">
-                    <table class="table table-striped outcomes">
-                        <caption>Outcomes</caption>
-                        <tr>
-                            <th>#</th>
-                            <th>Project Outcome</th>
-                            <th>Cluster</th>
-                        </tr>
-                        <?php foreach ($projectOutcomes as $k=>$projectOutcome) { ?>
-                            <tr>
-                                <td><?php echo ++$k ?></td>
-                                <td><?php echo $projectOutcome['outcome'] ?? null ?></td>
-                                <td><?php echo getclustername($projectOutcome['cluster_id']) ?></td>
-                            </tr>
-                        <?php } ?>
-                    </table>
+
 
                     <table class="table table-striped outputs">
 
@@ -329,6 +315,64 @@ include '../controllers/frameworkcontroller.php'
 
 
 
+</div>
+<div class="modal  fade" id="viewoutput" tabindex="-1" data-bs-backdrop="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Indicators</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="modal-body" class="modal-body">
+                <form method="post" action="" class="">
+                    <input  type="hidden" name="outputid" id="idd">
+                    <div class="form-group">
+                        <label for="dname">Output Name:</label>
+                        <!--                        <input disabled class="form-control" type="text" readonly  name="outcome" id="dname">-->
+                        <span class="text-capitalize" id="dname"></span>
+                    </div>
+                    <div class="container mt-4">
+
+                        <div class="form-group">
+                            <label for="ind">
+                                Indicator
+                            </label>
+                            <textarea class="form-control" name='indicator' id='mov'></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="ind">
+                                Means of Verification
+                            </label>
+                            <select class="form-control" name='mov[]' id='mov' multiple><option value='mov0'>Select</option><option value='mov1'>Coordination Meeting Minutes</option><option value='mov2'>Photos</option><option value='mov3'>Participant List</option><option value='mov4'>Monthly Service Mapping Report</option><option value='mov5'>Monthly Service Monitoring Report</option><option value='mov6'>Training Report</option><option value='mov7'>Awareness Activity Narrative Report</option><option value='mov8'>Safety Audit Training Report</option><option value='mov9'>Safety Audit Report</option><option value='mov10'>Cash For Work Monitoring Report</option><option value='mov11'>Cash For work Narrative Report</option><option value='mov12'>Money Transfer Statement</option><option value='mov13'>Activity Monitoring Report</option><option value='mov14'>CFM Intake Forms</option><option value='mov15'>Narrative Report </option><option value='mov16'>Decongestion Coordination Meeting Minutes</option><option value='mov17'>Human Interest Stories</option><option value='mov18'>Activity Monitoring Report</option><option value='mov19'>Land Tenure Documents</option><option value='mov20'>Beneficiary List</option><option value='mov21'>Post Eviction Monitoring Report</option><option value='mov22'>Money Transfer Statement</option><option value='mov23'>Assessment Report</option><option value='mov24'>Quarterly Assessment Report</option><option value='mov25'>Quarterly Eviction Dashboards</option></select>
+                        </div>
+                        <div class="form-group">
+                            <label for="ind">
+                                Target
+                            </label>
+                            <input  type="number" class="form-control" name='target' id='mov'/>
+                        </div>
+                        <div class="form-group">
+                            <label for="ind">
+                                Activity
+                            </label>
+                            <textarea class="form-control" name='activity' id='mov'></textarea>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group mt-2">
+                        <button type="submit" name="add_indout" class="btn btn-success">Save</button>
+                    </div>
+                </form>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="modal  fade" id="viewoutcome" tabindex="-1" data-bs-backdrop="false">
     <div class="modal-dialog modal-dialog-centered">
@@ -510,6 +554,25 @@ include '../controllers/frameworkcontroller.php'
 
 
     });
+            $("#viewoutput").modal({
+                keyboard: true,
+                show: false,
+
+            }).on("show.bs.modal", function(event){
+                var button = $(event.relatedTarget); // button the triggered modal
+                var id = button.data("id");
+                var dname = button.data("output");
+
+
+
+                //displays values to modal
+
+                $(".modal-body #id").val( id );
+                $(".modal-body #idd").val( id );
+                $(".modal-body #dname").text( dname );
+
+
+            });
 
     });
 

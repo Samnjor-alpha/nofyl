@@ -697,7 +697,7 @@ if (isset($_POST['clusters'])){?>
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add indicators</h5>
+                <h5 class="modal-title">Add Indicators</h5>
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div id="modal-body" class="modal-body">
@@ -710,14 +710,30 @@ if (isset($_POST['clusters'])){?>
                     </div>
                     <div class="container mt-4">
 
-
+                        <div class="form-group">
+                            <label for="ind">
+                                Indicator
+                            </label>
+                            <textarea class="form-control" name='indicator' id='mov'></textarea>
+                        </div>
                         <div class="form-group">
                             <label for="ind">
                                 Means of Verification
                             </label>
                             <select class="form-control" name='mov[]' id='mov' multiple><option value='mov0'>Select</option><option value='mov1'>Coordination Meeting Minutes</option><option value='mov2'>Photos</option><option value='mov3'>Participant List</option><option value='mov4'>Monthly Service Mapping Report</option><option value='mov5'>Monthly Service Monitoring Report</option><option value='mov6'>Training Report</option><option value='mov7'>Awareness Activity Narrative Report</option><option value='mov8'>Safety Audit Training Report</option><option value='mov9'>Safety Audit Report</option><option value='mov10'>Cash For Work Monitoring Report</option><option value='mov11'>Cash For work Narrative Report</option><option value='mov12'>Money Transfer Statement</option><option value='mov13'>Activity Monitoring Report</option><option value='mov14'>CFM Intake Forms</option><option value='mov15'>Narrative Report </option><option value='mov16'>Decongestion Coordination Meeting Minutes</option><option value='mov17'>Human Interest Stories</option><option value='mov18'>Activity Monitoring Report</option><option value='mov19'>Land Tenure Documents</option><option value='mov20'>Beneficiary List</option><option value='mov21'>Post Eviction Monitoring Report</option><option value='mov22'>Money Transfer Statement</option><option value='mov23'>Assessment Report</option><option value='mov24'>Quarterly Assessment Report</option><option value='mov25'>Quarterly Eviction Dashboards</option></select>
                         </div>
-
+                        <div class="form-group">
+                            <label for="ind">
+                                Target
+                            </label>
+                            <input  type="number" class="form-control" name='target' id='mov'/>
+                        </div>
+                        <div class="form-group">
+                            <label for="ind">
+                                Activity
+                            </label>
+                            <textarea class="form-control" name='activity' id='mov'></textarea>
+                        </div>
                         </div>
 
 
