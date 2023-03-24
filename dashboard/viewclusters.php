@@ -248,11 +248,11 @@ include '../controllers/frameworkcontroller.php'
                     </table>
 
                     <table class="table table-striped outputs">
-                        <caption>Outputs</caption>
+
                         <tr>
                             <th>#</th>
                             <th>Outcome ID</th>
-                            <th>Project Output</th>
+                            <th>Output</th>
                             <th>Cluster</th>
                         </tr>
                         <?php foreach ($projectOutputs as $k=> $projectOutput) { ?>
@@ -272,7 +272,7 @@ include '../controllers/frameworkcontroller.php'
                         <caption>Output Indicators</caption>
                         <tr>
                             <th>#</th>
-                            <th>Indicator</th>
+                            <th>Output</th>
                             <th>Means of verification</th>
                             <th>Target</th>
 
