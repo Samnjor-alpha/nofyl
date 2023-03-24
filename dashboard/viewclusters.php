@@ -272,10 +272,10 @@ include '../controllers/frameworkcontroller.php'
                         <caption>Output Indicators</caption>
                         <tr>
                             <th>#</th>
-                            <th>Project Indicator</th>
+                            <th>Indicator</th>
                             <th>Means of verification</th>
                             <th>Target</th>
-                            <th>Indicator</th>
+
                             <th>Activities</th>
                         </tr>
                         <?php
@@ -294,7 +294,7 @@ include '../controllers/frameworkcontroller.php'
                                     echo getincrement(clusterindex($projectOutputss,$outputIndicator['output_id'],$cnt));
 
                                     ?></td>
-                                <td><?php echo getoutputname($outputIndicator['output_id']) ?></td>
+                                <td><?php echo $outputIndicator['indicator'] ?? null ?></td>
                                 <td><?php
 
                                     if (!is_null($outputIndicator['mov'])) {
@@ -304,7 +304,7 @@ include '../controllers/frameworkcontroller.php'
                                     }?>
                                 </td>
                                 <td><?php echo $outputIndicator['target'] ?? null ?></td>
-                                <td><?php echo $outputIndicator['indicator'] ?? null ?></td>
+
                                 <td><?php if(!is_null(json_decode($outputIndicator['activities']))) {
                                         foreach (json_decode($outputIndicator['activities']) as $activity) {?>
                                             <a  data-toggle='modal' data-act='<?= $activity?>' data-id='<?= $outputIndicator['output_id'] ?>' class='text-primary btn btn-sm'  data-target='#editact' title='Edit Activity'><?= $activity ?></a>

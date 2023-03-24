@@ -645,36 +645,36 @@ if (isset($_POST['clusters'])){?>
 <div class="row form-group">
     <div id="container1" class="container1">
 
-        <table id="employee_table_outcome" align=center>
-            <tr id="row_out">
+        <table id="add_table_outcome" align=center>
+            <tr id="add_row_out">
 
         </table>
 
 
-        <table id="employee_table_ind" align=center>
-            <tr id="row_ind">
+        <table id="add_table_ind" align=center>
+            <tr id="add_rowind">
 
         </table>
 
-        <table id="employee_table_ver" align=center>
-            <tr id="row_act">
+        <table id="add_table_ver" align=center>
+            <tr id="add_row_act">
 
         </table>
 
 
-        <table id="employee_table_act" align=center>
-            <tr id="row_act">
+        <table id="add_table_act" align=center>
+            <tr id="add_row_act">
 
         </table>
 
-        <table id="employee_table" align=center>
+        <table id="add_table" align=center>
 
             <tr id="row1">
             </tr>
         </table>
 
 
-        <input type="button" onclick="add_rowO();" value="+ Add a New Output"
+        <input type="button" onclick="add_rowOa();" value="+ Add a New Output"
                class="col2-button">
     </div>
 </div>
@@ -929,6 +929,69 @@ if (isset($_POST['clusters'])){?>
             });
     });
 
+    function add_rowa() {
+        $rowno = $("#add_table tr").length;
+        $rowno = $rowno + 1;
+        $("#add_table tr:last").after("<tr style='border-top: 1px solid #ccc; margin-top:0px; padding-top:0px;float: left;' id='row" + $rowno + "'><td><h3>Output </h3><textarea  name='output[]' rows='4' cols='100'> </textarea> </td><td><input type='button' value='X' class='col2-buttonX' onclick=delete_rowa('row" + $rowno + "')><td><input type='button' value='+ Add Indicator' class='col2-button' onclick='add_indicatora();'></td></tr>");
+    }
+
+    function delete_rowa(rowno) {
+        $('#' + rowno).remove();
+    }
+
+
+    function add_indicatora() {
+        $rowno_ind = $("#add_table_ind tr").length;
+        $rowno_ind = $rowno_ind + 1;
+        $("#add_table tr:last").after("<tr style='border-top: 1px solid #ccc; margin-top:5px; padding-top:0px;float: left; color:#000;' id='add_rowind" + $rowno_ind + "'><h3>Output X</h3><td style='font-weight:bold;'>Code<br><br><?php echo $project->Fund_Code ?? null ?></td><td style='font-weight:bold;'><?php echo  getclustername($_POST['clusters']) ?></td><td style='font-weight:bold;'>Indicator<textarea  name='indicator[text][]' rows='5' cols='20'> </textarea></td><td style='font-weight:bold;'>Means of Verification<br><select name='indicator[mov][]' id='mov' multiple><option value='mov0'>Select</option><option value='mov1'>Coordination Meeting Minutes</option><option value='mov2'>Photos</option><option value='mov3'>Participant List</option><option value='mov4'>Monthly Service Mapping Report</option><option value='mov5'>Monthly Service Monitoring Report</option><option value='mov6'>Training Report</option><option value='mov7'>Awareness Activity Narrative Report</option><option value='mov8'>Safety Audit Training Report</option><option value='mov9'>Safety Audit Report</option><option value='mov10'>Cash For Work Monitoring Report</option><option value='mov11'>Cash For work Narrative Report</option><option value='mov12'>Money Transfer Statement</option><option value='mov13'>Activity Monitoring Report</option><option value='mov14'>CFM Intake Forms</option><option value='mov15'>Narrative Report </option><option value='mov16'>Decongestion Coordination Meeting Minutes</option><option value='mov17'>Human Interest Stories</option><option value='mov18'>Activity Monitoring Report</option><option value='mov19'>Land Tenure Documents</option><option value='mov20'>Beneficiary List</option><option value='mov21'>Post Eviction Monitoring Report</option><option value='mov22'>Money Transfer Statement</option><option value='mov23'>Assessment Report</option><option value='mov24'>Quarterly Assessment Report</option><option value='mov25'>Quarterly Eviction Dashboards</option></select></td><td style='font-weight:bold;'>Total End-Cycle Target<br><br><input type='number' name='indicator[target][]' ></td><td><input type='button' value='X' class='col2-buttonX' onclick=delete_row_inda('add_rowind" + $rowno_ind + "')></td><td><input type='button' value='+ Add Activity' class='col2-button' onclick='add_activitya();'></td></tr>");
+    }
+
+    function delete_row_inda(rowno) {
+        $('#' + $rowno).remove();
+    }
+
+
+    function add_activitya() {
+        $add_row_act = $("#add_table_act tr").length;
+        $add_row_act = $add_row_act + 1;
+        $("#add_table tr:last").after("<tr style='border-top: 1px solid #ccc; margin-top:0px; padding-top:0px;float: left;' id='add_row_act" + $add_row_act + "'><td><label>Activity</label></td><td><textarea  name='activity[]' rows='3' cols='150'> </textarea></td></tr>");
+    }
+
+    function delete_row_acta(add_row_act) {
+        $('#' + $add_row_act).remove();
+    }
+
+
+    function add_vera() {
+        $row_ver = $("#add_table_ver tr").length;
+        $row_ver = $row_ver + 1;
+        $("#add_table tr:last").after("<tr style='border-top: 1px solid #ccc; margin-top:0px; padding-top:0px;float: left;' id='row" + $row_ver + "'><td><label>Text:</label></td><td><textarea  name='name[]' rows='7' cols='100'> </textarea></td><td><label>Upload Files:</label></td><td><input type='file' id='myFile' name='filename'></td><td><input type='button' value='X' class='col2-buttonX' onclick=delete_row_vera('row" + $row_ver + "')></td></tr>");
+    }
+
+    function delete_row_vera(row_ver) {
+        $('#' + $row_ver).remove();
+    }
+    function add_rowOa() {
+        $rowout = $("#add_table_outcome tr").length;
+
+        $rowout = $rowout + 1;
+
+
+        $("#add_table tr:last").after("<tr style='border-top: 1px solid #ccc; margin-top:0px; padding-top:0px;float: left;' id='add_row_out" + $rowout + "'>" +
+            "<td><h3>Output<p id='no'></p></h3><textarea  name='output[]' rows='4' cols='100'></textarea> </td><td><input type='button' value='X' class='col2-buttonX' onclick=delete_row_outa('add_row_out" + $rowout + "')><td>  <input type='button' onclick='add_indicatora();' value='+ Add Indicators' class='col2-button'></td></tr>");
+    }
+    function add_row_outcomea() {
+        $rowout = $("#add_table_outcome tr").length;
+
+        $rowout = $rowout + 1;
+
+
+        $("#add_table tr:last").after("<tr style='border-top: 1px solid #ccc; margin-top:0px; padding-top:0px;float: left;' id='add_row_out" + $rowout + "'>" +
+            "<td><h3>Mov Index<p id='no'></p></h3><input  name='indexmov'><h3>Outcome<p id='no'></p></h3><textarea  name='outcome[]' rows='4' cols='100'></textarea> </td><td><input type='button' value='X' class='col2-buttonX' onclick=delete_row_outa('add_row_out" + $rowout + "')><td>  <input type='button' onclick='add_rowa();' value='+ Add Output' class='col2-button'></td></tr>");
+    }
+    function delete_row_outa(rowno) {
+        $('#' + rowno).remove();
+    }
 
 
 </script>
