@@ -272,7 +272,7 @@ include '../controllers/frameworkcontroller.php'
                         <caption>Output Indicators</caption>
                         <tr>
                             <th>#</th>
-                            <th>Project Output indicator</th>
+                            <th>Project Indicator</th>
                             <th>Means of verification</th>
                             <th>Target</th>
                             <th>Indicator</th>
@@ -305,11 +305,15 @@ include '../controllers/frameworkcontroller.php'
                                 </td>
                                 <td><?php echo $outputIndicator['target'] ?? null ?></td>
                                 <td><?php echo $outputIndicator['indicator'] ?? null ?></td>
-                                <td><?php if(!is_null($outputIndicator['activities'])) {
-                                        foreach (json_decode($outputIndicator['activities']) as $activity) {
-                                            echo "<p>".$activity."</p>" ?? null;
-                                        }
-                                    } ?>
+                                <td><?php if(!is_null(json_decode($outputIndicator['activities']))) {
+                                        foreach (json_decode($outputIndicator['activities']) as $activity) {?>
+                                            <a  data-toggle='modal' data-act='<?= $activity?>' data-id='<?= $outputIndicator['output_id'] ?>' class='text-primary btn btn-sm'  data-target='#editact' title='Edit Activity'><?= $activity ?></a>
+
+
+                                        <?php    }
+                                    }else{?>
+                                        <a data-toggle='modal' class='text-primary btn btn-sm'  data-id='<?= $outputIndicator['output_id'] ?>' data-target='#addact' title='Add Activity'><i class="text-danger">Add Activity</i></a>
+                                    <?php }?>
                                 </td>
                             </tr>
                             <?php
@@ -331,7 +335,7 @@ include '../controllers/frameworkcontroller.php'
         <div class="modal-content">
             <div class="modal-header">
                 <h5 id="dname" class="modal-title">Add Comment</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div  class="modal-body">
                 <form method="post" action="" class="">
@@ -342,6 +346,54 @@ include '../controllers/frameworkcontroller.php'
                     </div>
                     <div class="form-group mt-2">
                         <button type="submit" name="add_mov_cmnt" class="btn btn-sm btn-success">Add Comment</button>
+                    </div>
+                </form>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal  fade" id="addact" tabindex="-1" data-bs-backdrop="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Activity</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div  class="modal-body">
+                <form method="post" action="" class="">
+                    <input  type="hidden" name="outcome_id" id="idd">
+                    <textarea name="activity" class="form-control" id="addact_txt"></textarea>
+                    <div class="form-group mt-2">
+                        <button type="submit" name="add_act" class="btn btn-success">Add</button>
+                    </div>
+                </form>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal  fade" id="editact" tabindex="-1" data-bs-backdrop="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Activity</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div  class="modal-body">
+                <form method="post" action="" class="">
+                    <input type="hidden"   name="outcome_id" id="idd">
+                    <textarea class="form-control"  name="activity" id="editact_txt"></textarea>
+                    <div class="form-group mt-2">
+                        <button type="submit" name="update_act" class="btn btn-success">Update</button>
                     </div>
                 </form>
 
@@ -384,6 +436,42 @@ include '../controllers/frameworkcontroller.php'
             $(".modal-body #id").val( tripid );
 
         });
+            $("#addact").modal({
+                keyboard: true,
+                show: false,
+
+            }).on("show.bs.modal", function(event){
+                var button = $(event.relatedTarget); // button the triggered modal
+                var id = button.data("id");
+
+
+
+
+                //displays values to modal
+
+                $(".modal-body #idd").val( id );
+
+
+
+            });
+            $("#editact").modal({
+                keyboard: true,
+                show: false,
+
+            }).on("show.bs.modal", function(event){
+                var button = $(event.relatedTarget); // button the triggered modal
+                var id = button.data("id");
+                var activity = button.data("act");
+
+
+
+                //displays values to modal
+
+                $(".modal-body #idd").val( id );
+
+                $(".modal-body #editact_txt").val( activity );
+
+            });
         $("#viewdriver").modal({
         keyboard: true,
         show: false,

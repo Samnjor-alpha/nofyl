@@ -142,6 +142,7 @@ alert('Outcome out put is required');
                                         foreach ($activities as $activity) {
                                             $toSave[] = $activity;
 
+
                                         }
                                         if (!empty($toSave) && $conn->query("update output_indicators set activities='" . json_encode($toSave) . "' where output_id=$outputID")) {
 
@@ -209,6 +210,47 @@ alert('Outcome out put is required');
                         header("location: clusters.php?id=" . $prjid);
                     }
                 }
+
+
+
+
+}
+if (isset($_POST['add_indout'])){
+    $clusterID =getclusteridbyoutput($_POST['outputid']);
+    $output=$_POST['outputid'];
+    $movarray=$_POST['mov'];
+    $target=getoutputtarget($output);
+    $indicator=getindicatorbyoutput($output);
+
+
+
+    if (empty($clusterID)|| empty($output)){
+        echo"<script>
+alert('Select Output to add indicators');
+        </script>";
+    }else {
+
+
+
+        foreach ($_POST['mov'] as $movs => $mov) {
+            if (!empty($mov)) {
+                if (!is_array($mov)) {
+
+
+                            if ($conn->query("insert into output_indicators (project_id, indicator, mov, target, output_id, cluster_id)  values ($prjid, '" . $indicator . "', '" . json_encode($mov) . "', '" . $target . "', '" . $output . "', $clusterID) ")) {
+
+
+                            }
+                        }
+
+
+
+                }
+
+            }
+
+        }
+
 
 
 

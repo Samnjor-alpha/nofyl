@@ -188,7 +188,7 @@ include '../controllers/frameworkcontroller.php'
                         <caption>Output Indicators</caption>
                         <tr>
                             <th>#</th>
-                            <th>Project Output indicator</th>
+                            <th>Project Indicator</th>
                             <th>Means of verification</th>
                             <th>Media</th>
                             <th>Target</th>

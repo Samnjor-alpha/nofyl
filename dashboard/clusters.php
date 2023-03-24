@@ -26,8 +26,7 @@ include '../controllers/frameworkcontroller.php'
     select[multiple], select[size] {
         height: 200px;
         width: 100%;
-        position: relative;
-        left: -50%;
+
     }
 
     .row {
@@ -538,25 +537,9 @@ if (isset($_POST['clusters'])){?>
 
 
                     <div class="row">
-                        <table class="table table-striped outcomes">
-                            <caption>Outcomes</caption>
-
-                            <tr>
-                                <th>#</th>
-                                <th>Project Outcome</th>
-                                <th>Cluster</th>
-                            </tr>
-                            <?php foreach ($projectOutcomes as $k=>$projectOutcome) { ?>
-                                <tr>
-                                    <td><?php echo ++$k ?></td>
-                                    <td><a data-toggle="modal" class="text-primary btn btn-sm"  data-target="#viewoutcome"   data-outcome="<?= $projectOutcome['outcome'] ?>"  data-id="<?=$projectOutcome['id'] ?>" title="Add multiple outputs"><?php echo $projectOutcome['outcome'] ?? null ?></a></td>
-                                    <td><?php echo getclustername($projectOutcome['cluster_id']) ?></td>
-                                </tr>
-                            <?php } ?>
-                        </table>
 
                         <table class="table table-striped outputs">
-                            <caption>Outputs</caption>
+                            <caption>Outcomes</caption>
                             <tr>
                                 <th>#</th>
                                 <th>Outcome</th>
@@ -568,7 +551,12 @@ if (isset($_POST['clusters'])){?>
                                     <td><?php
 
                                         echo ++$k ?></td>
-                                    <td><?php echo getoutcomename($projectOutput['outcome_id']) ?></td>
+                                    <td><a data-toggle="modal"
+                                           class="text-primary btn btn-sm"
+                                           data-target="#viewoutcome"
+                                           data-outcome="<?= getoutcomename($projectOutput['outcome_id']) ?>"
+                                           data-id="<?=$projectOutput['outcome_id'] ?>"
+                                           title="Add multiple outputs"><?php echo getoutcomename($projectOutput['outcome_id']) ?? null ?></a></td>
                                     <td><?=
                                        getoutputs($projectOutput['outcome_id']);
                                           ?></td>
@@ -581,7 +569,7 @@ if (isset($_POST['clusters'])){?>
                             <caption>Output Indicators</caption>
                             <tr>
                                 <th>#</th>
-                                <th>Project Output indicator</th>
+                                <th>Project Indicator</th>
                                 <th>Means of verification</th>
                                 <th>Target</th>
                                 <th>Indicator</th>
@@ -589,10 +577,9 @@ if (isset($_POST['clusters'])){?>
                             </tr>
                             <?php
 
-                            $cnt=-1;
 
-                                $ik=clusterindex($projectOutputss,"0",$cnt);
-$k=getincrement($ik);
+
+
 
 
 
@@ -600,7 +587,7 @@ $k=getincrement($ik);
                                 <tr>
                                     <td><?php
 
-                                        echo getincrement(clusterindex($projectOutputss,$outputIndicator['output_id'],$cnt));
+                                        echo getindexmov($_GET['id']);
 
 
                                          ?></td>
@@ -618,19 +605,18 @@ $k=getincrement($ik);
                                     </td>
                                     <td><?php echo $outputIndicator['target'] ?? null ?></td>
                                     <td><?php echo $outputIndicator['indicator'] ?? null ?></td>
-                                    <td><?php if(!is_null($outputIndicator['activities'])) {
+                                    <td><?php if(!is_null(json_decode($outputIndicator['activities']))) {
                                             foreach (json_decode($outputIndicator['activities']) as $activity) {?>
                                         <a  data-toggle='modal' data-act='<?= $activity?>' data-id='<?= $outputIndicator['output_id'] ?>' class='text-primary btn btn-sm'  data-target='#editact' title='Edit Activity'><?= $activity ?></a>
 
 
                                         <?php    }
                                         }else{?>
-                                        <a data-toggle='modal' class='text-primary btn btn-sm'  data-id='<?= $outputIndicator['output_id'] ?>' data-target='#addact' title='Add Activity'>N/A</a>
+                                        <a data-toggle='modal' class='text-primary btn btn-sm'  data-id='<?= $outputIndicator['output_id'] ?>' data-target='#addact' title='Add Activity'><i class="text-danger">Add Activity</i></a>
                                         <?php }?>
                                     </td>
                                 </tr>
-                            <?php  $k=getincrement($k++);
-                            $cnt++;} ?>
+                            <?php  } ?>
                         </table>
 
                     </div>
@@ -646,7 +632,7 @@ $k=getincrement($ik);
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Add Output</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div id="modal-body" class="modal-body">
                 <form method="post" action="" class="">
@@ -707,12 +693,54 @@ $k=getincrement($ik);
         </div>
     </div>
 </div>
+<div class="modal  fade" id="viewoutput" tabindex="-1" data-bs-backdrop="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add indicators</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="modal-body" class="modal-body">
+                <form method="post" action="" class="">
+                    <input  type="hidden" name="outputid" id="idd">
+                    <div class="form-group">
+                        <label for="dname">Output Name:</label>
+                        <!--                        <input disabled class="form-control" type="text" readonly  name="outcome" id="dname">-->
+                        <span class="text-capitalize" id="dname"></span>
+                    </div>
+                    <div class="container mt-4">
+
+
+                        <div class="form-group">
+                            <label for="ind">
+                                Means of Verification
+                            </label>
+                            <select class="form-control" name='mov[]' id='mov' multiple><option value='mov0'>Select</option><option value='mov1'>Coordination Meeting Minutes</option><option value='mov2'>Photos</option><option value='mov3'>Participant List</option><option value='mov4'>Monthly Service Mapping Report</option><option value='mov5'>Monthly Service Monitoring Report</option><option value='mov6'>Training Report</option><option value='mov7'>Awareness Activity Narrative Report</option><option value='mov8'>Safety Audit Training Report</option><option value='mov9'>Safety Audit Report</option><option value='mov10'>Cash For Work Monitoring Report</option><option value='mov11'>Cash For work Narrative Report</option><option value='mov12'>Money Transfer Statement</option><option value='mov13'>Activity Monitoring Report</option><option value='mov14'>CFM Intake Forms</option><option value='mov15'>Narrative Report </option><option value='mov16'>Decongestion Coordination Meeting Minutes</option><option value='mov17'>Human Interest Stories</option><option value='mov18'>Activity Monitoring Report</option><option value='mov19'>Land Tenure Documents</option><option value='mov20'>Beneficiary List</option><option value='mov21'>Post Eviction Monitoring Report</option><option value='mov22'>Money Transfer Statement</option><option value='mov23'>Assessment Report</option><option value='mov24'>Quarterly Assessment Report</option><option value='mov25'>Quarterly Eviction Dashboards</option></select>
+                        </div>
+
+                        </div>
+
+
+
+                    <div class="form-group mt-2">
+                        <button type="submit" name="add_indout" class="btn btn-success">Save</button>
+                    </div>
+                </form>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="modal  fade" id="editact" tabindex="-1" data-bs-backdrop="false">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Edit Activity</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div  class="modal-body">
                 <form method="post" action="" class="">
@@ -736,7 +764,7 @@ $k=getincrement($ik);
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Add Activity</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div  class="modal-body">
                 <form method="post" action="" class="">
@@ -774,7 +802,7 @@ $k=getincrement($ik);
     function add_indicator() {
         $rowno_ind = $("#employee_table_ind tr").length;
         $rowno_ind = $rowno_ind + 1;
-        $("#employee_table tr:last").after("<tr style='border-top: 1px solid #ccc; margin-top:5px; padding-top:0px;float: left; color:#000;' id='row_ind" + $rowno_ind + "'><h3>Output X</h3><td style='font-weight:bold;'>Code<br><br><?php echo $project->Fund_Code ?? null ?></td><td style='font-weight:bold;'><?php echo  getclustername($_POST['clusters']) ?></td><td style='font-weight:bold;'>Indicator<textarea  name='indicator[text][]' rows='5' cols='20'> </textarea></td><td style='font-weight:bold;'>Means of Verification<br><select name='indicator[mov][]' id='mov' multiple><option value='mov0'>Select</option><option value='mov1'>Coordination Meeting Minutes</option><option value='mov2'>Photos</option><option value='mov3'>Participant List</option><option value='mov4'>Monthly Service Mapping Report</option><option value='mov5'>Monthly Service Monitoring Report</option><option value='mov6'>Training Report</option><option value='mov7'>Awareness Activity Narrative Report</option><option value='mov8'>Safety Audit Training Report</option><option value='mov9'>Safety Audit Report</option><option value='mov10'>Cash For Work Monitoring Report</option><option value='mov11'>Cash For work Narrative Report</option><option value='mov12'>Money Transfer Statement</option><option value='mov13'>Activity Monitoring Report</option><option value='mov14'>CFM Intake Forms</option><option value='mov15'>Narrative Report </option><option value='mov16'>Decongestion Coordination Meeting Minutes</option><option value='mov17'>Human Interest Stories</option><option value='mov18'>Activity Monitoring Report</option><option value='mov19'>Land Tenure Documents</option><option value='mov20'>Beneficiary List</option><option value='mov21'>Post Eviction Monitoring Report</option><option value='mov22'>Money Transfer Statement</option><option value='mov23'>Assessment Report</option><option value='mov24'>Quarterly Assessment Report</option><option value='mov25'>Quarterly Eviction Dashboards</option></select></td><td style='font-weight:bold;'>Total End-Cycle Target<br><br><input type='text' name='indicator[target][]' ></td><td><input type='button' value='X' class='col2-buttonX' onclick=delete_row_ind('row_ind" + $rowno_ind + "')></td><td><input type='button' value='+ Add Activity' class='col2-button' onclick='add_activity();'></td></tr>");
+        $("#employee_table tr:last").after("<tr style='border-top: 1px solid #ccc; margin-top:5px; padding-top:0px;float: left; color:#000;' id='row_ind" + $rowno_ind + "'><h3>Output X</h3><td style='font-weight:bold;'>Code<br><br><?php echo $project->Fund_Code ?? null ?></td><td style='font-weight:bold;'><?php echo  getclustername($_POST['clusters']) ?></td><td style='font-weight:bold;'>Indicator<textarea  name='indicator[text][]' rows='5' cols='20'> </textarea></td><td style='font-weight:bold;'>Means of Verification<br><select name='indicator[mov][]' id='mov' multiple><option value='mov0'>Select</option><option value='mov1'>Coordination Meeting Minutes</option><option value='mov2'>Photos</option><option value='mov3'>Participant List</option><option value='mov4'>Monthly Service Mapping Report</option><option value='mov5'>Monthly Service Monitoring Report</option><option value='mov6'>Training Report</option><option value='mov7'>Awareness Activity Narrative Report</option><option value='mov8'>Safety Audit Training Report</option><option value='mov9'>Safety Audit Report</option><option value='mov10'>Cash For Work Monitoring Report</option><option value='mov11'>Cash For work Narrative Report</option><option value='mov12'>Money Transfer Statement</option><option value='mov13'>Activity Monitoring Report</option><option value='mov14'>CFM Intake Forms</option><option value='mov15'>Narrative Report </option><option value='mov16'>Decongestion Coordination Meeting Minutes</option><option value='mov17'>Human Interest Stories</option><option value='mov18'>Activity Monitoring Report</option><option value='mov19'>Land Tenure Documents</option><option value='mov20'>Beneficiary List</option><option value='mov21'>Post Eviction Monitoring Report</option><option value='mov22'>Money Transfer Statement</option><option value='mov23'>Assessment Report</option><option value='mov24'>Quarterly Assessment Report</option><option value='mov25'>Quarterly Eviction Dashboards</option></select></td><td style='font-weight:bold;'>Total End-Cycle Target<br><br><input type='number' name='indicator[target][]' ></td><td><input type='button' value='X' class='col2-buttonX' onclick=delete_row_ind('row_ind" + $rowno_ind + "')></td><td><input type='button' value='+ Add Activity' class='col2-button' onclick='add_activity();'></td></tr>");
     }
 
     function delete_row_ind(rowno) {
@@ -880,7 +908,25 @@ $k=getincrement($ik);
 
 
     });
+            $("#viewoutput").modal({
+                keyboard: true,
+                show: false,
 
+            }).on("show.bs.modal", function(event){
+                var button = $(event.relatedTarget); // button the triggered modal
+                var id = button.data("id");
+                var dname = button.data("output");
+
+
+
+                //displays values to modal
+
+                $(".modal-body #id").val( id );
+                $(".modal-body #idd").val( id );
+                $(".modal-body #dname").text( dname );
+
+
+            });
     });
 
 

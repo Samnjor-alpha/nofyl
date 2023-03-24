@@ -13,7 +13,7 @@
         <li class="nav-item">
             <a class="nav-link <?php active('viewclusters.php');?>" href="viewclusters.php?id=<?php echo $_GET['id'] ?>">Cluster info</a>
         </li>
-        <?php if(!checkapproval($_GET['id'])) {?>
+        <?php if(!checkapproval($_GET['id'])|| $_SESSION['role']=='supervisor') {?>
         <li class="nav-item">
             <a class="nav-link text-success <?php active('movs.php');?>" href="movs.php?id=<?php echo $_GET['id'] ?>">Uploads</a>
         </li>

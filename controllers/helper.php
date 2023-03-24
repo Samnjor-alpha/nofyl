@@ -769,7 +769,13 @@ function  getoutputs($id): string
     $outputs="";
     while ($row=mysqli_fetch_assoc($sql)){
 
-        $outputs.="||".$row['output'];
+        $outputs.="|| "."<a  data-toggle='modal'
+                                 class='text-primary btn btn-sm'
+                                 data-target='#viewoutput'
+                                 data-output='".$row['output']."'
+                                 data-id='".$row['id']."'
+                                 title='Add multiple outputs'
+                                >".$row['output']."</a>"." ";
     }
     return $outputs;
 }
@@ -968,6 +974,24 @@ function getclusterid($outcome_id)
     global $conn;
     $sql=mysqli_query($conn,"select cluster_id from project_outcomes where id='$outcome_id'");
     return mysqli_fetch_assoc($sql)['cluster_id'];
+
+}
+function getclusteridbyoutput($output_id)
+{
+    global $conn;
+    $sql=mysqli_query($conn,"select cluster_id from project_outputs where id='$output_id'");
+    return mysqli_fetch_assoc($sql)['cluster_id'];
+
+}
+function getoutputtarget($id){
+    global $conn;
+    $sql=mysqli_query($conn,"select target from output_indicators where id='$id'");
+    return mysqli_fetch_assoc($sql)['target'];
+}
+function getindicatorbyoutput($id){
+    global $conn;
+    $sql=mysqli_query($conn,"select indicator from output_indicators where id='$id'");
+    return mysqli_fetch_assoc($sql)['indicator'];
 
 }
 function getclusterbyindicatorid($outcome_id)
