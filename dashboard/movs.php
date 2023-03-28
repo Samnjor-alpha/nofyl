@@ -185,7 +185,7 @@ include '../controllers/frameworkcontroller.php'
 
 
                     <table class="table table-striped indicators">
-                        <caption>Output Indicators</caption>
+                        
                         <tr>
                             <th>#</th>
                             <th>Project Indicator</th>

@@ -255,7 +255,7 @@ include '../controllers/frameworkcontroller.php'
 
                     
                     <table class="table table-striped indicators">
-                        <caption>Output Indicators</caption>
+                        
                         <tr>
                             <th>#</th>
                             <th>Output</th>
@@ -268,16 +268,13 @@ include '../controllers/frameworkcontroller.php'
 
 
 
-                        $cnt=-1;
 
-                        $ik=clusterindex($projectOutputs,"0",$cnt);
-                        $k=getincrement($ik);
 
                         while ($outputIndicator=mysqli_fetch_assoc($result)) { ?>
                             <tr>
                                 <td><?php
 
-                                    echo getincrement(clusterindex($projectOutputss,$outputIndicator['output_id'],$cnt));
+                                    echo getindexmov(getoutcomeid($outputIndicator['output_id']));
 
                                     ?></td>
                                 <td><?php echo $outputIndicator['indicator'] ?? null ?></td>
@@ -303,8 +300,7 @@ include '../controllers/frameworkcontroller.php'
                                 </td>
                             </tr>
                             <?php
-                            $cnt++;
-                            $k=getincrement($k++);} ?>
+                                } ?>
                     </table>
 
                 </div>

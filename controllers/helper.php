@@ -966,7 +966,7 @@ function mova($mov,$indicatorid): string
 function  getindexmov($cid)
 {
     global $conn;
-    $sql=mysqli_query($conn,"select indexmov from project_outcomes where cluster_id='$cid'");
+    $sql=mysqli_query($conn,"select indexmov from project_outcomes where id='$cid'");
     return mysqli_fetch_assoc($sql)['indexmov'];
 }
 function getclusterid($outcome_id)
@@ -1000,4 +1000,10 @@ function getclusterbyindicatorid($outcome_id)
     $sql=mysqli_query($conn,"select cluster_id from output_indicators where id='$outcome_id'");
     return mysqli_fetch_assoc($sql)['cluster_id'];
 
+}
+function getoutcomeid($id)
+{
+    global $conn;
+    $sql=mysqli_query($conn,"select outcome_id from project_outputs where id='$id'");
+    return mysqli_fetch_assoc($sql)['outcome_id'];
 }

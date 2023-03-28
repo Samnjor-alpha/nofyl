@@ -60,9 +60,10 @@ if ($result = $conn->query($sqll)) {
     $outputIndicatorsm = $result->fetch_all(MYSQLI_BOTH);
 
 }
-$sql_o = "select * from output_indicators where project_id='$prjid' group by output_id";
+//$sql_o = "select * from output_indicators where project_id='$prjid' group by output_id";
+//$result = $conn->query($sql_o);
+$sql_o = "select * from project_outputs inner join output_indicators oi on project_outputs.id = oi.output_id group by oi.output_id";
 $result = $conn->query($sql_o);
-
 
 if (isset($_POST['saveFramework'])){
     if (empty($framework)){
@@ -241,7 +242,11 @@ alert('Select Output to add indicators');
 
 
                             if ($conn->query("insert into output_indicators (project_id, indicator, mov, target, output_id, cluster_id)  values ($prjid, '" . $indicator . "', '" . json_encode($mov) . "', '" . $target . "', '" . $output . "', $clusterID) ")) {
+                                $location='clusters.php?id='.$prjid.'';
+                                echo "<script>
 
+window.location.href='$location';
+</script>";
 
                             }
                         }

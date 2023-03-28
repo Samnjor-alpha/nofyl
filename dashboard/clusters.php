@@ -566,7 +566,7 @@ if (isset($_POST['clusters'])){?>
                         </table>
 
                         <table class="table table-striped indicators">
-                            <caption>Output Indicators</caption>
+
                             <tr>
                                 <th>#</th>
                                 <th>Output</th>
@@ -587,7 +587,7 @@ if (isset($_POST['clusters'])){?>
                                 <tr>
                                     <td><?php
 
-                                        echo getindexmov($_GET['id']);
+                                        echo getindexmov(getoutcomeid($outputIndicator['output_id']));
 
 
                                          ?></td>
